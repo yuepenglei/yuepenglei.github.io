@@ -1,1 +1,5 @@
-theme: jekyll-theme-cayman
+theme: icarus
+deploy:
+  type: git
+  repo: https://github.com/yuepenglei/yuepenglei.github.io.git
+  branch: master
