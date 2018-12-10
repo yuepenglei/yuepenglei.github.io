@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.jpg?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpg?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="时间复杂度的四个概念：最好情况时间复杂度，最坏情况时间复杂度，平均情况时间复杂度，均摊时间复杂度">
+<meta name="keywords" content="算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法复杂度分析2">
+<meta property="og:url" content="http://yoursite.com/2018/12/04/algorithm02/index.html">
+<meta property="og:site_name" content="学习笔记">
+<meta property="og:description" content="时间复杂度的四个概念：最好情况时间复杂度，最坏情况时间复杂度，平均情况时间复杂度，均摊时间复杂度">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-10T03:24:15.032Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="算法复杂度分析2">
+<meta name="twitter:description" content="时间复杂度的四个概念：最好情况时间复杂度，最坏情况时间复杂度，平均情况时间复杂度，均摊时间复杂度">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/04/algorithm02/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>算法复杂度分析2 | 学习笔记</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">学习笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">以创业得心态去打工</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/algorithm02/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">算法复杂度分析2
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-04 22:59:36" itemprop="dateCreated datePublished" datetime="2018-12-04T22:59:36+08:00">2018-12-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-12-10 11:24:15" itemprop="dateModified" datetime="2018-12-10T11:24:15+08:00">2018-12-10</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">时间复杂度的四个概念：最好情况时间复杂度，最坏情况时间复杂度，平均情况时间复杂度，均摊时间复杂度</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="时间复杂度四个概念"><a href="#时间复杂度四个概念" class="headerlink" title="时间复杂度四个概念"></a>时间复杂度四个概念</h1><p>本文创作灵感来源于 极客时间 王争老师的《数据结构与算法之美》课程，通过课后反思以及借鉴各位学友的发言总结，现整理出自己的知识架构，以便日后温故知新，查漏补缺。</p>
+<h4 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h4><h6 id="什么是时间复杂度四个概念"><a href="#什么是时间复杂度四个概念" class="headerlink" title="什么是时间复杂度四个概念"></a>什么是时间复杂度四个概念</h6><ul>
+<li>最好情况时间复杂度：在最理想的情况上，执行这段代码的时间复杂度。</li>
+<li>最坏情况时间复杂度：在最糟糕的情况上，执行这段代码的时间复杂度。</li>
+<li>平均情况时间复杂度：用代码在所有情况下执行的次数的加权平均值表示。</li>
+<li>均摊时间复杂度：在代码执行的所有复杂度情况中绝大部分是低级别的复杂度，个别情况是高级别复杂度且发生具有时序关系时，可以将个别高级别复杂度均摊到低级别复杂度上。基本上均摊结果就等于低级别复杂度。</li>
+<li><h3 id="为什么"><a href="#为什么" class="headerlink" title="为什么"></a>为什么</h3><h6 id="为什么要有时间复杂度四个概念"><a href="#为什么要有时间复杂度四个概念" class="headerlink" title="为什么要有时间复杂度四个概念"></a>为什么要有时间复杂度四个概念</h6></li>
+<li>算法是我们来解决某一类问题得出应有结果的有限步骤，但是在实际运用中，很有可能在算法进行到某一个点的时候，就已经得到我们最终想要的结果了。所以，在分析出时间复杂度之后，算法有可能在执行之初或者是执行结束，或者是执行的任一时刻就得出结果，停止运行。</li>
+<li>同一段代码在不同情况下时间复杂度的具体值可能会出现量级差异，为了更全面，更准确的描述代码的时间复杂度，所以引入这4个概念。</li>
+<li>代码复杂度在不同情况下出现量级差别时就需要区别这四种复杂度，以便更加全面准确的分析时间复杂度。<h3 id="怎么办"><a href="#怎么办" class="headerlink" title="怎么办"></a>怎么办</h3><h6 id="怎么分析代码的这四种时间复杂度"><a href="#怎么分析代码的这四种时间复杂度" class="headerlink" title="怎么分析代码的这四种时间复杂度"></a>怎么分析代码的这四种时间复杂度</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getIndex</span><span class="params">(<span class="keyword">int</span>[] list,<span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; list.length; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(val == list[i])&#123;</span><br><span class="line">            index = i;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> index;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>上述代码中，数组 list ，以及某一个特定的值 val ，getIndex 方法负责找出数组 list 中 val 值得数组下标。</p>
+<h6 id="最好情况时间复杂度"><a href="#最好情况时间复杂度" class="headerlink" title="最好情况时间复杂度"></a>最好情况时间复杂度</h6><ul>
+<li>在 getIndex 方法中，假设 val = 5，我们查找数组 list 中值等于 5 的数组下标。那么，代码运行最少时间的情况就是数组 list 中的第一个元素的值就等于 5 ，则代码 for 循环只执行一次，最好情况时间复杂度为  O(1) 。 <h6 id="最坏情况时间复杂度"><a href="#最坏情况时间复杂度" class="headerlink" title="最坏情况时间复杂度"></a>最坏情况时间复杂度</h6></li>
+<li>在 getIndex 方法中，假设 val = 10，我们查找数组 list 中值等于 10 的数组下标。那么，代码运行最少时间的情况就是数组 list 中的最后一个元素的值就等于 10 ，则代码 for 循环执行了 n (n代表数组list的长度)  次，最好情况时间复杂度为  O(n) 。<h6 id="平均情况时间复杂度"><a href="#平均情况时间复杂度" class="headerlink" title="平均情况时间复杂度"></a>平均情况时间复杂度</h6></li>
+<li>平均情况时间复杂度的分析要充分考虑到每一种情况出现的概率，此处分为两个步骤</li>
+<li>第一步：在 getIndex 方法中，假设 val = 7，我们查找数组 list 中值等于 7 的数组下标。但是，数组中是否有值等于 7 的元素存在两种情况，有或者无，我们就是理论上假设每种情况出现的概率都是 \dfrac{1}{2} </li>
+<li>第二步：假设数组 list 中存在值等于 7 的元素，那么元素出现在每个位置上的概率就是 1/n （n代表数组list的长度）最终 7 出现在数组中任意位置的概率为  1/2n </li>
+<li>那么，平均时间复杂度就是每种情况的时间复杂度之和的平均值。每种情况的概率就是 1 <em> 1/2n + 2 </em> 1/2n + 3 <em> 1/2n + 。。。 + n </em> 1/2n =   (n+1)/4   去掉多项式的系数和常熟则时间复杂度为 O(n) <h6 id="均摊时间复杂度"><a href="#均摊时间复杂度" class="headerlink" title="均摊时间复杂度"></a>均摊时间复杂度</h6></li>
+<li>从概念上理解，在代码执行过程中，每种情况出现的概率并不是相等的。又或者是大部分情况是每种情况出现的概率是相等的，此时算法时间复杂度为 O(1) ，只有个别情况代码的时间复杂度 O(n) ，此时我们需要将时间复杂度高的耗时操作均分到时间复杂度低的操作中。</li>
+<li>王争老师讲解中曾提到，均摊时间复杂度是一种特殊的平均情况时间复杂度，一般的均摊时间复杂度就等于最好最好情况时间复杂度。由于这种情况实际运用中很少见，所以我们只需要了解大意，不求甚解即可。我们应该掌握的是这种分析方法：摊还分析法。<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4>初入算法复杂度分析，必是步履蹒跚，一路磕磕绊绊跌跌撞撞。看不懂别慌，也别忙着总结，先读五遍文章先，无他，唯手熟尔~<br>与诸君共勉</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+          
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/03/algorithm01/" rel="next" title="算法复杂度分析1">
+                <i class="fa fa-chevron-left"></i> 算法复杂度分析1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/06/LinearTable/" rel="prev" title="数组">
+                数组 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Author">
+            
+              <p class="site-author-name" itemprop="name">黑子</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#时间复杂度四个概念"><span class="nav-number">1.</span> <span class="nav-text">时间复杂度四个概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#是什么"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">是什么</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#什么是时间复杂度四个概念"><span class="nav-number">1.0.0.1.0.1.</span> <span class="nav-text">什么是时间复杂度四个概念</span></a></li></ol></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么"><span class="nav-number">1.0.1.</span> <span class="nav-text">为什么</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#为什么要有时间复杂度四个概念"><span class="nav-number">1.0.1.0.0.1.</span> <span class="nav-text">为什么要有时间复杂度四个概念</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#怎么办"><span class="nav-number">1.0.2.</span> <span class="nav-text">怎么办</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#怎么分析代码的这四种时间复杂度"><span class="nav-number">1.0.2.0.0.1.</span> <span class="nav-text">怎么分析代码的这四种时间复杂度</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#最好情况时间复杂度"><span class="nav-number">1.0.2.0.0.2.</span> <span class="nav-text">最好情况时间复杂度</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#最坏情况时间复杂度"><span class="nav-number">1.0.2.0.0.3.</span> <span class="nav-text">最坏情况时间复杂度</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#平均情况时间复杂度"><span class="nav-number">1.0.2.0.0.4.</span> <span class="nav-text">平均情况时间复杂度</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#均摊时间复杂度"><span class="nav-number">1.0.2.0.0.5.</span> <span class="nav-text">均摊时间复杂度</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">总结</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">黑子</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.5.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
