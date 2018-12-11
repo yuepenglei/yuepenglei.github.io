@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.jpg?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpg?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="队列也是一种操作受限的线性数据结构，只提供入列和出列两种操作，遵循先进先出原则：先入列的元素优先出列。">
+<meta name="keywords" content="算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法笔记-队列">
+<meta property="og:url" content="http://yoursite.com/2018/12/11/Queue/index.html">
+<meta property="og:site_name" content="学习笔记">
+<meta property="og:description" content="队列也是一种操作受限的线性数据结构，只提供入列和出列两种操作，遵循先进先出原则：先入列的元素优先出列。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-11T01:02:14.568Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="算法笔记-队列">
+<meta name="twitter:description" content="队列也是一种操作受限的线性数据结构，只提供入列和出列两种操作，遵循先进先出原则：先入列的元素优先出列。">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/11/Queue/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>算法笔记-队列 | 学习笔记</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">学习笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">以创业得心态去打工</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/11/Queue/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">算法笔记-队列
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-11 09:00:58 / 修改时间：09:02:14" itemprop="dateCreated datePublished" datetime="2018-12-11T09:00:58+08:00">2018-12-11</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">队列也是一种操作受限的线性数据结构，只提供入列和出列两种操作，遵循先进先出原则：先入列的元素优先出列。</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="队列在线程池等有限资源池中的应用"><a href="#队列在线程池等有限资源池中的应用" class="headerlink" title="队列在线程池等有限资源池中的应用"></a>队列在线程池等有限资源池中的应用</h1><p>本文创作灵感来源于 极客时间 王争老师的《数据结构与算法之美》课程，通过课后反思以及借鉴各位学友的发言总结，现整理出自己的知识架构，以便日后温故知新，查漏补缺。</p>
+<h4 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h4><h6 id="什么是队列"><a href="#什么是队列" class="headerlink" title="什么是队列"></a>什么是队列</h6><ul>
+<li>队列也是一种操作受限的线性数据结构，只提供入列和出列两种操作，遵循先进先出原则：先入列的元素优先出列</li>
+<li>队列中又区分了普通队列，循环队列，阻塞队列以及并发队列。不同的类型有着不同的实际应用，尤其是在底层系统，框架和中间件中发挥着巨大作用。<h4 id="为什么"><a href="#为什么" class="headerlink" title="为什么"></a>为什么</h4><h6 id="为什么有队列这种数据结构"><a href="#为什么有队列这种数据结构" class="headerlink" title="为什么有队列这种数据结构"></a>为什么有队列这种数据结构</h6></li>
+<li>特定的数据结构是为了解决特定的某一类问题，而队列这种特殊的线性数据结构也有着其特殊的作用。正如栈遵循的先入先出原则一样，现实生活中的排队现象就是队列的一个很好体现。先排队的人，优先享受服务，后排队的人，要等前面的人都被服务过之后，才轮到自己。</li>
+<li><h4 id="怎么办"><a href="#怎么办" class="headerlink" title="怎么办"></a>怎么办</h4><h6 id="怎么学习队列这种数据结构"><a href="#怎么学习队列这种数据结构" class="headerlink" title="怎么学习队列这种数据结构"></a>怎么学习队列这种数据结构</h6></li>
+<li>队列根据其实现方式的不同又区分了顺序队列和链式队列，而从功能上又区分普通队列，循环队列，阻塞队列和并发队列。<h6 id="顺序队列"><a href="#顺序队列" class="headerlink" title="顺序队列"></a>顺序队列</h6></li>
+<li>顺序队列：队列实现的方式是数组。简单实现代码如下<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span>  <span class="title">ArrayQueue</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String[] queueList;<span class="comment">//队列</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> first;<span class="comment">//队头元素下标</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> last;<span class="comment">//队尾元素下标</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> n;<span class="comment">//队列大小</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//初始化队列</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ArrayQueue</span><span class="params">(<span class="keyword">int</span> length)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.queueList = <span class="keyword">new</span> String[length];</span><br><span class="line">        <span class="keyword">this</span>.first = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">this</span>.last = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">this</span>.n = length;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//入队</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">enQueue</span><span class="params">(String item)</span></span>&#123;</span><br><span class="line">        <span class="comment">//队尾元素下标等于队列长度，说明队列末尾不能入队了</span></span><br><span class="line">        <span class="keyword">if</span>(last == n)&#123;</span><br><span class="line">            <span class="comment">/**</span></span><br><span class="line"><span class="comment">             * 队头元素下标不为0，说明当前数组前面有空余位置，</span></span><br><span class="line"><span class="comment">             * 这个时候需要对队列中的元素搬移位置，使得队列中的</span></span><br><span class="line"><span class="comment">             * 元素都从数组的第一个位置排列</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            <span class="keyword">if</span>(first != <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> i = first;i &lt; last; i++)&#123;</span><br><span class="line">                    queueList[i-first] = queueList[i];</span><br><span class="line">                &#125;</span><br><span class="line">                last = last - first;</span><br><span class="line">                first = <span class="number">0</span>;</span><br><span class="line">                queueList[last] = item;</span><br><span class="line">                last++;</span><br><span class="line">                <span class="keyword">return</span>  <span class="keyword">true</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//出列</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">deQueue</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//判断队列是否为空</span></span><br><span class="line">        <span class="keyword">if</span>(first == last)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            String item = queueList[first];</span><br><span class="line">            first++;</span><br><span class="line">            <span class="keyword">return</span> item;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>用数组实现的队列，每次出列的时候，取出数组中下标为 first 的元素，然后 first 自增一。每次入列的时候，数组下标为 last 的位置存储元素，last 自增一。出列的情况，我们只需判断当时的队列是否为空队列就够了。但是，入列的时候，由于出列导致 first 值一直在自增，入列导致 last 值也在自增，那么数组势必会存储到最后一个元素，而数组的前面由于出列，空余出了一些位置。所以，这个时候我们就需要把数组中的元素整体搬移到数组的最前面，为后续入列提供空间。数据搬移的时候，我们要考虑好边界条件：first 值不等于 0 且 last 值等于数组的长度</p>
+<h6 id="链式队列"><a href="#链式队列" class="headerlink" title="链式队列"></a>链式队列</h6><ul>
+<li>链式队列：队列实现的方式是链表。简单实现代码如下<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LinkQueue</span></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Node</span></span>&#123;</span><br><span class="line">        String data;<span class="comment">//数值域</span></span><br><span class="line">        Node next;<span class="comment">//指针域</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Node first;<span class="comment">//队列头结点</span></span><br><span class="line">    <span class="keyword">private</span> Node last;<span class="comment">//队列尾节点</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//初始化队列</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LinkQueue</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.first.next = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">this</span>.last.next = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//入列</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span>  <span class="keyword">boolean</span> <span class="title">enQueue</span><span class="params">(Node node)</span></span>&#123;</span><br><span class="line">        <span class="comment">//空队列</span></span><br><span class="line">        <span class="keyword">if</span>(first.next == <span class="keyword">null</span> &amp;&amp; last.next == <span class="keyword">null</span>)&#123;</span><br><span class="line">            first.next = node;</span><br><span class="line">            last.next = node;</span><br><span class="line">            <span class="keyword">return</span>  <span class="keyword">true</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            last.next.next = node;</span><br><span class="line">            last.next = node;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//出列</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">deQueue</span><span class="params">()</span></span>&#123;</span><br><span class="line">    	<span class="comment">//判断是否为空列</span></span><br><span class="line">        <span class="keyword">if</span>(first.next == <span class="keyword">null</span> &amp;&amp; last.next == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            Node node = first.next;</span><br><span class="line">            node.next = <span class="keyword">null</span>;<span class="comment">//释放内存</span></span><br><span class="line">            first.next = first.next.next;</span><br><span class="line">            <span class="keyword">return</span> node;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>链式队列中，我们需要额外创建两个节点，一个是头节点一个是尾节点，分别指向第一个元素和最后一个元素。队列为空的条件就是两个指示节点都指向 null 。由于链表可以自由的申请内存空间，所以链式队列理论上是可以无限大的。</p>
+<h6 id="循环队列"><a href="#循环队列" class="headerlink" title="循环队列"></a>循环队列</h6><ul>
+<li>循环队列顾名思义就是一个环形的队列，首尾相连。相对于普通的数组实现的队列来说，我们不用在做数据搬移的工作了，只要队列未满，我们就可以直径二入队。简单实现代码如下<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CircularQueue</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String[] queueList;<span class="comment">//队列</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> first;<span class="comment">//队头元素下标</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> last;<span class="comment">//队尾元素下标</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> n;<span class="comment">//队列大小</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//初始化队列</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CircularQueue</span><span class="params">(<span class="keyword">int</span> length)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.queueList = <span class="keyword">new</span> String[length];</span><br><span class="line">        <span class="keyword">this</span>.first = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">this</span>.last = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">this</span>.n = length;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//入队</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">enQueue</span><span class="params">(String item)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>((last + <span class="number">1</span>) % n == first)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            queueList[last] = item;</span><br><span class="line">            last = (last + <span class="number">1</span>) % n;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//出列</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">deQueue</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(first == last)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            String item = queueList[first];</span><br><span class="line">            first = (first + <span class="number">1</span>) % n;</span><br><span class="line">            <span class="keyword">return</span> item;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>从代码中我们发现两个公式   (last + 1) % n 和 (first + 1) % n。通过对比发现，当队列满的时候：(last + 1) % n = first。从而得出上述两个出列与入列时候的标识位获取新值的公式。注：上述循环链表中的最后一个位置是不能存储元素的，因为一旦入队，last == first 就成立了，队列就是一个空列，但是实际上是已经存储满了。</p>
+<h6 id="阻塞队列和并发队列"><a href="#阻塞队列和并发队列" class="headerlink" title="阻塞队列和并发队列"></a>阻塞队列和并发队列</h6><ul>
+<li>阻塞队列就是对队列的操作添加了受限条件：当队列为空的时候，出队操作就会被阻塞；如果队列满了，那么入列操作就会阻塞。这正好是一个消费者与生产者的模型。</li>
+<li>并发队列就是线程安全的队列，简单的操作就是在入队出队的操作上加锁。王争老是提到基于数组的循环队列，利用CAS原子操作，可以实现非常搞笑的并发队列。这个概念我还是第一次听过，接下来我会好好查找资料，研究一番，后续单独在写一篇文章记录。<h6 id="队列在线程池等有限资源池中的应用-1"><a href="#队列在线程池等有限资源池中的应用-1" class="headerlink" title="队列在线程池等有限资源池中的应用"></a>队列在线程池等有限资源池中的应用</h6></li>
+<li>非阻塞方式，直接拒绝请求</li>
+<li>阻塞方式，将请求排队，依次分配资源。</li>
+<li>对大部分有限资源的请求使用，当没有资源的时候，都是基于队列的形式实现排队请求的。</li>
+<li>链表实现了无界队列，但是肯能会导致过多的请求排队，导致请求时间过长，对于敏感系统来说弊端很大。</li>
+<li>数组实现了有界队列，当请求数量超过队列拥有资源的数量的时候，新的i请求会被拒绝。但是，如何恰当的分配队列数组的大小，也是一个很复杂的实现。<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4>初入算法学习，必是步履蹒跚，一路磕磕绊绊跌跌撞撞。看不懂别慌，也别忙着总结，先读五遍文章先，无他，唯手熟尔~<br>与诸君共勉</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+          
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/10/js-object-object/" rel="next" title="js中onClick([object object])的传参问题">
+                <i class="fa fa-chevron-left"></i> js中onClick([object object])的传参问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Author">
+            
+              <p class="site-author-name" itemprop="name">黑子</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#队列在线程池等有限资源池中的应用"><span class="nav-number">1.</span> <span class="nav-text">队列在线程池等有限资源池中的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#是什么"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">是什么</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#什么是队列"><span class="nav-number">1.0.0.1.0.1.</span> <span class="nav-text">什么是队列</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">为什么</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#为什么有队列这种数据结构"><span class="nav-number">1.0.0.2.0.1.</span> <span class="nav-text">为什么有队列这种数据结构</span></a></li></ol></li></ol><li class="nav-item nav-level-4"><a class="nav-link" href="#怎么办"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">怎么办</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#怎么学习队列这种数据结构"><span class="nav-number">1.0.0.3.0.1.</span> <span class="nav-text">怎么学习队列这种数据结构</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#顺序队列"><span class="nav-number">1.0.0.3.0.2.</span> <span class="nav-text">顺序队列</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#链式队列"><span class="nav-number">1.0.0.3.0.3.</span> <span class="nav-text">链式队列</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#循环队列"><span class="nav-number">1.0.0.3.0.4.</span> <span class="nav-text">循环队列</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#阻塞队列和并发队列"><span class="nav-number">1.0.0.3.0.5.</span> <span class="nav-text">阻塞队列和并发队列</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#队列在线程池等有限资源池中的应用-1"><span class="nav-number">1.0.0.3.0.6.</span> <span class="nav-text">队列在线程池等有限资源池中的应用</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">总结</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">黑子</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.5.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
