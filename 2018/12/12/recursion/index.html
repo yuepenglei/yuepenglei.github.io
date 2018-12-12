@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.jpg?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpg?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="递归是一种非常高效、简洁的编码技巧，一种应用非常广泛的算法。通过调用自身从而解决问题，调用称之为递，返回称之为归。">
+<meta name="keywords" content="算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法笔记-递归">
+<meta property="og:url" content="http://yoursite.com/2018/12/12/recursion/index.html">
+<meta property="og:site_name" content="学习笔记">
+<meta property="og:description" content="递归是一种非常高效、简洁的编码技巧，一种应用非常广泛的算法。通过调用自身从而解决问题，调用称之为递，返回称之为归。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-12T01:00:12.220Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="算法笔记-递归">
+<meta name="twitter:description" content="递归是一种非常高效、简洁的编码技巧，一种应用非常广泛的算法。通过调用自身从而解决问题，调用称之为递，返回称之为归。">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/12/recursion/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>算法笔记-递归 | 学习笔记</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">学习笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">以创业得心态去打工</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/12/recursion/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">算法笔记-递归
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-12 08:57:17 / 修改时间：09:00:12" itemprop="dateCreated datePublished" datetime="2018-12-12T08:57:17+08:00">2018-12-12</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">递归是一种非常高效、简洁的编码技巧，一种应用非常广泛的算法。通过调用自身从而解决问题，调用称之为递，返回称之为归。</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="如何用三行代码找到最终推荐人"><a href="#如何用三行代码找到最终推荐人" class="headerlink" title="如何用三行代码找到最终推荐人"></a>如何用三行代码找到最终推荐人</h1><p>本文创作灵感来源于 极客时间 王争老师的《数据结构与算法之美》课程，通过课后反思以及借鉴各位学友的发言总结，现整理出自己的知识架构，以便日后温故知新，查漏补缺。</p>
+<h4 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h4><h6 id="什么是递归"><a href="#什么是递归" class="headerlink" title="什么是递归"></a>什么是递归</h6><ul>
+<li>递归是一种非常高效、简洁的编码技巧，一种应用非常广泛的算法。通过调用自身从而解决问题，调用称之为递，返回称之为归。</li>
+</ul>
+<h4 id="为什么"><a href="#为什么" class="headerlink" title="为什么"></a>为什么</h4><h6 id="为什么使用递归"><a href="#为什么使用递归" class="headerlink" title="为什么使用递归"></a>为什么使用递归</h6><ul>
+<li>递归其实是一种解决问题思想的具现化。即将某个问题分成多数子问题，而解决子问题的思路和解决当前问题的思路是一样的。</li>
+<li>递归代码书写简洁，表达力强。</li>
+</ul>
+<h4 id="怎么办"><a href="#怎么办" class="headerlink" title="怎么办"></a>怎么办</h4><h6 id="怎么学习递归"><a href="#怎么学习递归" class="headerlink" title="怎么学习递归"></a>怎么学习递归</h6><ul>
+<li>首先了解什么样的问题适合递归解决。</li>
+<li>1：一个问题可以分为几个子问题求解。2：该问题与之后分解的子问题，除了数据规模不同以外，解题思路是一样的。3：递归存在终止条件。<h6 id="如何编写递归代码"><a href="#如何编写递归代码" class="headerlink" title="如何编写递归代码"></a>如何编写递归代码</h6></li>
+<li>推导递推公式：解决当前问题与解决当前分体分解出来的子问题，都可以套用相同的公式求解。</li>
+<li>确定终止条件：将大问题分解成小问题，就在于小问题更好解决。那么递归分解出的问题，必须要有最小问题，也就是递归中递的终止条件。</li>
+<li>将递推公式转化成代码。<h6 id="如何将递归代码改为非递归代码"><a href="#如何将递归代码改为非递归代码" class="headerlink" title="如何将递归代码改为非递归代码"></a>如何将递归代码改为非递归代码</h6></li>
+<li>递归代码一：场景计算你在电影院的第几排，你的前面有 n 个人，第一个人是第三排。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">fn</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n == <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> fn(n - <span class="number">1</span>) + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//非递归代码</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">notFn</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= n; i++)&#123;</span><br><span class="line">        sum += <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>首先，推导出递推公式：fn(n) = fn(n-1) + 1 其中 fn(1) = 3。在上述递归代码中，n 代表的是我们前面有多少人，如果我们想知道自己当前是第几排，只需知道前面的人是第几排，然后加一就是我们自己的排数。所以推到出递推公式：fn(n) = fn(n-1) + 1。使用递归必须要有终止条件，我们的终止条件就是第一个人排在第三排，排数是确定的，即 fn(1) = 3。<br>非递归代码就是使用迭代循环实现，如上述的非递归代码。</p>
+<ul>
+<li>递归代码二：场景计算你爬上楼顶的方式有几种，每次只能上一节台阶或者两节台阶<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//递归代码</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">fn</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n == <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(n == <span class="number">2</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> fn(n - <span class="number">1</span>) + fn(n - <span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//非递归代码</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">notFn</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> prepre = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> pre = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">3</span>;i &lt;= n; i++)&#123;</span><br><span class="line">        sum = prepre + pre;</span><br><span class="line">        pre = sum;</span><br><span class="line">        prepre = pre;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>上述实例：上楼梯，迈出第一步有两种选择：上一节台阶和上两节台阶，第二步的时候一样有两种选择，所以每次我们都是再求当且阶梯数减一和减二后的爬上楼梯的方式。则递推的推到公式就是：fn(n) = fn(n-1) + fn(n-2)；终止条件就是，当 n = 1时 fn(1) = 1，当 n = 2 时 fn(2) = 2。非递归代码的实现，最难理解就是循环体中的代码 prepre 的值代表的就是 fn(n-2)，pre 的值代表的就是 fn(n-1)。那么就好理解了，循环体内先求出 fn(n) 即 pre+prepre 。然后变更 pre 等于当前 fn(n)的值，prepre 等于当前 fn(n-1) 的值，则下次进去循环体就是：fn(n+1) = fn(n) + fn(n-1)，就是当前的 pre + prepre 。</p>
+<h6 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h6><ul>
+<li>递归代码要警惕堆栈溢出。递归方法在每次调用自身的时候，都会在内存栈中存储函数的临时变量，如果递归层级高，深度大，则存在堆栈溢出的风险，造成系统崩溃。我们可以限制递归调用的深度，从而避免堆栈溢出。但是，递归允许调用的最大深度是由当前线程栈的剩余空间决定的，所以事先无法计算合适深度，如果实时计算又太过分复杂。当然，如果递归深度较小，比如低于50，那么可以采用限制递归深度的方法避免堆栈溢出。</li>
+<li>递归代码要警惕循环计算。当我们把当前问题分解成多个子问题，而子问题又可以分解成子子问题，在问题分解的过程当中，势必会出现相同的子问题。那么，在计算求解的过程当中，我们对相同的子问题进行过多次求解，这就是在浪费系统资源。对于这种情况，我们可以构建键值对对象，子问题作为键值，子问题的解作为值，进行存储。当我们对子问题求解的时候，可以先从键值对对象中查找是否有当前子问题的借，若有则不再计算直接取值，如果可球之后存储，以便下次访问。</li>
+<li>效率问题：递归代码多次调用的时候，就会产生可观的时间成本。递归的每一次调用，都要在内存栈中保存一次现场数据，增大了空间开销的成本。<h6 id="如何用三行代码找到最终推荐人-1"><a href="#如何用三行代码找到最终推荐人-1" class="headerlink" title="如何用三行代码找到最终推荐人"></a>如何用三行代码找到最终推荐人</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取最终推荐人</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Long <span class="title">getTop</span><span class="params">(Long id)</span></span>&#123;</span><br><span class="line">    Long parentId = <span class="string">"SELECT parentId FROM table WHERE ID = id"</span>;</span><br><span class="line">    <span class="keyword">if</span>(parentId == <span class="keyword">null</span>) <span class="keyword">return</span> id;</span><br><span class="line">    <span class="keyword">return</span> getTop(parentId);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>上述是伪代码，大家应该可以看得明白。假如递归深度很深，上面的代码中没有做堆栈溢出的预防；假如推荐人关联关系出现错误指向，也没有做递归无限调用的验证。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>王争老师给出了两点高度总结：<br>1：写递归代码的关键就是找出如何将大问题转化为小问题的规律，并且基于此写出递推公式，进而推敲出递推终止条件，最后将递推公式和终止条件翻译成代码。<br>2：只要遇到递归，就把它抽象成递推公式，不用想一层层的调用关系，不要试图用人脑去分解递归的每个步骤。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+          
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/11/Queue/" rel="next" title="算法笔记-队列">
+                <i class="fa fa-chevron-left"></i> 算法笔记-队列
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Author">
+            
+              <p class="site-author-name" itemprop="name">黑子</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#如何用三行代码找到最终推荐人"><span class="nav-number">1.</span> <span class="nav-text">如何用三行代码找到最终推荐人</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#是什么"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">是什么</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#什么是递归"><span class="nav-number">1.0.0.1.0.1.</span> <span class="nav-text">什么是递归</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">为什么</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#为什么使用递归"><span class="nav-number">1.0.0.2.0.1.</span> <span class="nav-text">为什么使用递归</span></a></li></ol></li></ol><li class="nav-item nav-level-4"><a class="nav-link" href="#怎么办"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">怎么办</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#怎么学习递归"><span class="nav-number">1.0.0.3.0.1.</span> <span class="nav-text">怎么学习递归</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#如何编写递归代码"><span class="nav-number">1.0.0.3.0.2.</span> <span class="nav-text">如何编写递归代码</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#如何将递归代码改为非递归代码"><span class="nav-number">1.0.0.3.0.3.</span> <span class="nav-text">如何将递归代码改为非递归代码</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#注意事项"><span class="nav-number">1.0.0.3.0.4.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#如何用三行代码找到最终推荐人-1"><span class="nav-number">1.0.0.3.0.5.</span> <span class="nav-text">如何用三行代码找到最终推荐人</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">总结</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">黑子</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.5.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
