@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.jpg?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpg?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="冒泡排序，选择排序，插入排序">
+<meta name="keywords" content="算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法-排序">
+<meta property="og:url" content="http://yoursite.com/2018/12/13/sort1/index.html">
+<meta property="og:site_name" content="学习笔记">
+<meta property="og:description" content="冒泡排序，选择排序，插入排序">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181212203636443.gif">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181212211700366.gif">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181212212722232.gif">
+<meta property="og:updated_time" content="2018-12-13T00:50:09.454Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="算法-排序">
+<meta name="twitter:description" content="冒泡排序，选择排序，插入排序">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20181212203636443.gif">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/13/sort1/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>算法-排序 | 学习笔记</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">学习笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">以创业得心态去打工</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/13/sort1/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">算法-排序
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-13 08:47:13 / 修改时间：08:50:09" itemprop="dateCreated datePublished" datetime="2018-12-13T08:47:13+08:00">2018-12-13</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">冒泡排序，选择排序，插入排序</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="冒泡排序，选择排序，插入排序"><a href="#冒泡排序，选择排序，插入排序" class="headerlink" title="冒泡排序，选择排序，插入排序"></a>冒泡排序，选择排序，插入排序</h1><p>本文创作灵感来源于 极客时间 王争老师的《数据结构与算法之美》课程，通过课后反思以及借鉴各位学友的发言总结，现整理出自己的知识架构，以便日后温故知新，查漏补缺。</p>
+<h4 id="如何分析一个排序算法"><a href="#如何分析一个排序算法" class="headerlink" title="如何分析一个排序算法"></a>如何分析一个排序算法</h4><h6 id="排序算法的执行效率"><a href="#排序算法的执行效率" class="headerlink" title="排序算法的执行效率"></a>排序算法的执行效率</h6><ul>
+<li>最好情况，最坏情况，平均时间复杂度。待排序数据的有序度对于排序算法的执行效率有着明显的影响，所以需要区分这三个时间复杂度。</li>
+<li>比较时间复杂度的系数，常数，低阶。在分析时间复杂度的时候，我们是把这三项给省略了，这是基于数据量 n 无限大的情况。但是在实际情况下，我们待排序的数据一般都很小，这个时候上述三者的影响就比较大，不能再忽略不计了。</li>
+<li>比较次数和交换次数。排序算法中必不可少的就是比较和交换移动数据的操作，所以在考虑算法的效率的时候，我们需要考虑这两种操作带来的影响。</li>
+</ul>
+<h6 id="排序算法的内存消耗"><a href="#排序算法的内存消耗" class="headerlink" title="排序算法的内存消耗"></a>排序算法的内存消耗</h6><ul>
+<li>排序算法涉及到元素的交换移动，所以我们需要考虑到空间复杂度。引出一个概念：原地排序。原地排序就是指不申请多余的空间来进行的排序，就是在原来的排序数据中比较和交换的排序。希尔排序、冒泡排序、插入排序、选择排序、堆排序、快速排序都属于原地排序。</li>
+</ul>
+<h6 id="排序算法的稳定性"><a href="#排序算法的稳定性" class="headerlink" title="排序算法的稳定性"></a>排序算法的稳定性</h6><ul>
+<li>除了排序效率和内存占用两个指标外，还有一个稳定性的概念来衡量排序算法的优劣。排序稳定性：待排序数组中，相同值得元素，排序前和排序后两者的相对排序不会发生改变。举例：两个元素值都是 7，排在前一位的记为 7(1)，后一位记为 7(2)。排序后，7(1) 依然排在 7(2) 前面，这就是稳定排序。</li>
+</ul>
+<h4 id="三种稳定排序算法"><a href="#三种稳定排序算法" class="headerlink" title="三种稳定排序算法"></a>三种稳定排序算法</h4><h6 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h6><ul>
+<li>冒泡排序的思路：每次在数据的待排序区间选定一个元素，将其与其他元素比较大小，最后确定最值，将其依次排在有序区间。</li>
+<li><p>排序动图如下：<br><img src="https://img-blog.csdnimg.cn/20181212203636443.gif" alt="在这里插入图片描述"></p>
+</li>
+<li><p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//冒泡排序</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span>[] list)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; list.length; i++)&#123;</span><br><span class="line">        <span class="comment">//提前终止标识</span></span><br><span class="line">        <span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; list.length - i - <span class="number">1</span>; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(list[j] &gt; list[j + <span class="number">1</span>])&#123;</span><br><span class="line">                <span class="keyword">int</span> item = list[j + <span class="number">1</span>];</span><br><span class="line">                list[j + <span class="number">1</span>] = list[j];</span><br><span class="line">                list[j] = item;</span><br><span class="line">                flag = <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(flag)&#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>在上述代码中，我们添加了一个标识变量 flag。每次冒泡开始前设置 flag 的值为 true，在冒泡的过程中，如果发生元素交换，就改变 flag 值为 flase。则，冒泡结束的时候，如果 flag == true 说明本次冒泡没有发生元素交换，说明数组已经有序，可以直接终止后续冒泡，提高了冒泡算法的执行效率。</p>
+<p>冒泡排过程中只会交换相邻两个元素的位置，只需要常量级别的临时内存空间，所以空间复杂度为 O(1)，是原地排序。在冒泡排序中，如果两个元素的值相同，那么我们不进行交换，则该排序也是稳定性排序。</p>
+<p>冒泡排序最好时间复杂度为 O(n)，最坏时间复杂度为 O(n^2)，那么怎么分析平均时间复杂度呢。按照上述冒泡排序代码，由于有了 flag 标识变量，就导致了冒泡的次数小于等于 n 次，而最终决定冒泡次数的是元素的有序度和无无序度。</p>
+<p>有序度：数组中具有有序关系的元素对的个数。即：a[i] &lt;= a[j]，i &lt; j。<br>逆序度：数组中具有无序关系的元素对的个数。即：a[i] &gt; a[j]，i &lt; j。</p>
+<p>举例：在数组 [1，3，2，6，5] 中，有序度为 8：(1,3)(1,2)(1,6)(1,5)(3,6)(3,5)(2,6)(2,5)；逆序度为 2：(3,2)(6,5)。<br>在有序数组 [1，2，3，5，6] 中，有序度为 10，也叫做满有序度。<br>总结规律：在一个待排序数组中，满有序度 = 有序度 + 逆序度。满有序度 =n*(n-1)/2。下面给出数组 [4，5，6，3，2，1] 冒泡过程中有序度和无序度的变化。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">冒泡次数</th>
+<th style="text-align:center">冒泡结果</th>
+<th style="text-align:center">有序度</th>
+<th style="text-align:center">交换次数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">初始状态</td>
+<td style="text-align:center">[4，5，6，3，2，1]</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:left">第1次冒泡</td>
+<td style="text-align:center">[4，5，3，2，1，6]</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">3</td>
+</tr>
+<tr>
+<td style="text-align:left">第2次冒泡</td>
+<td style="text-align:center">[4，3，2，1，5，6]</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">3</td>
+</tr>
+<tr>
+<td style="text-align:left">第3次冒泡</td>
+<td style="text-align:center">[3，2，1，4，5，6]</td>
+<td style="text-align:center">12</td>
+<td style="text-align:center">3</td>
+</tr>
+<tr>
+<td style="text-align:left">第4次冒泡</td>
+<td style="text-align:center">[2，1，3，4，5，6]</td>
+<td style="text-align:center">14</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:left">第5次冒泡</td>
+<td style="text-align:center">[1，2，3，4，5，6]</td>
+<td style="text-align:center">15</td>
+<td style="text-align:center">1</td>
+</tr>
+</tbody>
+</table>
+<p>我们观察得出结论，元素每交换一次，有序度增加一次。那么得出最好情况下，需要交换 0 次，最坏的情况下，需要交换 n<em>(n-1)/2 次，取个中间值 n</em>(n-1)/4。在排序过程中，比较次数远远大于交换次数，但是总的时间复杂度不会高于 O(n^2)，所以平均时间复杂度为  O(n^2)。</p>
+<h6 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h6><ul>
+<li>插入排序的思路：每次在数据的待排序区间选定一个元素，将其与有序区间的元素依次比较大小，确定最后插入位置。</li>
+<li>排序动图如下：<br><img src="https://img-blog.csdnimg.cn/20181212211700366.gif" alt="在这里插入图片描述"></li>
+<li>代码如下：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//插入排序</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">insertSort</span><span class="params">(<span class="keyword">int</span>[] list)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; list.length; i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> item = list[i];</span><br><span class="line">        <span class="keyword">int</span> j = i - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(; j &gt;= <span class="number">0</span>; j--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(item &lt; list[j])&#123;</span><br><span class="line">                list[j + <span class="number">1</span>] = list[j];</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        list[j + <span class="number">1</span>] = item;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>从上述代码中看出，插入排序并不需要额外的空间，所以是原地排序。在擦插入排序中，对于相等的元素不进行交换位置，则也是稳定的排序。插入排序的时间复杂度，对于一个有序的数组，只需遍历一遍数组，最好时间复杂度为 O(n)，对于逆序的数组，相当于执行便利数组 n 次，每次都在数组前面插入元素，则最坏时间复杂度为 O(n^2)。平均时间复杂度，在数组中插入一个元素的平均时间复杂度为 O(n)，那么执行 n 次，平均时间复杂度就是 O(n^2)；</p>
+<h6 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h6><ul>
+<li>选择排序的思路：每次在数据的待排序区间选定最值元素，然后将其与靠近有序区间的第一个元素交换位置。</li>
+<li>排序动图如下：<br><img src="https://img-blog.csdnimg.cn/20181212212722232.gif" alt="在这里插入图片描述"></li>
+<li>代码如下：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//选择排序</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">selectSort</span><span class="params">(<span class="keyword">int</span>[] list)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; list.length; i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> index = i;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = i; j &lt; list.length; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(list[index] &gt; list[j])&#123;</span><br><span class="line">                index = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> item = list[index];</span><br><span class="line">        list[index] = list[i];</span><br><span class="line">        list[i] = item;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>选择排序只需要常量级别的临时内存空间，所以空间复杂度为 O(1)。最好时间复杂度为 O(n)，最坏时间复杂度为 O(n^2)，平均时间复杂度与插入排序分析方法一样，也是O(n^2)。由于选择排序并非相邻元素交换位置，所以不是稳定排序。</p>
+<h6 id="比较插入排序和冒泡排序"><a href="#比较插入排序和冒泡排序" class="headerlink" title="比较插入排序和冒泡排序"></a>比较插入排序和冒泡排序</h6><p>冒泡排序和插入排序无论如何优化，冒泡排序元素交换的次数和插入排序元素的移动次数都是等于元数据的逆序度。但是从代码实现上，冒泡排序元素交换时的代码复杂度高于插入排序元素移动时的代码复杂度，所以从性能上，插入排序的执行效率要高于冒泡排序。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>初入算法学习，必是步履蹒跚，一路磕磕绊绊跌跌撞撞。看不懂别慌，也别忙着总结，先读五遍文章先，无他，唯手熟尔~<br>与诸君共勉</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+          
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/12/recursion/" rel="next" title="算法笔记-递归">
+                <i class="fa fa-chevron-left"></i> 算法笔记-递归
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Author">
+            
+              <p class="site-author-name" itemprop="name">黑子</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#冒泡排序，选择排序，插入排序"><span class="nav-number">1.</span> <span class="nav-text">冒泡排序，选择排序，插入排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何分析一个排序算法"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">如何分析一个排序算法</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#排序算法的执行效率"><span class="nav-number">1.0.0.1.0.1.</span> <span class="nav-text">排序算法的执行效率</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#排序算法的内存消耗"><span class="nav-number">1.0.0.1.0.2.</span> <span class="nav-text">排序算法的内存消耗</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#排序算法的稳定性"><span class="nav-number">1.0.0.1.0.3.</span> <span class="nav-text">排序算法的稳定性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三种稳定排序算法"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">三种稳定排序算法</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#冒泡排序"><span class="nav-number">1.0.0.2.0.1.</span> <span class="nav-text">冒泡排序</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#插入排序"><span class="nav-number">1.0.0.2.0.2.</span> <span class="nav-text">插入排序</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#选择排序"><span class="nav-number">1.0.0.2.0.3.</span> <span class="nav-text">选择排序</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#比较插入排序和冒泡排序"><span class="nav-number">1.0.0.2.0.4.</span> <span class="nav-text">比较插入排序和冒泡排序</span></a></li></ol></li></ol><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">总结</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">黑子</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.5.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
