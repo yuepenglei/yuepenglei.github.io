@@ -110,18 +110,18 @@
 
 
 
-  <meta name="description" content="如何实现一个通用的，高性能的排序算法。">
+  <meta name="description" content="桶排序，计数排序，基数排序">
 <meta name="keywords" content="算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="算法-排序3">
 <meta property="og:url" content="http://yoursite.com/2018/12/15/sort3/index.html">
 <meta property="og:site_name" content="学习笔记">
-<meta property="og:description" content="如何实现一个通用的，高性能的排序算法。">
+<meta property="og:description" content="桶排序，计数排序，基数排序">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-15T14:59:55.653Z">
+<meta property="og:updated_time" content="2018-12-15T15:03:27.093Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法-排序3">
-<meta name="twitter:description" content="如何实现一个通用的，高性能的排序算法。">
+<meta name="twitter:description" content="桶排序，计数排序，基数排序">
 
 
 
@@ -386,7 +386,7 @@
                 
               
 
-              <time title="创建时间：2018-12-15 22:58:11 / 修改时间：22:59:55" itemprop="dateCreated datePublished" datetime="2018-12-15T22:58:11+08:00">2018-12-15</time>
+              <time title="创建时间：2018-12-15 22:58:11 / 修改时间：23:03:27" itemprop="dateCreated datePublished" datetime="2018-12-15T22:58:11+08:00">2018-12-15</time>
             
 
             
@@ -428,7 +428,7 @@
           
 
           
-              <div class="post-description">如何实现一个通用的，高性能的排序算法。</div>
+              <div class="post-description">桶排序，计数排序，基数排序</div>
           
 
         </div>
@@ -444,77 +444,27 @@
       
 
       
-        <h1 id="如何实现一个通用的，高性能的排序算法。"><a href="#如何实现一个通用的，高性能的排序算法。" class="headerlink" title="如何实现一个通用的，高性能的排序算法。"></a>如何实现一个通用的，高性能的排序算法。</h1><h6 id="总结一下前面学过的几种排序算法"><a href="#总结一下前面学过的几种排序算法" class="headerlink" title="总结一下前面学过的几种排序算法"></a>总结一下前面学过的几种排序算法</h6><table>
-<thead>
-<tr>
-<th>算法</th>
-<th>时间复杂度</th>
-<th>是稳定排序 ？</th>
-<th>是原地排序？ </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>冒泡排序</td>
-<td>O(n^2)</td>
-<td>✔</td>
-<td>✔</td>
-</tr>
-<tr>
-<td>插入排序</td>
-<td>O(n^2)</td>
-<td>✔</td>
-<td>✔ </td>
-</tr>
-<tr>
-<td>选择排序</td>
-<td>O(n^2)</td>
-<td>✖</td>
-<td>✔</td>
-</tr>
-<tr>
-<td>快速排序</td>
-<td>O(n*logn)</td>
-<td>✖</td>
-<td>✔ </td>
-</tr>
-<tr>
-<td>归并排序</td>
-<td>O(n*logn)</td>
-<td>✔</td>
-<td>✖</td>
-</tr>
-<tr>
-<td>计数排序</td>
-<td>O(n+k) k是数据范围</td>
-<td>✔</td>
-<td>✖ </td>
-</tr>
-<tr>
-<td>桶排序</td>
-<td>O(n)</td>
-<td>✔</td>
-<td>✖</td>
-</tr>
-<tr>
-<td>基数排序</td>
-<td>O(dn) d是维度</td>
-<td>✔</td>
-<td>✖</td>
-</tr>
-</tbody>
-</table>
-<p>线性排序时间复杂度比较低，但是对数据的要求十分严格，所以不能用作通用排序的方案。 </p>
-<p>小数据规模的排序，首选时间复杂度为 O(n^2) 的算法。如果数据规模较大，选择时间复杂度为 O(n<em>logn) 的算法。所以为了兼顾任意规模的数据排序，那就首选时间复杂度为 O(n</em>logn) 的算法。</p>
-<p>归并排序和快速排序时间复杂度都为 O(n*logn)，而且极端情况下快速排序的时间复杂度会变成 O(n^2)，但是二者之间还是快速排序优先被选用。归并排序不是原地排序，在排序期间会申请同样数据大小的内存空间，所以空间复杂度上要高的多。</p>
-<p>虽然优先选择的是快速排序，但是极端情况下时间复杂度会退化为 O(n^2)，那么如何避免这种情况的发生呢？这就是接下来要总结的如何优化快速排序算法。</p>
-<h6 id="优化快速排序算法"><a href="#优化快速排序算法" class="headerlink" title="优化快速排序算法"></a>优化快速排序算法</h6><p> 当待排序数据呈现有序或者接近有序状态，每次分区选择的分区点都是最后一位的时候，快速排序算法时间复杂度退化为 O(n^2)。那么避免这种情况的发生就是每次选取的分区点，尽量将数据均分成两份。下面介绍两种选取分区点的方法。</p>
-<p>方法一：三数取中法。分别获取分区区间的第一个，中间位置，最后一个元素，比较大小，选择中间的值作为分区点。如果分区区间的数据量过大，就可以采用五数取中，十数取中，尽量保证分区点的选择趋于中间数值。</p>
-<p>方法二：随机法。随机在分区区间选择一个数据，根据概率来判断，分区点选到最小值或者最大值得概率是很小的，所以时间复杂度退化为 O(n^2) 的概率也是很小的。</p>
-<h6 id="算法实现举例分析"><a href="#算法实现举例分析" class="headerlink" title="算法实现举例分析"></a>算法实现举例分析</h6><p>王争老师举例了 Glibc 中 qsort() 函数实现排序的原理。</p>
-<p>qsort() 在数据量小的情况下会优选选择归并排序算法。当数据量比较大的时候，就会选择快速排序算法。使用快速排序的时候，对于分区点的选择，qsort() 函数采用的正是三数取中法。</p>
-<p>在快速排序中，如果区间的元素个数小于等于 4，qsort() 就会采用插入排序对数据排序。因为在小数据规模下， O(n^2) 的值要小于 O(n*logn)。</p>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>本文创作灵感来源于 极客时间 王争老师的《数据结构与算法之美》课程，通过课后反思以及借鉴各位学友的发言总结，现整理出自己的知识架构，以便日后温故知新，查漏补缺。</p>
+        <h1 id="桶排序，计数排序，基数排序"><a href="#桶排序，计数排序，基数排序" class="headerlink" title="桶排序，计数排序，基数排序"></a>桶排序，计数排序，基数排序</h1><p>本文创作灵感来源于 极客时间 王争老师的《数据结构与算法之美》课程，通过课后反思以及借鉴各位学友的发言总结，现整理出自己的知识架构，以便日后温故知新，查漏补缺。</p>
+<p>上述三种排序算法的时间复杂度为 O(n)，所以称之为线性排序。之所以能做到线性排序，是因为上述排序实现的思想不是基于比较的排序。这三种排序对数据的要求比较苛刻，所以重要的是理解这三种排序应用的场景。</p>
+<h6 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h6><ul>
+<li>桶排序重点在于理解桶的概念。对于待排序的数据，我们先设置一定数量的桶用来存放待排序的数据。其中这些桶是按照一定顺序划分好的，然后针对每个桶内的数据进行排序，最后按照桶的大小顺序依次取出其中元素，就实现了排序的目的。</li>
+<li>桶排序的时间复杂度分析。假如我们有 n 个数据需要排序，首先分出 m 个桶，那么每个桶中的元素个数就是 k = n/m。每个桶内的数据用快速排序，时间复杂度就是 O(k<em>logk)，那么 m 个桶的时间复杂度就是 O(m</em>k<em>logk)。将 k = n/m 带入表达式，则时间复杂度就是O(n</em>log(n/m))，当桶的个数等于数据个数时：m = n 的时候， log(n/m) 就是个非常小的数值，这个时候时间复杂度就是 O(n)。</li>
+<li>桶排序对数据有着严格的要求。对于桶排序，待排序的数据要能很容易的分配到桶中，而且桶也已经是有序的。这样，桶内的数据排序后，就可以按照桶的顺序依次取数据。数据要保证能均匀的分配到各个桶中，如果每个桶中的数据量差别比较大，那桶排序的时间复杂度就不再是线性的了。比如极端的情况，只分出了一个桶，所有数据都放在一个桶中，那么时间复杂度就是等于快速排序的时间复杂度了，变成 O(nlogn)。</li>
+<li><p>桶排序这种算法，适合应用在外部排序中。外部排序指的就是，内存空间无法一次加载完所有的数据，所以需要划分出桶，针对每个桶进行排序。举个理想的情况：一批订单，订单的金额均匀的分布在1-10000元之间，我们就可以划分出第一个桶放入订单金额 1 到 100 元之间的数据，第二个桶放入订单金额  101 到 200 元之间的数据，依次类推，最后一个桶放入 9901 到 10000 元之间的数据。然后每个桶内对数据排序，最后按照划分桶的顺序依次取出数据，就实现了排序。</p>
+<p>  实际情况中，订单金额并不会如此均匀的分布。如果部分桶中的数据量过大，我们可以针对这个桶内的数据，再次进行桶排序的操作。这样，我们就保证了每一个桶(无论是第几次划分的桶)的数据都能加载到内存中进行排序。</p>
+</li>
+</ul>
+<h6 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h6><ul>
+<li>我们引入场景来解释这个排序算法：对 10 万个手机号进行排序。</li>
+<li>对手机号排序，我们从手机号的最后一位开始排序，然后在第一次排序的基础上排序倒数第二位，直到对手机号的第一位排序结束，那么 10 万个手机号就是有序的了。因为在手机号排序中，如果前几位已经比较出大小，那么我们就不用比较后面的位数的大小了。但是如果每次比较的高位都相等，那么我们就必须比较更低位的大小了。如果从高位往低位开始比较，如果高位比较的值相等，那么我们比较低位的时候，必须记录高位相等的数据的区间，这样排序算法中会增加非常多的逻辑判断，所以我们选择从低位往高位排序，每次的排序都是稳定排序，那么比较高位的时候，我们就不用顾忌低位的排序了。</li>
+<li>时间复杂度分析，每次排序我们都用桶排序，时间复杂度为 O(n)，排序 k 次，时间复杂度就是 O(kn)，当 k 值不大的时候，时间复杂度就近似于 O(n)。</li>
+<li>基数排序对数据的要求也十分严格。待排序的数据要能明确的划分出“位”，并且“位”与“位”之间是有递进关系的，所谓的递进关系就是高位排序区分出大小后，低位就不需要在排序了。另外，每个“位”上的数据范围不能太大，要可以用线性排序算法。</li>
+<li>举一个应用例子：对于单词的排序，一样可以用基数排序。我们把单词长度补齐，位数不够的补 0 ，在ASCII值中 0 的值是小于所有字母的。然后我们就可以按照基数排序对单词进行排序了。</li>
+</ul>
+<h6 id="计数排序"><a href="#计数排序" class="headerlink" title="计数排序"></a>计数排序</h6><ul>
+<li>这个我感觉好复杂，暂时还没有理解透彻，后续彻底理解了，再把计数排序补充出来。</li>
+</ul>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>王争老师开篇给出了一个思考题，给 100 万用户按照年龄排序。假设最大岁数120，我们按照年龄划分出120个桶，然后每个桶中分配用户，最后依次遍历所有桶以及桶内的数据取出来，就完成了排序。</p>
 <p>初入算法学习，必是步履蹒跚，一路磕磕绊绊跌跌撞撞。看不懂别慌，也别忙着总结，先读五遍文章先，无他，唯手熟尔~<br>与诸君共勉</p>
 
       
@@ -723,7 +673,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#如何实现一个通用的，高性能的排序算法。"><span class="nav-number">1.</span> <span class="nav-text">如何实现一个通用的，高性能的排序算法。</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#总结一下前面学过的几种排序算法"><span class="nav-number">1.0.0.0.0.1.</span> <span class="nav-text">总结一下前面学过的几种排序算法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#优化快速排序算法"><span class="nav-number">1.0.0.0.0.2.</span> <span class="nav-text">优化快速排序算法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#算法实现举例分析"><span class="nav-number">1.0.0.0.0.3.</span> <span class="nav-text">算法实现举例分析</span></a></li></ol></li></ol><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">总结</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#桶排序，计数排序，基数排序"><span class="nav-number">1.</span> <span class="nav-text">桶排序，计数排序，基数排序</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#桶排序"><span class="nav-number">1.0.0.0.0.1.</span> <span class="nav-text">桶排序</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#基数排序"><span class="nav-number">1.0.0.0.0.2.</span> <span class="nav-text">基数排序</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#计数排序"><span class="nav-number">1.0.0.0.0.3.</span> <span class="nav-text">计数排序</span></a></li></ol></li></ol><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">总结</span></a></li></div>
             
 
           </div>
