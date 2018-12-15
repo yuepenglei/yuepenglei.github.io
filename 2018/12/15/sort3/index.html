@@ -110,30 +110,25 @@
 
 
 
-  <meta name="description" content="在js中自定义的对象，是没有重写 toString 的方法，所以如果该对象被当做字符串处理的时候，会自动调用父类的 toString 方法，返回值为[object Object]。">
-<meta name="keywords" content="前端,js">
+  <meta name="description" content="如何实现一个通用的，高性能的排序算法。">
+<meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="js中onClick([object object])的传参问题">
-<meta property="og:url" content="http://yoursite.com/2018/12/10/js-object-object/index.html">
+<meta property="og:title" content="算法-排序3">
+<meta property="og:url" content="http://yoursite.com/2018/12/15/sort3/index.html">
 <meta property="og:site_name" content="学习笔记">
-<meta property="og:description" content="在js中自定义的对象，是没有重写 toString 的方法，所以如果该对象被当做字符串处理的时候，会自动调用父类的 toString 方法，返回值为[object Object]。">
+<meta property="og:description" content="如何实现一个通用的，高性能的排序算法。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20181210141647719.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20181210141706261.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20181210141719926.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20181210141732633.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2018-12-10T06:20:51.469Z">
+<meta property="og:updated_time" content="2018-12-15T14:59:55.653Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="js中onClick([object object])的传参问题">
-<meta name="twitter:description" content="在js中自定义的对象，是没有重写 toString 的方法，所以如果该对象被当做字符串处理的时候，会自动调用父类的 toString 方法，返回值为[object Object]。">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20181210141647719.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70">
+<meta name="twitter:title" content="算法-排序3">
+<meta name="twitter:description" content="如何实现一个通用的，高性能的排序算法。">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/10/js-object-object/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/15/sort3/">
 
 
 
@@ -143,7 +138,7 @@
   };
 </script>
 
-  <title>js中onClick([object object])的传参问题 | 学习笔记</title>
+  <title>算法-排序3 | 学习笔记</title>
   
 
 
@@ -349,7 +344,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/10/js-object-object/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/15/sort3/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Author">
@@ -366,7 +361,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">js中onClick([object object])的传参问题
+          <h1 class="post-title" itemprop="name headline">算法-排序3
               
             
           </h1>
@@ -391,7 +386,7 @@
                 
               
 
-              <time title="创建时间：2018-12-10 11:26:08 / 修改时间：14:20:51" itemprop="dateCreated datePublished" datetime="2018-12-10T11:26:08+08:00">2018-12-10</time>
+              <time title="创建时间：2018-12-15 22:58:11 / 修改时间：22:59:55" itemprop="dateCreated datePublished" datetime="2018-12-15T22:58:11+08:00">2018-12-15</time>
             
 
             
@@ -413,7 +408,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
 
                 
                 
@@ -433,7 +428,7 @@
           
 
           
-              <div class="post-description">在js中自定义的对象，是没有重写 toString 的方法，所以如果该对象被当做字符串处理的时候，会自动调用父类的 toString 方法，返回值为[object Object]。</div>
+              <div class="post-description">如何实现一个通用的，高性能的排序算法。</div>
           
 
         </div>
@@ -449,14 +444,78 @@
       
 
       
-        <h1 id="js中onClick-object-object-的传参问题"><a href="#js中onClick-object-object-的传参问题" class="headerlink" title="js中onClick([object object])的传参问题"></a>js中onClick([object object])的传参问题</h1><p>同事找到一个 js 树形 table 的插件，通过阅读源码，发现该插件实现的主要原理就是对树结构的数据进行遍历，然后字符串拼接 html 标签，最后显示在页面上。对于table肯定是有行操作的，所以我们在拼接按钮代码处添加了一个 run 方法，并且传递了一个对象。但是，当页面加载 dom 元素后，发现 run 方法中的参数居然是 onclick=”run([object Object])”，这样点击事件肯定是不能正常执行了。然后通过仔细研究，找到了解决办法。<br><img src="https://img-blog.csdnimg.cn/20181210141647719.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h4 id="第一次尝试，调用-js-的-toString-方法，把自定义对象转化成字符串。"><a href="#第一次尝试，调用-js-的-toString-方法，把自定义对象转化成字符串。" class="headerlink" title="第一次尝试，调用 js 的 toString 方法，把自定义对象转化成字符串。"></a>第一次尝试，调用 js 的 toString 方法，把自定义对象转化成字符串。</h4><p><img src="https://img-blog.csdnimg.cn/20181210141706261.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p>但是在浏览器中调试 dom 节点，发现依然是 onclick=”run([object Object])”，然后就查找资料详细了解下 [object Object] 是怎么出来的。<br>js 中 toString 方法的作用是返回一个反映这个对象的字符串，可参考下表：<br>| 类型 | toString<br>——– | :–:<br>Object |    返回”[object Object]”<br>stringObject|    返回字符串<br>NumberObject|    把一个 Number 对象转换为一个字符串，并返回结果。<br>booleanObject|    把一个逻辑值转换为字符串，并返回结果。<br>arrayObject |    把数组转换为字符串，用逗号间隔，并返回结果<br>dateObject |     把 Date 对象转换为字符串，并返回结果</p>
-<p>所以，明白了自定义对象调用js 的 toString 方法，返回的不是对象序列化后的字符串，而是 [object Object] 字符串。这是因为自定义对象没有重写 toString 方法。</p>
-<h4 id="第一次尝试，调用-JSON-stringify-方法，对参数序列化"><a href="#第一次尝试，调用-JSON-stringify-方法，对参数序列化" class="headerlink" title="第一次尝试，调用 JSON.stringify 方法，对参数序列化"></a>第一次尝试，调用 JSON.stringify 方法，对参数序列化</h4><p><img src="https://img-blog.csdnimg.cn/20181210141719926.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20181210141732633.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p>通过调用 JSON.stringify 方法，我们发现页面加载的 dom 上 run 方法中的参数显示是正常的。在查找资料的过程中，提示说在接受参数的时候，需要用 JSON.parse 将 JSON.stringify 序列化的字符串转换为对象。但是在实际操作中，我的 run 方法中并没有调用 JSON.parse 方法，依然可以对接收的参数使用对象方法获取属性。</p>
-<p>后来反思了一下这个疑惑点：我们知道，如果是单独传一个字符串参数，我们是需要加 / 加引号对其转译，反观 JSON.parse 序列化之后的字符串，正是自定义对象本身的数据结构。那就是说，JSON.parse 是对特殊符号进行了转译。假如我们手动进行传参特殊符号的转译，那也是成功的，也就是说，转译之后其实还是一个对象，所以在接收参数的时候，还是可以用对象方法获取属性值。</p>
-<h4 id="为什么会出现-onClick-object-object"><a href="#为什么会出现-onClick-object-object" class="headerlink" title="为什么会出现 onClick([object object])"></a>为什么会出现 onClick([object object])</h4><p>出现这种情况，就是我们渲染 dom 节点的时候，是用的字符串拼接形式。所以，对于 onclick 事件中的参数，我们也因该转化成字符串的形式进行拼接。如果传入一个 js 自定义对象，那渲染后的页面上的 dom 就会出现 onClick([object object]) 这种形式。</p>
+        <h1 id="如何实现一个通用的，高性能的排序算法。"><a href="#如何实现一个通用的，高性能的排序算法。" class="headerlink" title="如何实现一个通用的，高性能的排序算法。"></a>如何实现一个通用的，高性能的排序算法。</h1><h6 id="总结一下前面学过的几种排序算法"><a href="#总结一下前面学过的几种排序算法" class="headerlink" title="总结一下前面学过的几种排序算法"></a>总结一下前面学过的几种排序算法</h6><table>
+<thead>
+<tr>
+<th>算法</th>
+<th>时间复杂度</th>
+<th>是稳定排序 ？</th>
+<th>是原地排序？ </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>冒泡排序</td>
+<td>O(n^2)</td>
+<td>✔</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>插入排序</td>
+<td>O(n^2)</td>
+<td>✔</td>
+<td>✔ </td>
+</tr>
+<tr>
+<td>选择排序</td>
+<td>O(n^2)</td>
+<td>✖</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>快速排序</td>
+<td>O(n*logn)</td>
+<td>✖</td>
+<td>✔ </td>
+</tr>
+<tr>
+<td>归并排序</td>
+<td>O(n*logn)</td>
+<td>✔</td>
+<td>✖</td>
+</tr>
+<tr>
+<td>计数排序</td>
+<td>O(n+k) k是数据范围</td>
+<td>✔</td>
+<td>✖ </td>
+</tr>
+<tr>
+<td>桶排序</td>
+<td>O(n)</td>
+<td>✔</td>
+<td>✖</td>
+</tr>
+<tr>
+<td>基数排序</td>
+<td>O(dn) d是维度</td>
+<td>✔</td>
+<td>✖</td>
+</tr>
+</tbody>
+</table>
+<p>线性排序时间复杂度比较低，但是对数据的要求十分严格，所以不能用作通用排序的方案。 </p>
+<p>小数据规模的排序，首选时间复杂度为 O(n^2) 的算法。如果数据规模较大，选择时间复杂度为 O(n<em>logn) 的算法。所以为了兼顾任意规模的数据排序，那就首选时间复杂度为 O(n</em>logn) 的算法。</p>
+<p>归并排序和快速排序时间复杂度都为 O(n*logn)，而且极端情况下快速排序的时间复杂度会变成 O(n^2)，但是二者之间还是快速排序优先被选用。归并排序不是原地排序，在排序期间会申请同样数据大小的内存空间，所以空间复杂度上要高的多。</p>
+<p>虽然优先选择的是快速排序，但是极端情况下时间复杂度会退化为 O(n^2)，那么如何避免这种情况的发生呢？这就是接下来要总结的如何优化快速排序算法。</p>
+<h6 id="优化快速排序算法"><a href="#优化快速排序算法" class="headerlink" title="优化快速排序算法"></a>优化快速排序算法</h6><p> 当待排序数据呈现有序或者接近有序状态，每次分区选择的分区点都是最后一位的时候，快速排序算法时间复杂度退化为 O(n^2)。那么避免这种情况的发生就是每次选取的分区点，尽量将数据均分成两份。下面介绍两种选取分区点的方法。</p>
+<p>方法一：三数取中法。分别获取分区区间的第一个，中间位置，最后一个元素，比较大小，选择中间的值作为分区点。如果分区区间的数据量过大，就可以采用五数取中，十数取中，尽量保证分区点的选择趋于中间数值。</p>
+<p>方法二：随机法。随机在分区区间选择一个数据，根据概率来判断，分区点选到最小值或者最大值得概率是很小的，所以时间复杂度退化为 O(n^2) 的概率也是很小的。</p>
+<h6 id="算法实现举例分析"><a href="#算法实现举例分析" class="headerlink" title="算法实现举例分析"></a>算法实现举例分析</h6><p>王争老师举例了 Glibc 中 qsort() 函数实现排序的原理。</p>
+<p>qsort() 在数据量小的情况下会优选选择归并排序算法。当数据量比较大的时候，就会选择快速排序算法。使用快速排序的时候，对于分区点的选择，qsort() 函数采用的正是三数取中法。</p>
+<p>在快速排序中，如果区间的元素个数小于等于 4，qsort() 就会采用插入排序对数据排序。因为在小数据规模下， O(n^2) 的值要小于 O(n*logn)。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>本文创作灵感来源于 极客时间 王争老师的《数据结构与算法之美》课程，通过课后反思以及借鉴各位学友的发言总结，现整理出自己的知识架构，以便日后温故知新，查漏补缺。</p>
+<p>初入算法学习，必是步履蹒跚，一路磕磕绊绊跌跌撞撞。看不懂别慌，也别忙着总结，先读五遍文章先，无他，唯手熟尔~<br>与诸君共勉</p>
 
       
     </div>
@@ -490,9 +549,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/前端/" rel="tag"><i class="fa fa-tag"></i> 前端</a>
-          
-            <a href="/tags/js/" rel="tag"><i class="fa fa-tag"></i> js</a>
+            <a href="/tags/算法/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
           
         </div>
       
@@ -505,8 +562,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/09/stack/" rel="next" title="算法笔记-栈">
-                <i class="fa fa-chevron-left"></i> 算法笔记-栈
+              <a href="/2018/12/14/sort2/" rel="next" title="算法-排序2">
+                <i class="fa fa-chevron-left"></i> 算法-排序2
               </a>
             
           </div>
@@ -514,10 +571,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/11/Queue/" rel="prev" title="算法笔记-队列">
-                算法笔记-队列 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -670,7 +723,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#js中onClick-object-object-的传参问题"><span class="nav-number">1.</span> <span class="nav-text">js中onClick([object object])的传参问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一次尝试，调用-js-的-toString-方法，把自定义对象转化成字符串。"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">第一次尝试，调用 js 的 toString 方法，把自定义对象转化成字符串。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第一次尝试，调用-JSON-stringify-方法，对参数序列化"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">第一次尝试，调用 JSON.stringify 方法，对参数序列化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么会出现-onClick-object-object"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">为什么会出现 onClick([object object])</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#如何实现一个通用的，高性能的排序算法。"><span class="nav-number">1.</span> <span class="nav-text">如何实现一个通用的，高性能的排序算法。</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#总结一下前面学过的几种排序算法"><span class="nav-number">1.0.0.0.0.1.</span> <span class="nav-text">总结一下前面学过的几种排序算法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#优化快速排序算法"><span class="nav-number">1.0.0.0.0.2.</span> <span class="nav-text">优化快速排序算法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#算法实现举例分析"><span class="nav-number">1.0.0.0.0.3.</span> <span class="nav-text">算法实现举例分析</span></a></li></ol></li></ol><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">总结</span></a></li></div>
             
 
           </div>
