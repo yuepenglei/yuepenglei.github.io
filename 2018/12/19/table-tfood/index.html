@@ -110,30 +110,29 @@
 
 
 
-  <meta name="description" content="在js中自定义的对象，是没有重写 toString 的方法，所以如果该对象被当做字符串处理的时候，会自动调用父类的 toString 方法，返回值为[object Object]。">
+  <meta name="description" content="element框架中，table标签，最后一行自定义。">
 <meta name="keywords" content="前端,js">
 <meta property="og:type" content="article">
-<meta property="og:title" content="js中onClick([object object])的传参问题">
-<meta property="og:url" content="http://yoursite.com/2018/12/10/js-object-object/index.html">
+<meta property="og:title" content="element table 自定义表尾">
+<meta property="og:url" content="http://yoursite.com/2018/12/19/table-tfood/index.html">
 <meta property="og:site_name" content="学习笔记">
-<meta property="og:description" content="在js中自定义的对象，是没有重写 toString 的方法，所以如果该对象被当做字符串处理的时候，会自动调用父类的 toString 方法，返回值为[object Object]。">
+<meta property="og:description" content="element框架中，table标签，最后一行自定义。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20181210141647719.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20181210141706261.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20181210141719926.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20181210141732633.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2018-12-10T06:20:51.469Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2018121817161518.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181218171637907.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdn.net/20181017220519736?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:updated_time" content="2018-12-19T00:41:16.860Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="js中onClick([object object])的传参问题">
-<meta name="twitter:description" content="在js中自定义的对象，是没有重写 toString 的方法，所以如果该对象被当做字符串处理的时候，会自动调用父类的 toString 方法，返回值为[object Object]。">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20181210141647719.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70">
+<meta name="twitter:title" content="element table 自定义表尾">
+<meta name="twitter:description" content="element框架中，table标签，最后一行自定义。">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/2018121817161518.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/10/js-object-object/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/19/table-tfood/">
 
 
 
@@ -143,7 +142,7 @@
   };
 </script>
 
-  <title>js中onClick([object object])的传参问题 | 学习笔记</title>
+  <title>element table 自定义表尾 | 学习笔记</title>
   
 
 
@@ -349,7 +348,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/10/js-object-object/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/19/table-tfood/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Author">
@@ -366,7 +365,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">js中onClick([object object])的传参问题
+          <h1 class="post-title" itemprop="name headline">element table 自定义表尾
               
             
           </h1>
@@ -391,7 +390,7 @@
                 
               
 
-              <time title="创建时间：2018-12-10 11:26:08 / 修改时间：14:20:51" itemprop="dateCreated datePublished" datetime="2018-12-10T11:26:08+08:00">2018-12-10</time>
+              <time title="创建时间：2018-12-19 08:42:41 / 修改时间：08:41:16" itemprop="dateCreated datePublished" datetime="2018-12-19T08:42:41+08:00">2018-12-19</time>
             
 
             
@@ -433,7 +432,7 @@
           
 
           
-              <div class="post-description">在js中自定义的对象，是没有重写 toString 的方法，所以如果该对象被当做字符串处理的时候，会自动调用父类的 toString 方法，返回值为[object Object]。</div>
+              <div class="post-description">element框架中，table标签，最后一行自定义。</div>
           
 
         </div>
@@ -449,14 +448,19 @@
       
 
       
-        <h1 id="js中onClick-object-object-的传参问题"><a href="#js中onClick-object-object-的传参问题" class="headerlink" title="js中onClick([object object])的传参问题"></a>js中onClick([object object])的传参问题</h1><p>同事找到一个 js 树形 table 的插件，通过阅读源码，发现该插件实现的主要原理就是对树结构的数据进行遍历，然后字符串拼接 html 标签，最后显示在页面上。对于table肯定是有行操作的，所以我们在拼接按钮代码处添加了一个 run 方法，并且传递了一个对象。但是，当页面加载 dom 元素后，发现 run 方法中的参数居然是 onclick=”run([object Object])”，这样点击事件肯定是不能正常执行了。然后通过仔细研究，找到了解决办法。<br><img src="https://img-blog.csdnimg.cn/20181210141647719.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h4 id="第一次尝试，调用-js-的-toString-方法，把自定义对象转化成字符串。"><a href="#第一次尝试，调用-js-的-toString-方法，把自定义对象转化成字符串。" class="headerlink" title="第一次尝试，调用 js 的 toString 方法，把自定义对象转化成字符串。"></a>第一次尝试，调用 js 的 toString 方法，把自定义对象转化成字符串。</h4><p><img src="https://img-blog.csdnimg.cn/20181210141706261.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p>但是在浏览器中调试 dom 节点，发现依然是 onclick=”run([object Object])”，然后就查找资料详细了解下 [object Object] 是怎么出来的。<br>js 中 toString 方法的作用是返回一个反映这个对象的字符串，可参考下表：<br>| 类型 | toString<br>——– | :–:<br>Object |    返回”[object Object]”<br>stringObject|    返回字符串<br>NumberObject|    把一个 Number 对象转换为一个字符串，并返回结果。<br>booleanObject|    把一个逻辑值转换为字符串，并返回结果。<br>arrayObject |    把数组转换为字符串，用逗号间隔，并返回结果<br>dateObject |     把 Date 对象转换为字符串，并返回结果</p>
-<p>所以，明白了自定义对象调用js 的 toString 方法，返回的不是对象序列化后的字符串，而是 [object Object] 字符串。这是因为自定义对象没有重写 toString 方法。</p>
-<h4 id="第一次尝试，调用-JSON-stringify-方法，对参数序列化"><a href="#第一次尝试，调用-JSON-stringify-方法，对参数序列化" class="headerlink" title="第一次尝试，调用 JSON.stringify 方法，对参数序列化"></a>第一次尝试，调用 JSON.stringify 方法，对参数序列化</h4><p><img src="https://img-blog.csdnimg.cn/20181210141719926.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20181210141732633.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p>通过调用 JSON.stringify 方法，我们发现页面加载的 dom 上 run 方法中的参数显示是正常的。在查找资料的过程中，提示说在接受参数的时候，需要用 JSON.parse 将 JSON.stringify 序列化的字符串转换为对象。但是在实际操作中，我的 run 方法中并没有调用 JSON.parse 方法，依然可以对接收的参数使用对象方法获取属性。</p>
-<p>后来反思了一下这个疑惑点：我们知道，如果是单独传一个字符串参数，我们是需要加 / 加引号对其转译，反观 JSON.parse 序列化之后的字符串，正是自定义对象本身的数据结构。那就是说，JSON.parse 是对特殊符号进行了转译。假如我们手动进行传参特殊符号的转译，那也是成功的，也就是说，转译之后其实还是一个对象，所以在接收参数的时候，还是可以用对象方法获取属性值。</p>
-<h4 id="为什么会出现-onClick-object-object"><a href="#为什么会出现-onClick-object-object" class="headerlink" title="为什么会出现 onClick([object object])"></a>为什么会出现 onClick([object object])</h4><p>出现这种情况，就是我们渲染 dom 节点的时候，是用的字符串拼接形式。所以，对于 onclick 事件中的参数，我们也因该转化成字符串的形式进行拼接。如果传入一个 js 自定义对象，那渲染后的页面上的 dom 就会出现 onClick([object object]) 这种形式。</p>
+        <p>简单介绍下项目：后端管理系统，页面样式用的是 element，数据绑定用的是 vue.js。</p>
+<h6 id="功能需求：需要添加缴药记录，这些记录要显示在一个-table-中，但是-table-末尾一行不做数据展示，只负责触发数据新增的动作。"><a href="#功能需求：需要添加缴药记录，这些记录要显示在一个-table-中，但是-table-末尾一行不做数据展示，只负责触发数据新增的动作。" class="headerlink" title="功能需求：需要添加缴药记录，这些记录要显示在一个 table 中，但是 table 末尾一行不做数据展示，只负责触发数据新增的动作。"></a>功能需求：需要添加缴药记录，这些记录要显示在一个 table 中，但是 table 末尾一行不做数据展示，只负责触发数据新增的动作。</h6><p>先看最终实现的效果：<br><img src="https://img-blog.csdnimg.cn/2018121817161518.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>红框处就是自定义的表尾，选择药品处的下拉框，每当选中一个药品的时候，当前 table 就多出一行选中过的药品信息。</p>
+<h6 id="实现过程："><a href="#实现过程：" class="headerlink" title="实现过程："></a>实现过程：</h6><p>由于用到 element 的 table 标签，所以 table 的渲染，取决于 data 属性的值(tablelist)，代码如下</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">el-table</span>  <span class="attr">style</span>=<span class="string">"width: 1040px"</span> <span class="attr">:data</span>=<span class="string">"tablelist"</span> <span class="attr">border</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-table-column</span>  <span class="attr">prop</span>=<span class="string">"drugName"</span> <span class="attr">label</span>=<span class="string">"药品名称"</span> <span class="attr">min-width</span>=<span class="string">"20%"</span>&gt;</span> <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">"unit"</span> <span class="attr">label</span>=<span class="string">"用药规格"</span> <span class="attr">min-width</span>=<span class="string">"20%"</span>&gt;</span> <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-table-column</span>  <span class="attr">prop</span>=<span class="string">"stock"</span> <span class="attr">label</span>=<span class="string">"库存数量（本人）"</span> <span class="attr">min-width</span>=<span class="string">"20%"</span>&gt;</span> <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">"number"</span> <span class="attr">label</span>=<span class="string">"缴存数量"</span> <span class="attr">min-width</span>=<span class="string">"20%"</span>&gt;</span> <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">el-table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>一开始的思路是，tablelist 中预制一条数据，然后做状态标识。当渲染 table 行的时候，根据状态标识，判断该行到底是添加上的数据，还是要触发添加操作的表尾。然后按照这个思路执行的结果是：<br><img src="https://img-blog.csdnimg.cn/20181218171637907.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>然后反思，发现原因。每次添加，都往 tablelist 数组后面添加一个元素，导致本来应该是表尾的那一行，跑到了上面。那继续解决问题，我想到了对 tablelist 排序，然后让表尾那一行每次排在数组最后一个位置。虽然实现了，但是弊端也很大。1，每次排序都要涉及到数组遍历页面渲染，这些都是性能开销。2，当我保存页面的数据的时候，我还需要对 tablelist 的数据做筛选，剔除掉表尾那行数据。总而言之，逻辑很复杂，然后我就想出了另外一种方法。</p>
+<p>先看代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">el-table</span>  <span class="attr">style</span>=<span class="string">"width: 1040px"</span> <span class="attr">:data</span>=<span class="string">"tablelist.concat([&#123;drugId:0&#125;])"</span> <span class="attr">border</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-table-column</span>  <span class="attr">prop</span>=<span class="string">"drugName"</span> <span class="attr">label</span>=<span class="string">"药品名称"</span> <span class="attr">min-width</span>=<span class="string">"20%"</span>&gt;</span> <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">"unit"</span> <span class="attr">label</span>=<span class="string">"用药规格"</span> <span class="attr">min-width</span>=<span class="string">"20%"</span>&gt;</span> <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-table-column</span>  <span class="attr">prop</span>=<span class="string">"stock"</span> <span class="attr">label</span>=<span class="string">"库存数量（本人）"</span> <span class="attr">min-width</span>=<span class="string">"20%"</span>&gt;</span> <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">"number"</span> <span class="attr">label</span>=<span class="string">"缴存数量"</span> <span class="attr">min-width</span>=<span class="string">"20%"</span>&gt;</span> <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">el-table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>首先，为了保证保存页面数据的时候，处理逻辑简单，只让 tablelist 存储需要提交到后台的数据。那么 table 表格末尾那一行的数据，怎么渲染上呢。在给 table 的 data 属性赋值的时候，调用 tablelist 的 concat()，方法。给 tablelist 再添加一个数组，该数组只有一个元素，就是用来渲染表尾的元素。这样就保证了提交到后台数据准确性，table 行数据排列的准确性以及表尾行始终固定。</p>
+<h6 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h6><p>其实解决的方法很简单。第一，由于是表尾和其他行有区别，而且我们的业务逻辑是表尾数据不提交，所以想到两部分数据要做数据隔离。第二，table 渲染的时候，又需要两部分数据是一个整体，所以想到集合的相加。</p>
+<p>多思考，总会有意想不到的收获。</p>
+<h4 id="关注本人公众号，第一时间获取最新文章发布，每日更新一篇技术文章。"><a href="#关注本人公众号，第一时间获取最新文章发布，每日更新一篇技术文章。" class="headerlink" title="关注本人公众号，第一时间获取最新文章发布，每日更新一篇技术文章。"></a>关注本人公众号，第一时间获取最新文章发布，每日更新一篇技术文章。</h4><p><img src="https://img-blog.csdn.net/20181017220519736?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="在这里插入图片描述"></p>
 
       
     </div>
@@ -505,8 +509,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/09/stack/" rel="next" title="算法笔记-栈">
-                <i class="fa fa-chevron-left"></i> 算法笔记-栈
+              <a href="/2018/12/18/binary2/" rel="next" title="算法-二分法查找2">
+                <i class="fa fa-chevron-left"></i> 算法-二分法查找2
               </a>
             
           </div>
@@ -514,10 +518,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/11/Queue/" rel="prev" title="算法笔记-队列">
-                算法笔记-队列 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -670,7 +670,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#js中onClick-object-object-的传参问题"><span class="nav-number">1.</span> <span class="nav-text">js中onClick([object object])的传参问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一次尝试，调用-js-的-toString-方法，把自定义对象转化成字符串。"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">第一次尝试，调用 js 的 toString 方法，把自定义对象转化成字符串。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第一次尝试，调用-JSON-stringify-方法，对参数序列化"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">第一次尝试，调用 JSON.stringify 方法，对参数序列化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么会出现-onClick-object-object"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">为什么会出现 onClick([object object])</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#功能需求：需要添加缴药记录，这些记录要显示在一个-table-中，但是-table-末尾一行不做数据展示，只负责触发数据新增的动作。"><span class="nav-number">1.</span> <span class="nav-text">功能需求：需要添加缴药记录，这些记录要显示在一个 table 中，但是 table 末尾一行不做数据展示，只负责触发数据新增的动作。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#实现过程："><span class="nav-number">2.</span> <span class="nav-text">实现过程：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol><li class="nav-item nav-level-4"><a class="nav-link" href="#关注本人公众号，第一时间获取最新文章发布，每日更新一篇技术文章。"><span class="nav-number"></span> <span class="nav-text">关注本人公众号，第一时间获取最新文章发布，每日更新一篇技术文章。</span></a></li></div>
             
 
           </div>
