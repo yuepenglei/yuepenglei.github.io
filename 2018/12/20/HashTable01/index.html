@@ -110,27 +110,25 @@
 
 
 
-  <meta name="description" content="插入排序是一种简单的插入排序法，其基本思想是：把待排序的记录按其关键码值的大小逐个插入到一个已经排好序的有序序列中，直到所有的记录插入完为止，得到一个新的有序序列。">
-<meta name="keywords" content="算法,插入排序,排序">
+  <meta name="description" content="散列表用的是数组支持按照下标随机访问数据的时候，时间复杂度为 O(1)的特性。">
+<meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="插入排序">
-<meta property="og:url" content="http://yoursite.com/2018/11/28/charupaixu/index.html">
+<meta property="og:title" content="算法笔记-散列表">
+<meta property="og:url" content="http://yoursite.com/2018/12/20/HashTable01/index.html">
 <meta property="og:site_name" content="学习笔记">
-<meta property="og:description" content="插入排序是一种简单的插入排序法，其基本思想是：把待排序的记录按其关键码值的大小逐个插入到一个已经排好序的有序序列中，直到所有的记录插入完为止，得到一个新的有序序列。">
+<meta property="og:description" content="散列表用的是数组支持按照下标随机访问数据的时候，时间复杂度为 O(1)的特性。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://img-blog.csdn.net/20180313170243865?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
-<meta property="og:updated_time" content="2018-12-10T03:24:15.033Z">
+<meta property="og:updated_time" content="2018-12-20T00:53:34.470Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="插入排序">
-<meta name="twitter:description" content="插入排序是一种简单的插入排序法，其基本思想是：把待排序的记录按其关键码值的大小逐个插入到一个已经排好序的有序序列中，直到所有的记录插入完为止，得到一个新的有序序列。">
-<meta name="twitter:image" content="http://img-blog.csdn.net/20180313170243865?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta name="twitter:title" content="算法笔记-散列表">
+<meta name="twitter:description" content="散列表用的是数组支持按照下标随机访问数据的时候，时间复杂度为 O(1)的特性。">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/11/28/charupaixu/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/20/HashTable01/">
 
 
 
@@ -140,7 +138,7 @@
   };
 </script>
 
-  <title>插入排序 | 学习笔记</title>
+  <title>算法笔记-散列表 | 学习笔记</title>
   
 
 
@@ -346,7 +344,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/28/charupaixu/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/20/HashTable01/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Author">
@@ -363,7 +361,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">插入排序
+          <h1 class="post-title" itemprop="name headline">算法笔记-散列表
               
             
           </h1>
@@ -388,24 +386,12 @@
                 
               
 
-              <time title="创建时间：2018-11-28 22:02:00" itemprop="dateCreated datePublished" datetime="2018-11-28T22:02:00+08:00">2018-11-28</time>
+              <time title="创建时间：2018-12-20 08:52:11 / 修改时间：08:53:34" itemprop="dateCreated datePublished" datetime="2018-12-20T08:52:11+08:00">2018-12-20</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-12-10 11:24:15" itemprop="dateModified" datetime="2018-12-10T11:24:15+08:00">2018-12-10</time>
               
             
           </span>
@@ -442,7 +428,7 @@
           
 
           
-              <div class="post-description">插入排序是一种简单的插入排序法，其基本思想是：把待排序的记录按其关键码值的大小逐个插入到一个已经排好序的有序序列中，直到所有的记录插入完为止，得到一个新的有序序列。</div>
+              <div class="post-description">散列表用的是数组支持按照下标随机访问数据的时候，时间复杂度为 O(1)的特性。</div>
           
 
         </div>
@@ -458,19 +444,22 @@
       
 
       
-        <h1 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h1><ul>
-<li><strong>该篇文章为本人阅读《算法》一书所做笔记以及知识总结，以供未来查阅</strong></li>
+        <h1 id="Word文档中的单词拼写检查功能是如何实现的"><a href="#Word文档中的单词拼写检查功能是如何实现的" class="headerlink" title="Word文档中的单词拼写检查功能是如何实现的"></a>Word文档中的单词拼写检查功能是如何实现的</h1><h6 id="什么是散列表"><a href="#什么是散列表" class="headerlink" title="什么是散列表"></a>什么是散列表</h6><p>散列表用的是数组支持按照下标随机访问数据的时候，时间复杂度为 O(1)的特性。我们通过散列函数将元素的键值映射为下标，然后将元素存储在数组中对应下标的位置。查找元素的时候，通过散列函数将键值转化为数组下标，然后从数组中取出对应下标位置上的元素。</p>
+<h6 id="什么是散列思想"><a href="#什么是散列思想" class="headerlink" title="什么是散列思想"></a>什么是散列思想</h6><p>某校举办运动会，共有 100 名运动员，编号从 0 到 99。如果我们将运动员的编号与数组的下标一一对应，并把运动员的信息对号入座放入编号值对应下标值的数组中，那么获取运动员信息的时候，就可以依据编号随机访问数组中的元素，得到想要的信息，时间复杂度 O(1)。</p>
+<p>依旧是上面的例子，但是这次运动员的编号是年级编号 + 班级编号 + 顺序编号。这次，我们就需要借助一个函数对运动员的编号进行转化：去除年级编号，去除班级编号，保留顺序编号。通过函数的转化，使得运动员编号依旧与数组下标一一对应。此时，查找运动员信息的时间复杂度依旧是 O(1)。</p>
+<p>通过上述两个例子，已经体现了散列思想。运动员的编号叫做键(key)或者编号转化编号的函数叫散列函数(哈希函数，Hash函数)，通过哈希函数转化得到的值叫散列值(哈希值，Hash值)。</p>
+<p>对于散列函数有一下三点要求：</p>
+<ul>
+<li>通过散列函数得到的散列值是一个非负整数。（数组下标不支持非负整数）</li>
+<li>如果 key1 = key2 那么 hash(key1) = hash(key2)。（键值相同，那计算出来的散列值也应该相等）</li>
+<li>如果 key1 != key2 那么 hash(key1) != hash(key2)。（这一点做到比较难，即便是MD5，SHA，CRC等哈希算法也不能保证不同的值对应的散列值不同，这就引发除了散列冲突。）</li>
 </ul>
-<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><blockquote>
-<p>插入排序是一种简单的插入排序法，其基本思想是：把待排序的记录按其关键码值的大小逐个插入到一个已经排好序的有序序列中，直到所有的记录插入完为止，得到一个新的有序序列。—— <a href="https://baike.baidu.com/item/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F" target="_blank"> [ 百度百科 ]</a></p>
-</blockquote>
-<h3 id="解释说明"><a href="#解释说明" class="headerlink" title="解释说明"></a>解释说明</h3><p>在插入排序中，每次确定一个元素的插入位置，在确定过程中，我们会将该元素依次与前一个元素作对比，如果前一个元素比该元素大，则交换二者的位置（假定我们按照从大到小排序），直至前一个元素比该元素小时，停止对比，这就意味着该元素找到了目前最合适的位置。</p>
-<p>上面是排序的基本过程，假定我们有一个待排序的数组，长度为10。</p>
-<p>首先我们取出第二个元素，将其与前一个元素对比，若第前一个元素大于该元素，则交换位置，然后我们就为数组的前两个元素排序完成。</p>
-<p>其次我们取出第三个元素，将其与前一个元素对比，若第前一个元素大于该元素，则交换位置，然后重复对比过程，直至前一个元素小于该元素，则我们就为数组的前三个元素排序完成。</p>
-<p>以此类推，最终我们就能完成整个数据的排序。在这个过程中，我们会发现，待排序元素前面所有的元素都是有序的。</p>
-<h6 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		String[] strArray = <span class="keyword">new</span> String[]&#123;<span class="string">"S"</span>, <span class="string">"O"</span>, <span class="string">"R"</span>, <span class="string">"T"</span>, <span class="string">"E"</span>, <span class="string">"X"</span>, <span class="string">"A"</span>, <span class="string">"M"</span>, <span class="string">"P"</span>, <span class="string">"L"</span>, <span class="string">"E"</span>&#125;;</span><br><span class="line">		sort(strArray);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//排序</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(String[] strArray)</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"排序前："</span> + print(strArray));</span><br><span class="line">		<span class="comment">//插入排序算法开始</span></span><br><span class="line">		<span class="keyword">int</span> length = strArray.length;		</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; length; i++)&#123;</span><br><span class="line">			<span class="comment">//compareTo()方法是java类库的方法，A.compareTo(B)，如果A小于B则返回负数，A等于B则返回零，A大于B则返回整数</span></span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j = i; j &gt; <span class="number">0</span> &amp;&amp; strArray[j].compareTo(strArray[j - <span class="number">1</span>]) &lt; <span class="number">0</span>; j--)&#123;</span><br><span class="line">				exch(strArray, j, j - <span class="number">1</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;		</span><br><span class="line">		<span class="comment">//插入排序算法结束</span></span><br><span class="line">		System.out.println(<span class="string">"排序后："</span> + print(strArray));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//返回数组字符串</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">print</span><span class="params">(String[] strArray)</span></span>&#123;</span><br><span class="line">		StringBuilder string = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">		<span class="keyword">for</span> (String str : strArray) &#123;</span><br><span class="line">			string.append(str + <span class="string">"    "</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> string.toString();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//数据元素交换位置</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">exch</span><span class="params">(String[] strArray, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span></span>&#123;</span><br><span class="line">		String str = strArray[i];</span><br><span class="line">		strArray[i] = strArray[j];</span><br><span class="line">		strArray[j] = str;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h6 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h6><p><img src="//img-blog.csdn.net/20180313170243865?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="代码运行结果"></p>
+<h6 id="散列冲突的解决"><a href="#散列冲突的解决" class="headerlink" title="散列冲突的解决"></a>散列冲突的解决</h6><p>1：开放寻址。如果出现了散列冲突，那就那就重新探测一个空闲的位置，将数据插入。探测方法有：<br>线性探测，发现冲突后，继续往后找，直到找到空闲位置。<br>二次探测，与线性探测相似，只是步长变为原来的二次方。<br>双重散列，使用两个散列函数，第一个函数冲突后，采用第二个函数。</p>
+<p>2：链表法。散列表中，每个数组的元素就是一个头结点，后面跟着一个链表。当散列冲突后，就将元素直接放入链表后面。</p>
+<h6 id="Word文档中的单词拼写检查功能是如何实现的-1"><a href="#Word文档中的单词拼写检查功能是如何实现的-1" class="headerlink" title="Word文档中的单词拼写检查功能是如何实现的"></a>Word文档中的单词拼写检查功能是如何实现的</h6><p>将所有的单词存入散列表中，每次发现单词拼写的时候，去散列表查找，查不到就提示单词拼写错误。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>针对散列冲突的元素，如何在获取的时候准确的获取正确的对象呢？查找对象的时候，首先根据散列值进行查找，如果查找到多个元素，那再进行全量对比，判断查找到的元素是不是我们想要的元素。</p>
+<p>本文创作灵感来源于 极客时间 王争老师的《数据结构与算法之美》课程，通过课后反思以及借鉴各位学友的发言总结，现整理出自己的知识架构，以便日后温故知新，查漏补缺。</p>
+<p>初入算法学习，必是步履蹒跚，一路磕磕绊绊跌跌撞撞。看不懂别慌，也别忙着总结，先读五遍文章先，无他，唯手熟尔~<br>与诸君共勉</p>
 
       
     </div>
@@ -506,10 +495,6 @@
           
             <a href="/tags/算法/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
           
-            <a href="/tags/插入排序/" rel="tag"><i class="fa fa-tag"></i> 插入排序</a>
-          
-            <a href="/tags/排序/" rel="tag"><i class="fa fa-tag"></i> 排序</a>
-          
         </div>
       
 
@@ -521,8 +506,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/28/新的测试/" rel="next" title="新的测试">
-                <i class="fa fa-chevron-left"></i> 新的测试
+              <a href="/2018/12/19/skipList/" rel="next" title="算法笔记-跳表">
+                <i class="fa fa-chevron-left"></i> 算法笔记-跳表
               </a>
             
           </div>
@@ -530,10 +515,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/03/algorithm01/" rel="prev" title="算法复杂度分析1">
-                算法复杂度分析1 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -686,7 +667,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#插入排序"><span class="nav-number">1.</span> <span class="nav-text">插入排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">1.0.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解释说明"><span class="nav-number">1.0.2.</span> <span class="nav-text">解释说明</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#代码块"><span class="nav-number">1.0.2.0.0.1.</span> <span class="nav-text">代码块</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#运行结果"><span class="nav-number">1.0.2.0.0.2.</span> <span class="nav-text">运行结果</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Word文档中的单词拼写检查功能是如何实现的"><span class="nav-number">1.</span> <span class="nav-text">Word文档中的单词拼写检查功能是如何实现的</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#什么是散列表"><span class="nav-number">1.0.0.0.0.1.</span> <span class="nav-text">什么是散列表</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#什么是散列思想"><span class="nav-number">1.0.0.0.0.2.</span> <span class="nav-text">什么是散列思想</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#散列冲突的解决"><span class="nav-number">1.0.0.0.0.3.</span> <span class="nav-text">散列冲突的解决</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Word文档中的单词拼写检查功能是如何实现的-1"><span class="nav-number">1.0.0.0.0.4.</span> <span class="nav-text">Word文档中的单词拼写检查功能是如何实现的</span></a></li></ol></li></ol><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">总结</span></a></li></div>
             
 
           </div>
