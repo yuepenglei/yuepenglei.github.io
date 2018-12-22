@@ -110,25 +110,25 @@
 
 
 
-  <meta name="description" content="算法复杂度描述的是算法执行时间以及占用空间与数据规模的关联关系">
+  <meta name="description" content="为什么散列表和链表会经常一起使用">
 <meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法复杂度分析1">
-<meta property="og:url" content="http://yoursite.com/2018/12/03/algorithm01/index.html">
+<meta property="og:title" content="算法笔记-散列表3">
+<meta property="og:url" content="http://yoursite.com/2018/12/22/HashTable03/index.html">
 <meta property="og:site_name" content="学习笔记">
-<meta property="og:description" content="算法复杂度描述的是算法执行时间以及占用空间与数据规模的关联关系">
+<meta property="og:description" content="为什么散列表和链表会经常一起使用">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-10T03:24:15.030Z">
+<meta property="og:updated_time" content="2018-12-22T14:00:22.372Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="算法复杂度分析1">
-<meta name="twitter:description" content="算法复杂度描述的是算法执行时间以及占用空间与数据规模的关联关系">
+<meta name="twitter:title" content="算法笔记-散列表3">
+<meta name="twitter:description" content="为什么散列表和链表会经常一起使用">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/03/algorithm01/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/22/HashTable03/">
 
 
 
@@ -138,7 +138,7 @@
   };
 </script>
 
-  <title>算法复杂度分析1 | 学习笔记</title>
+  <title>算法笔记-散列表3 | 学习笔记</title>
   
 
 
@@ -344,7 +344,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/03/algorithm01/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/22/HashTable03/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Author">
@@ -361,7 +361,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">算法复杂度分析1
+          <h1 class="post-title" itemprop="name headline">算法笔记-散列表3
               
             
           </h1>
@@ -386,24 +386,12 @@
                 
               
 
-              <time title="创建时间：2018-12-03 23:44:07" itemprop="dateCreated datePublished" datetime="2018-12-03T23:44:07+08:00">2018-12-03</time>
+              <time title="创建时间：2018-12-22 21:58:57 / 修改时间：22:00:22" itemprop="dateCreated datePublished" datetime="2018-12-22T21:58:57+08:00">2018-12-22</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-12-10 11:24:15" itemprop="dateModified" datetime="2018-12-10T11:24:15+08:00">2018-12-10</time>
               
             
           </span>
@@ -440,7 +428,7 @@
           
 
           
-              <div class="post-description">算法复杂度描述的是算法执行时间以及占用空间与数据规模的关联关系</div>
+              <div class="post-description">为什么散列表和链表会经常一起使用</div>
           
 
         </div>
@@ -456,35 +444,29 @@
       
 
       
-        <h1 id="算法复杂度分析"><a href="#算法复杂度分析" class="headerlink" title="算法复杂度分析"></a>算法复杂度分析</h1><p>本文创作灵感来源于 极客时间 王争老师的《数据结构与算法之美》课程，通过课后反思以及借鉴各位学友的发言总结，现整理出自己的知识架构，以便日后温故知新，查漏补缺。</p>
-<h4 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h4><h6 id="什么是算法复杂度分析？"><a href="#什么是算法复杂度分析？" class="headerlink" title="什么是算法复杂度分析？"></a>什么是算法复杂度分析？</h6><ul>
-<li>通过时间和空间两个维度来评估算法和数据结构的性能。</li>
-<li>用时间复杂度 (时间渐进复杂度) 和空间复杂度 (空间渐进复杂度)两个概念来描述性能问题，统称复杂度。</li>
-<li>算法复杂度描述的是算法执行时间以及占用空间与数据规模的关联关系</li>
-<li>算法复杂度分析是理论上的分析</li>
-</ul>
-<h3 id="为什么"><a href="#为什么" class="headerlink" title="为什么"></a>为什么</h3><h6 id="为什么要做算法复杂度分析"><a href="#为什么要做算法复杂度分析" class="headerlink" title="为什么要做算法复杂度分析"></a>为什么要做算法复杂度分析</h6><ul>
-<li>有种性能分析叫做 ‘事后统计法’ 该方法是在程序结束之后根据记录的运行时间，内存占用情况，分析出系统的性能。该方法的局限性就是极度依赖测试环境，测试数据的规模对测试结果影响很大。</li>
-<li>算法复杂度分析则不依赖于测试环境，成本低，效率高</li>
-<li>算法复杂度分析帮助我们了解程序的性能，指导我们编写高效率的代码</li>
-</ul>
-<h3 id="怎么办"><a href="#怎么办" class="headerlink" title="怎么办"></a>怎么办</h3><h6 id="如何表示时间算法复杂度"><a href="#如何表示时间算法复杂度" class="headerlink" title="如何表示时间算法复杂度"></a>如何表示时间算法复杂度</h6><ul>
-<li>用 T(n) = O(f(n)) 表示，其中 T(n)  表示代码执行的时间； n  表示数据规模的大小； f(n)  表示代码执行的总次数，公式中的  O ，表示代码的执行时间  T(n)  与  f(n) 表达式成正比<h6 id="算法时间复杂度分析方法"><a href="#算法时间复杂度分析方法" class="headerlink" title="算法时间复杂度分析方法"></a>算法时间复杂度分析方法</h6></li>
-<li>算法时间复杂度全称：时间渐进复杂度，表示算法的执行时间与数据规模之间增长关系</li>
-<li>只关注循环次数最多的一段代码<br>:   如果一段代码中包含一个 for 循环，则我们以 for 循环的执行次数  n  作为该段代码的时间复杂度，记为： O(n) </li>
-<li>嵌套代码的复杂度等于内层与外层代码复杂度之积<br>:   如果一段代码中包含一个 for 循环，而这个 for 循环体中又包含了一个相同的 for 循环，那么时间复杂度就为： t(n) * g(n) ，假设 t(n) = g(n^2) ，则最终时间复杂度记为： O(n^3)  </li>
-<li>只关注复杂度量级最大的那段代码<br>:   如果一段代码包含两个 for 循环，其中一个 for 循环体中再次包含一个 for 循环，则该段代码的时间复杂度应为：<br>t(n) + g(n^2)  如果n足够大的时候，则 t(n)  值可忽略不计，只取 g(n^2)  的值，那么时间复杂度为： O(n^2)  <h6 id="常见算法时间复杂度实例"><a href="#常见算法时间复杂度实例" class="headerlink" title="常见算法时间复杂度实例"></a>常见算法时间复杂度实例</h6></li>
-<li>常量阶 O(1)  </li>
-<li>对数阶 O(logn)  </li>
-<li>线性阶 O(n)  </li>
-<li>线性对数阶 O(nlogn)  </li>
-<li>平方阶 O(n^2)   立方阶 O(n^3)  </li>
-<li>指数阶 O(2^n)  </li>
-<li>阶乘阶 O(n!)  <h6 id="空间复杂度分析方法"><a href="#空间复杂度分析方法" class="headerlink" title="空间复杂度分析方法"></a>空间复杂度分析方法</h6></li>
-<li>算法空间复杂度全称：空间渐进复杂度，表示算法的存储空间与数据规模之间增长关系</li>
-<li>算法空间复杂度分析比较简单直接，只需统计代码运行时需要申请的空间大小。</li>
-<li>常见的空间复杂度实例有 O(1)，O(n)，O(n^2)  <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4>初入算法复杂度分析，必是步履蹒跚，一路磕磕绊绊跌跌撞撞。看不懂别慌，也别忙着总结，先读五遍文章先，无他，唯手熟尔~<br>与诸君共勉</li>
-</ul>
+        <h1 id="为什么散列表和链表会经常一起使用"><a href="#为什么散列表和链表会经常一起使用" class="headerlink" title="为什么散列表和链表会经常一起使用"></a>为什么散列表和链表会经常一起使用</h1><h6 id="LRU缓存淘汰算法"><a href="#LRU缓存淘汰算法" class="headerlink" title="LRU缓存淘汰算法"></a>LRU缓存淘汰算法</h6><p>总结链表那篇文章中，曾经实现过LRU缓存淘汰算法，但是当时的删除插入操作时间复杂是 O(n)。</p>
+<p>如果用散列表加链表的方式实现LRU缓存淘汰算法，时间复杂度就变成O(1)。</p>
+<p>数据的存贮我们用散列表实现，散列冲突用链表法解决。如果有相同散列值的元素，我们就将其插入到该散列值对应位置链表的尾部，链表上的节点都有一个 hnext 指针，指向该链表的后后继节点。</p>
+<p>插入元素的排列顺序，我们用双向链表来维护。也就是说，散列表中的所有元素，除了因为散列冲突的原因，导致相同散列值元素之间有链表维护以外，还有一个双向链表将所有的元素串联起来。</p>
+<p>查找某一元素的时候，根据散列值可以迅速定位元素位置，时间复杂度 O(1)。</p>
+<p>删除某一元素的时候，查找的时间复杂度是 O(1)，又因为该节点维护在双向链表中，所以删除操作时间复杂度也是 O(1)，总的操作时间复杂度是 O(1)。</p>
+<p>插入某一元素的时候，首先在散列表中查找该元素，若找到该元素则将其移动到双向链表的尾部，时间复杂度为 O(1)，如果没有找到，则计算散列值存入散列表中，并将其维护到双向链表的尾部，时间复杂度为 O(1)。</p>
+<p>上述操作中，隐含了一些条件，比如需要明确知道头结点，尾节点指针，这样才能保证插入双向链表尾部和头部的时间复杂度为 O(1)。</p>
+<h6 id="Redis有序集合"><a href="#Redis有序集合" class="headerlink" title="Redis有序集合"></a>Redis有序集合</h6><p>跳表那篇文章中总结到 Redis 的有序集合是通过跳表实现的，其实不然。</p>
+<p>Redis 的有序集合中的元素有两个很重要的属性：key 和 score，我们不仅通过 key 查找数据还通过 score 查找数据。</p>
+<p>举例：在有序集合中存储学生以及成绩信息，key 代表的是学生的学号，score 代表的是学生的成绩。那么对学生信息会有以下操作：<br>1：查找某个学生信息。<br>2：删除某个学生信息。<br>3：添加某个学生信息。<br>4：查找分数在某个区间的学生信息。<br>5：按照分数对学生排序。</p>
+<p>如果单以跳表去存储维护学生分数信息，虽然保证了有序，但是查找学生信息的时间复杂度就是复杂了。</p>
+<p>如果以学号为关键值用散列表存储学生的信息，查找时间复杂度为 O(1) 了，但是实现上述 4，5 的操作就复杂的多了。</p>
+<p>所以近似于上述 LRU缓存淘汰算法 的数据结构存储学生信息，就能兼顾对学生信息的各种高效操作了，这就是 Redis 有序集合的实现原理。</p>
+<h6 id="Java-LinkedHashMap"><a href="#Java-LinkedHashMap" class="headerlink" title="Java LinkedHashMap"></a>Java LinkedHashMap</h6><p>我在公司开发用到的主要语言就是 Java 其中的 LinkedHashMap 操作类经常用到，下面对其进行简单分析。</p>
+<p>先看代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">HashMap&lt;Integer, Integer&gt; m = <span class="keyword">new</span> LinkedHashMap&lt;&gt;();</span><br><span class="line">m.put(<span class="number">3</span>, <span class="number">11</span>);</span><br><span class="line">m.put(<span class="number">1</span>, <span class="number">12</span>);</span><br><span class="line">m.put(<span class="number">5</span>, <span class="number">23</span>);</span><br><span class="line">m.put(<span class="number">2</span>, <span class="number">22</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (Map.Entry e : m.entrySet()) &#123;</span><br><span class="line">  System.out.println(e.getKey());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出结果是 3 1 5 2。首先从类名就看的出该操作类底层是 HashMap 实现的，但是输出元素居然是有序的，说明该结构中有除了用到散列表还用到了链表，用链表去维护数据的有序性。</p>
+<p>再看代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 10 是初始大小，0.75 是装载因子，true 是表示按照访问时间排序</span></span><br><span class="line">HashMap&lt;Integer, Integer&gt; m = <span class="keyword">new</span> LinkedHashMap&lt;&gt;(<span class="number">10</span>, <span class="number">0.75f</span>, <span class="keyword">true</span>);</span><br><span class="line">m.put(<span class="number">3</span>, <span class="number">11</span>);</span><br><span class="line">m.put(<span class="number">1</span>, <span class="number">12</span>);</span><br><span class="line">m.put(<span class="number">5</span>, <span class="number">23</span>);</span><br><span class="line">m.put(<span class="number">2</span>, <span class="number">22</span>);</span><br><span class="line"></span><br><span class="line">m.put(<span class="number">3</span>, <span class="number">26</span>);</span><br><span class="line">m.get(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (Map.Entry e : m.entrySet()) &#123;</span><br><span class="line">  System.out.println(e.getKey());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>首先，当 m 分别放入 3，1，2，5这三个元素的时候，我们是知道这些数据是有序的，按照插入散列表中时间循序排列。当再次插入 key 值为 3 的元素的时候，LinkedHashMap 内部是先找到 key = 3 的元素，将其删除，然后插入新的 key = 3 的元素，并将其维护在链表的尾部。当访问 key = 5 的元素的时候，查找到该元素，并将其维护在链表的尾部。所以最终的输出结果是 1 2 3 5。</p>
+<p>经过上述两段代码，我们可以发现 Java 中的 LinkedHashMap 其实实现的就是LRU缓存淘汰算法。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>其实，总结了这么多突然发现重要的其实就是两种数据结构：数组和链表。数组支持随机访问，但是插入删除不够高效，链表插入删除快，但是随机访问却低效。数组需要的是连续空间，对内存要求比较高，链表占用的是随机内存地址，提高了内存利用率。将数组与链表相互结合起来，取长补短，就能实现高性能的增删改查功能。</p>
+<p>本文创作灵感来源于 极客时间 王争老师的《数据结构与算法之美》课程，通过课后反思以及借鉴各位学友的发言总结，现整理出自己的知识架构，以便日后温故知新，查漏补缺。</p>
+<p>初入算法学习，必是步履蹒跚，一路磕磕绊绊跌跌撞撞。看不懂别慌，也别忙着总结，先读五遍文章先，无他，唯手熟尔~<br>与诸君共勉</p>
 
       
     </div>
@@ -531,8 +513,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/28/charupaixu/" rel="next" title="插入排序">
-                <i class="fa fa-chevron-left"></i> 插入排序
+              <a href="/2018/12/21/HashTable02/" rel="next" title="算法笔记-散列表2">
+                <i class="fa fa-chevron-left"></i> 算法笔记-散列表2
               </a>
             
           </div>
@@ -540,10 +522,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/04/algorithm02/" rel="prev" title="算法复杂度分析2">
-                算法复杂度分析2 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -696,7 +674,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#算法复杂度分析"><span class="nav-number">1.</span> <span class="nav-text">算法复杂度分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#是什么"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">是什么</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#什么是算法复杂度分析？"><span class="nav-number">1.0.0.1.0.1.</span> <span class="nav-text">什么是算法复杂度分析？</span></a></li></ol></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么"><span class="nav-number">1.0.1.</span> <span class="nav-text">为什么</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#为什么要做算法复杂度分析"><span class="nav-number">1.0.1.0.0.1.</span> <span class="nav-text">为什么要做算法复杂度分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#怎么办"><span class="nav-number">1.0.2.</span> <span class="nav-text">怎么办</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#如何表示时间算法复杂度"><span class="nav-number">1.0.2.0.0.1.</span> <span class="nav-text">如何表示时间算法复杂度</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#算法时间复杂度分析方法"><span class="nav-number">1.0.2.0.0.2.</span> <span class="nav-text">算法时间复杂度分析方法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#常见算法时间复杂度实例"><span class="nav-number">1.0.2.0.0.3.</span> <span class="nav-text">常见算法时间复杂度实例</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#空间复杂度分析方法"><span class="nav-number">1.0.2.0.0.4.</span> <span class="nav-text">空间复杂度分析方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">总结</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么散列表和链表会经常一起使用"><span class="nav-number">1.</span> <span class="nav-text">为什么散列表和链表会经常一起使用</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#LRU缓存淘汰算法"><span class="nav-number">1.0.0.0.0.1.</span> <span class="nav-text">LRU缓存淘汰算法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Redis有序集合"><span class="nav-number">1.0.0.0.0.2.</span> <span class="nav-text">Redis有序集合</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Java-LinkedHashMap"><span class="nav-number">1.0.0.0.0.3.</span> <span class="nav-text">Java LinkedHashMap</span></a></li></ol></li></ol><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">总结</span></a></li></div>
             
 
           </div>
