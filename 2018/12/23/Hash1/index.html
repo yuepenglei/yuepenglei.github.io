@@ -110,29 +110,25 @@
 
 
 
-  <meta name="description" content="element框架中，table标签，最后一行自定义。">
-<meta name="keywords" content="前端,js">
+  <meta name="description" content="将任意长度的二进制值串映射为固定长度的二进制值串，这个映射规则就是哈希算法，映射得到的值就叫哈希值。">
+<meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="element table 自定义表尾">
-<meta property="og:url" content="http://yoursite.com/2018/12/19/table-tfood/index.html">
+<meta property="og:title" content="算法笔记-哈希算法1">
+<meta property="og:url" content="http://yoursite.com/2018/12/23/Hash1/index.html">
 <meta property="og:site_name" content="学习笔记">
-<meta property="og:description" content="element框架中，table标签，最后一行自定义。">
+<meta property="og:description" content="将任意长度的二进制值串映射为固定长度的二进制值串，这个映射规则就是哈希算法，映射得到的值就叫哈希值。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/2018121817161518.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20181218171637907.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdn.net/20181017220519736?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
-<meta property="og:updated_time" content="2018-12-19T00:41:16.860Z">
+<meta property="og:updated_time" content="2018-12-23T15:09:20.926Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="element table 自定义表尾">
-<meta name="twitter:description" content="element框架中，table标签，最后一行自定义。">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/2018121817161518.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70">
+<meta name="twitter:title" content="算法笔记-哈希算法1">
+<meta name="twitter:description" content="将任意长度的二进制值串映射为固定长度的二进制值串，这个映射规则就是哈希算法，映射得到的值就叫哈希值。">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/19/table-tfood/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/23/Hash1/">
 
 
 
@@ -142,7 +138,7 @@
   };
 </script>
 
-  <title>element table 自定义表尾 | 学习笔记</title>
+  <title>算法笔记-哈希算法1 | 学习笔记</title>
   
 
 
@@ -348,7 +344,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/19/table-tfood/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/23/Hash1/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Author">
@@ -365,7 +361,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">element table 自定义表尾
+          <h1 class="post-title" itemprop="name headline">算法笔记-哈希算法1
               
             
           </h1>
@@ -390,7 +386,7 @@
                 
               
 
-              <time title="创建时间：2018-12-19 08:42:41 / 修改时间：08:41:16" itemprop="dateCreated datePublished" datetime="2018-12-19T08:42:41+08:00">2018-12-19</time>
+              <time title="创建时间：2018-12-23 23:06:59 / 修改时间：23:09:20" itemprop="dateCreated datePublished" datetime="2018-12-23T23:06:59+08:00">2018-12-23</time>
             
 
             
@@ -412,7 +408,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
 
                 
                 
@@ -432,7 +428,7 @@
           
 
           
-              <div class="post-description">element框架中，table标签，最后一行自定义。</div>
+              <div class="post-description">将任意长度的二进制值串映射为固定长度的二进制值串，这个映射规则就是哈希算法，映射得到的值就叫哈希值。</div>
           
 
         </div>
@@ -448,19 +444,28 @@
       
 
       
-        <p>简单介绍下项目：后端管理系统，页面样式用的是 element，数据绑定用的是 vue.js。</p>
-<h6 id="功能需求：需要添加缴药记录，这些记录要显示在一个-table-中，但是-table-末尾一行不做数据展示，只负责触发数据新增的动作。"><a href="#功能需求：需要添加缴药记录，这些记录要显示在一个-table-中，但是-table-末尾一行不做数据展示，只负责触发数据新增的动作。" class="headerlink" title="功能需求：需要添加缴药记录，这些记录要显示在一个 table 中，但是 table 末尾一行不做数据展示，只负责触发数据新增的动作。"></a>功能需求：需要添加缴药记录，这些记录要显示在一个 table 中，但是 table 末尾一行不做数据展示，只负责触发数据新增的动作。</h6><p>先看最终实现的效果：<br><img src="https://img-blog.csdnimg.cn/2018121817161518.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p>红框处就是自定义的表尾，选择药品处的下拉框，每当选中一个药品的时候，当前 table 就多出一行选中过的药品信息。</p>
-<h6 id="实现过程："><a href="#实现过程：" class="headerlink" title="实现过程："></a>实现过程：</h6><p>由于用到 element 的 table 标签，所以 table 的渲染，取决于 data 属性的值(tablelist)，代码如下</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">el-table</span>  <span class="attr">style</span>=<span class="string">"width: 1040px"</span> <span class="attr">:data</span>=<span class="string">"tablelist"</span> <span class="attr">border</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-table-column</span>  <span class="attr">prop</span>=<span class="string">"drugName"</span> <span class="attr">label</span>=<span class="string">"药品名称"</span> <span class="attr">min-width</span>=<span class="string">"20%"</span>&gt;</span> <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">"unit"</span> <span class="attr">label</span>=<span class="string">"用药规格"</span> <span class="attr">min-width</span>=<span class="string">"20%"</span>&gt;</span> <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-table-column</span>  <span class="attr">prop</span>=<span class="string">"stock"</span> <span class="attr">label</span>=<span class="string">"库存数量（本人）"</span> <span class="attr">min-width</span>=<span class="string">"20%"</span>&gt;</span> <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">"number"</span> <span class="attr">label</span>=<span class="string">"缴存数量"</span> <span class="attr">min-width</span>=<span class="string">"20%"</span>&gt;</span> <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">el-table</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>一开始的思路是，tablelist 中预制一条数据，然后做状态标识。当渲染 table 行的时候，根据状态标识，判断该行到底是添加上的数据，还是要触发添加操作的表尾。然后按照这个思路执行的结果是：<br><img src="https://img-blog.csdnimg.cn/20181218171637907.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p>然后反思，发现原因。每次添加，都往 tablelist 数组后面添加一个元素，导致本来应该是表尾的那一行，跑到了上面。那继续解决问题，我想到了对 tablelist 排序，然后让表尾那一行每次排在数组最后一个位置。虽然实现了，但是弊端也很大。1，每次排序都要涉及到数组遍历页面渲染，这些都是性能开销。2，当我保存页面的数据的时候，我还需要对 tablelist 的数据做筛选，剔除掉表尾那行数据。总而言之，逻辑很复杂，然后我就想出了另外一种方法。</p>
-<p>先看代码</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">el-table</span>  <span class="attr">style</span>=<span class="string">"width: 1040px"</span> <span class="attr">:data</span>=<span class="string">"tablelist.concat([&#123;drugId:0&#125;])"</span> <span class="attr">border</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-table-column</span>  <span class="attr">prop</span>=<span class="string">"drugName"</span> <span class="attr">label</span>=<span class="string">"药品名称"</span> <span class="attr">min-width</span>=<span class="string">"20%"</span>&gt;</span> <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">"unit"</span> <span class="attr">label</span>=<span class="string">"用药规格"</span> <span class="attr">min-width</span>=<span class="string">"20%"</span>&gt;</span> <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-table-column</span>  <span class="attr">prop</span>=<span class="string">"stock"</span> <span class="attr">label</span>=<span class="string">"库存数量（本人）"</span> <span class="attr">min-width</span>=<span class="string">"20%"</span>&gt;</span> <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">"number"</span> <span class="attr">label</span>=<span class="string">"缴存数量"</span> <span class="attr">min-width</span>=<span class="string">"20%"</span>&gt;</span> <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">el-table</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>首先，为了保证保存页面数据的时候，处理逻辑简单，只让 tablelist 存储需要提交到后台的数据。那么 table 表格末尾那一行的数据，怎么渲染上呢。在给 table 的 data 属性赋值的时候，调用 tablelist 的 concat()，方法。给 tablelist 再添加一个数组，该数组只有一个元素，就是用来渲染表尾的元素。这样就保证了提交到后台数据准确性，table 行数据排列的准确性以及表尾行始终固定。</p>
-<h6 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h6><p>其实解决的方法很简单。第一，由于是表尾和其他行有区别，而且我们的业务逻辑是表尾数据不提交，所以想到两部分数据要做数据隔离。第二，table 渲染的时候，又需要两部分数据是一个整体，所以想到集合的相加。</p>
-<p>多思考，总会有意想不到的收获。</p>
-<h4 id="关注本人公众号，第一时间获取最新文章发布，每日更新一篇技术文章。"><a href="#关注本人公众号，第一时间获取最新文章发布，每日更新一篇技术文章。" class="headerlink" title="关注本人公众号，第一时间获取最新文章发布，每日更新一篇技术文章。"></a>关注本人公众号，第一时间获取最新文章发布，每日更新一篇技术文章。</h4><p><img src="https://img-blog.csdn.net/20181017220519736?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="在这里插入图片描述"></p>
+        <h1 id="什么是哈希算法"><a href="#什么是哈希算法" class="headerlink" title="什么是哈希算法"></a>什么是哈希算法</h1><p>将任意长度的二进制值串映射为固定长度的二进制值串，这个映射规则就是哈希算法，映射得到的值就叫哈希值。</p>
+<p>设计一个优秀的哈希算法，需要注意以下几点：</p>
+<p>1：从哈希值不能反向推导出原始数据，所以哈希算法也叫单项哈希算法。<br>2：对输入数据非常敏感，哪怕原始数据修改了 1 个 Bit，最后得到得哈希值也不一样。<br>3：散列冲突的概率要小，对于不同的原始数据，得到的哈希值相同的概率要小。<br>4：哈希算法的执行效率要高，即便是原始数据很长，也能高效的计算出哈希值。</p>
+<h6 id="哈希算法应用之安全加密"><a href="#哈希算法应用之安全加密" class="headerlink" title="哈希算法应用之安全加密"></a>哈希算法应用之安全加密</h6><p>哈希算法常见的应用就是加密，比如说：MD5 也叫信息摘要算法；SHA 也叫安全散列算法。</p>
+<p>对于加密的哈希算法来说，有两点至关重要：很难通过哈希值反向推出原始数据，散列冲突的概率要很小。</p>
+<p>为什么散列冲突无法避免？组合数学中有一个鸽巢原理，也叫抽屉原理。也就是说，是一个鸽子放进是个抽屉里面，必然会有两只鸽子待在一个抽屉里面，这是不可避免的结果。对于 MD5 加密算法来说，得到的哈希值是固定的 128 位二进制串，也就是说最多能标识 2^128 个数据。如果现在有 2^128 + 1 个数据，那么最终得到的哈希值至少会有一个重复。</p>
+<p>越是复杂的哈希加密算法，最终得到结果越是难以被破解，但是计算哈希值的复杂度也就相应的提高了。所以，哈希函数的设计，要综合考虑破解难易程度和算法执行效率的平衡点。</p>
+<h6 id="哈希算法应用之唯一标识"><a href="#哈希算法应用之唯一标识" class="headerlink" title="哈希算法应用之唯一标识"></a>哈希算法应用之唯一标识</h6><p>如果要在海量图库中判断一张图片是否存在，仅仅根据图片名字判断是不合理的，重名图片一定很多。</p>
+<p>在计算机中，任何文件都可以转化为二进制码串，所以可以拿图片的码串进行对比。但是，文件大小不一，过大的文件，二进制码串必定很长，对比起来肯定耗时费力。</p>
+<p>我们可以利用哈希算法为图片生成一个信息摘要作为图片的唯一标示，查找图片的时候可以用信息摘要做对比。信息摘要的生成，可以在图片的前中后三部分分别取出 100 个字节，生成最终的唯一标示。</p>
+<p>在上述基础上，我们可以把图片的信息摘要当做 key 值，图片的其他信息作为 value 值，将其存储在散列表中，这就进一步提高了图片查找的效率。</p>
+<h6 id="哈希算法应用之数据校验"><a href="#哈希算法应用之数据校验" class="headerlink" title="哈希算法应用之数据校验"></a>哈希算法应用之数据校验</h6><p>当我们通过种子文件从互联网上下载视频文件的时候，原始文件(假如说大小为 1G)会被分割成多个文件快(假设分割成 10 块，每块大小约 100M)。当我们将 10 块文件下载到本地的时候，再拼接成一个完整的文件，就可以观看视频了。</p>
+<p>如果在下载过程中，文件被拦截篡改，那下载到本地拼接后就不能观看，所以需要我们对数据进行校验。</p>
+<p>首先，我们可以对分割的 10 块文件分别哈希取值，然后将哈希值保存在种子文件中。当用户下载完成文件后，哈希取值，再和种子文件中的哈希值做对比，就可以校验出下载的文件是否经过篡改。</p>
+<h6 id="哈希算法应用之散列函数"><a href="#哈希算法应用之散列函数" class="headerlink" title="哈希算法应用之散列函数"></a>哈希算法应用之散列函数</h6><p>散列函数主要应用在散列表中，它直接决定了散列冲突的概率和散列表的性能。相对于其他哈希算法的应用，散列函数对散列冲突的容忍性就高的多了。即便出现了散列冲突，可以通过开放寻址法以及链表法解决散列冲突。</p>
+<p>散列函数同样也不关心是否可以通过哈希值反向推出原始数据。在散列表中，更关心散列函数得到的散列值是否随机均匀分布。当然，散列函数执行的效率也关系着散列表的性能。</p>
+<h6 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h6><p>在开发过程中，我们会把用户的明文密码哈希求值后存储起来，保障用户的隐私。但是即便如初，一旦数据库数据泄露，密码一样不够安全。</p>
+<p>字典攻击：黑客将常用的密码哈希求值后保存在字典数据库中，当黑客得到得到用户信息，即便是加密过的密码，用字典库中的哈希值做对比，从而匹配到用户的密码。</p>
+<p>针对字典攻击，我们可以采用加盐(salt)的方式进行加密。在给用户的密码加密的时候，额外对密码追加一个字符串，然后在进行哈希求值，追加的字符串就是盐 (salt)。该盐可以放在密码的首中尾任意位置。</p>
+<p>王争老师总结了一句很经典的话：安全和攻击是一种博弈关系，没有绝对的安全。所有的安全措施，只不过是增加了攻击的成本而已。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>本文创作灵感来源于 极客时间 王争老师的《数据结构与算法之美》课程，通过课后反思以及借鉴各位学友的发言总结，现整理出自己的知识架构，以便日后温故知新，查漏补缺。</p>
+<p>初入算法学习，必是步履蹒跚，一路磕磕绊绊跌跌撞撞。看不懂别慌，也别忙着总结，先读五遍文章先，无他，唯手熟尔~<br>与诸君共勉</p>
 
       
     </div>
@@ -494,9 +499,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/前端/" rel="tag"><i class="fa fa-tag"></i> 前端</a>
-          
-            <a href="/tags/js/" rel="tag"><i class="fa fa-tag"></i> js</a>
+            <a href="/tags/算法/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
           
         </div>
       
@@ -509,8 +512,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/18/binary2/" rel="next" title="算法-二分法查找2">
-                <i class="fa fa-chevron-left"></i> 算法-二分法查找2
+              <a href="/2018/12/22/HashTable03/" rel="next" title="算法笔记-散列表3">
+                <i class="fa fa-chevron-left"></i> 算法笔记-散列表3
               </a>
             
           </div>
@@ -518,10 +521,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/19/skipList/" rel="prev" title="算法笔记-跳表">
-                算法笔记-跳表 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -674,7 +673,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#功能需求：需要添加缴药记录，这些记录要显示在一个-table-中，但是-table-末尾一行不做数据展示，只负责触发数据新增的动作。"><span class="nav-number">1.</span> <span class="nav-text">功能需求：需要添加缴药记录，这些记录要显示在一个 table 中，但是 table 末尾一行不做数据展示，只负责触发数据新增的动作。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#实现过程："><span class="nav-number">2.</span> <span class="nav-text">实现过程：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol><li class="nav-item nav-level-4"><a class="nav-link" href="#关注本人公众号，第一时间获取最新文章发布，每日更新一篇技术文章。"><span class="nav-number"></span> <span class="nav-text">关注本人公众号，第一时间获取最新文章发布，每日更新一篇技术文章。</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是哈希算法"><span class="nav-number">1.</span> <span class="nav-text">什么是哈希算法</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#哈希算法应用之安全加密"><span class="nav-number">1.0.0.0.0.1.</span> <span class="nav-text">哈希算法应用之安全加密</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#哈希算法应用之唯一标识"><span class="nav-number">1.0.0.0.0.2.</span> <span class="nav-text">哈希算法应用之唯一标识</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#哈希算法应用之数据校验"><span class="nav-number">1.0.0.0.0.3.</span> <span class="nav-text">哈希算法应用之数据校验</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#哈希算法应用之散列函数"><span class="nav-number">1.0.0.0.0.4.</span> <span class="nav-text">哈希算法应用之散列函数</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#补充"><span class="nav-number">1.0.0.0.0.5.</span> <span class="nav-text">补充</span></a></li></ol></li></ol><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">总结</span></a></li></div>
             
 
           </div>
