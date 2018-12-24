@@ -110,25 +110,25 @@
 
 
 
-  <meta name="description" content="在散列表中：散列函数，扩容机制，冲突解决等是决定散列表性能的重要因素。">
+  <meta name="description" content="哈希算法在分布式系统中的应用">
 <meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法笔记-散列表2">
-<meta property="og:url" content="http://yoursite.com/2018/12/21/HashTable02/index.html">
+<meta property="og:title" content="算法笔记-哈希算法2">
+<meta property="og:url" content="http://yoursite.com/2018/12/24/Hash2/index.html">
 <meta property="og:site_name" content="学习笔记">
-<meta property="og:description" content="在散列表中：散列函数，扩容机制，冲突解决等是决定散列表性能的重要因素。">
+<meta property="og:description" content="哈希算法在分布式系统中的应用">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-21T00:56:24.056Z">
+<meta property="og:updated_time" content="2018-12-24T00:46:33.201Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="算法笔记-散列表2">
-<meta name="twitter:description" content="在散列表中：散列函数，扩容机制，冲突解决等是决定散列表性能的重要因素。">
+<meta name="twitter:title" content="算法笔记-哈希算法2">
+<meta name="twitter:description" content="哈希算法在分布式系统中的应用">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/21/HashTable02/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/24/Hash2/">
 
 
 
@@ -138,7 +138,7 @@
   };
 </script>
 
-  <title>算法笔记-散列表2 | 学习笔记</title>
+  <title>算法笔记-哈希算法2 | 学习笔记</title>
   
 
 
@@ -344,7 +344,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/21/HashTable02/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/24/Hash2/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Author">
@@ -361,7 +361,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">算法笔记-散列表2
+          <h1 class="post-title" itemprop="name headline">算法笔记-哈希算法2
               
             
           </h1>
@@ -386,7 +386,7 @@
                 
               
 
-              <time title="创建时间：2018-12-21 08:54:56 / 修改时间：08:56:24" itemprop="dateCreated datePublished" datetime="2018-12-21T08:54:56+08:00">2018-12-21</time>
+              <time title="创建时间：2018-12-24 08:45:26 / 修改时间：08:46:33" itemprop="dateCreated datePublished" datetime="2018-12-24T08:45:26+08:00">2018-12-24</time>
             
 
             
@@ -428,7 +428,7 @@
           
 
           
-              <div class="post-description">在散列表中：散列函数，扩容机制，冲突解决等是决定散列表性能的重要因素。</div>
+              <div class="post-description">哈希算法在分布式系统中的应用</div>
           
 
         </div>
@@ -444,20 +444,25 @@
       
 
       
-        <h1 id="如何打造一个工业级别的散列表"><a href="#如何打造一个工业级别的散列表" class="headerlink" title="如何打造一个工业级别的散列表"></a>如何打造一个工业级别的散列表</h1><p>在散列表中：散列函数，扩容机制，冲突解决等是决定散列表性能的重要因素，下面针对这三者分析它们是如何影响散列表的性能的。</p>
-<h6 id="散列函数"><a href="#散列函数" class="headerlink" title="散列函数"></a>散列函数</h6><p>散列函数的设计不能太过复杂，否则计算散列值的时候势必会消耗更多的时间。<br>散列函数生成的值要尽可能随机且自由分布，否则势必会引起更多的散列冲突</p>
-<p>散列函数的设计过程中，我们要综合考虑数据关键字的类型，长度，规模以及分布。上篇文章中，针对运动员的编号分析创建出散列函数，这种方法叫做“数据分析法”。当然还有其他直接寻址法，平方取中法，折叠法，随机数法等等。</p>
-<h6 id="散列表的扩容"><a href="#散列表的扩容" class="headerlink" title="散列表的扩容"></a>散列表的扩容</h6><p>在散列表中，装载因子的高低说明了散列表中元素的多少，空闲地址的多少，引发散列冲突概率的大小。同时，也体现了在散列表中插入删除以及查找数据的快慢。</p>
-<p>对于静态数据集合，可以设计出稳定高效的散列函数，保证散列表的高性能。</p>
-<p>对于动态数据集合，由于数据规模的变化，装载因子也跟着变化。当数据规模大的时候，散列冲突就愈发明显，整个散列表的性能机会急剧下降。这个时候，我们就需要对散列表扩容。扩容之后，我们对数据搬移的过程中，就要重新计算散列值，重新确定元素在散列表中的位置。</p>
-<p>散列表的扩容，是因为装载因子值过大，散列冲突高频发生。如果，装载因子过小，说明散列表中空闲地址过多，造成了资源浪费，所以就需要缩蓉。所以，装载因子的设定，要充分考虑到散列表中散列冲突发生的概率以及散列表内存地址的高效使用。</p>
-<p>低效散列表的扩容：当往散列表中插入数据的时候发现散列表需要扩容，这个时候直接申请内存空间，搬移散列表数据，最后在新的散列表中插入数据。这个插入过程不仅包含了插入操作，还包含了数据搬移的工作，插入时间相当长，这种一次性扩容的方法效率不高。</p>
-<p>高效散列表的扩容：扩容的时候，先申请内存空间，然后不要一次性把所有的元素搬移到新的散列表中。每次插入新数据的时候，插入到新的散列表的中，并且从旧散列表中取出一个数据放入新的散列表中。每次查询数据的时候，先从旧的散列表中查询，若未查到，再到新的散列表中查询。经过多次重复这样的操作，旧散列表中的数据就会一点一点的转移到新的散列表中。</p>
-<h6 id="散列冲突的解决"><a href="#散列冲突的解决" class="headerlink" title="散列冲突的解决"></a>散列冲突的解决</h6><p>开放寻址法：例如 Java 中 ThreadLocalMap<br>开发寻址法中，散列表中的数据都存储在数组中，可以有效利用CPU缓存加速查询。这种方法实现的散列表，序列化方便。缺点就是冲突代价更高，装载因子不能大于 1。试用场景就是：当数据规模较小，装载因子小的时候，适合采用这种方法。</p>
-<p>链表法：例如 Java 中 LinkedHashMap<br>链表法的内存利用率高，不用像数组那样提前申请号内存空间，而是在需要的时候再申请内存节点。对于散列冲突的元素，该散列值位置对应的是一个链表，可以直接将数据插入的链表的尾部，所以用链表法实现的散列表，装载因子可以很大。即便装载因子过大，链表数据过多，我们可以将链表转化为跳表或者是红黑树，查找数据的时间复杂度就是 O(logn) 不会是 O(n)。当然，它的缺点就是内存访问不友好，占用的内存都是零散的内存地址，不想数组那般是一个连续的内存空间。所以，链表法实现的散列表适合大数据规模，优化策略是可以将链表转化为跳表或者红黑树这种结构。</p>
-<h6 id="工业散列表的分析"><a href="#工业散列表的分析" class="headerlink" title="工业散列表的分析"></a>工业散列表的分析</h6><p>Java 中的 HashMap：<br>初始大小：16，也可以修改默认值设置初始大小。<br>装载因子和动态扩容：装载因子是 0.75，每次扩容都是扩大为原来的两倍。<br>散列冲突解决办法：底层采用链表法解决散列冲突，JDK1.8以后修改了链表的数据结构。当链表中的元素个数大于 8 的时候，链表转化为红黑树，当链表元素个数小于 6 的时候转化为链表。<br>散列函数：见代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">hash</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> h = key.hashCode()；</span><br><span class="line">    <span class="keyword">return</span> (h ^ (h &gt;&gt;&gt; <span class="number">16</span>)) &amp; (capitity -<span class="number">1</span>); <span class="comment">//capicity 表示散列表的大小</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> var1 = <span class="keyword">this</span>.hash;</span><br><span class="line">  <span class="keyword">if</span>(var1 == <span class="number">0</span> &amp;&amp; <span class="keyword">this</span>.value.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">char</span>[] var2 = <span class="keyword">this</span>.value;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> var3 = <span class="number">0</span>; var3 &lt; <span class="keyword">this</span>.value.length; ++var3) &#123;</span><br><span class="line">      var1 = <span class="number">31</span> * var1 + var2[var3];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.hash = var1;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> var1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h6 id="如何打造一个工业级别的散列表-1"><a href="#如何打造一个工业级别的散列表-1" class="headerlink" title="如何打造一个工业级别的散列表"></a>如何打造一个工业级别的散列表</h6><p>一个工业级别的散列表应该具备以下特点：<br>性能稳定，极端情况下性能也不会退化到难以接受的地步(时间复杂度的考量)。<br>内存空间使用合理，不浪费过多的内存空间(空间复杂度的考量)。<br>支持高效的插入删除查找等操作(综合考量时间复杂度和空间复杂度)。</p>
-<p>为了保证以上特点，我们就要考虑设计一个合适的散列函数，保证数据随机性以及均匀分布。定义合适的装载因子值，设计动态扩容缩容的策略，不浪费空间又保证散列冲突发生低频性。选择合适的散列冲突解决方式，综合考量数据的规模特点等等。</p>
+        <h1 id="哈希算法在分布式系统中有哪些应用"><a href="#哈希算法在分布式系统中有哪些应用" class="headerlink" title="哈希算法在分布式系统中有哪些应用"></a>哈希算法在分布式系统中有哪些应用</h1><h6 id="哈希算法应用之负载均衡"><a href="#哈希算法应用之负载均衡" class="headerlink" title="哈希算法应用之负载均衡"></a>哈希算法应用之负载均衡</h6><p>负载均衡的算法有很多，诸如：轮询，随机，加权轮询等等。哈希算法可以帮助我们实现一个会话粘滞的负载均衡算法。会话粘滞：让同一个客户端每次请求访问的时候，固定的访问某台服务器。</p>
+<p>简单直接的方法：维护一张客户端与服务端映射关系的表。每次客户端发起请求的时候，从映射表中查找到映射关系，再路由到对应的服务端。但是这种方法存在下面几种弊端：1，如果客户端数量增加，那么势必造成这张关系表数据庞大，浪费内存空间。2，客户端上线下线，需要我们不断维护关系表的数据，不断地扩容缩容，维护成个变大。</p>
+<p>优化的方法：针对客户端的 IP 或者是会话的 ID 哈希求值，然后在与服务端服务器个数求膜运算，最终得到的数字，就是该客户端需要路由到的服务器编号。这样我们就是保证了固定客户端发送的请求，会访问固定的服务器。</p>
+<h6 id="哈希算法应用之数据分片"><a href="#哈希算法应用之数据分片" class="headerlink" title="哈希算法应用之数据分片"></a>哈希算法应用之数据分片</h6><p>举例一：统计 “搜索关键词” 的次数。</p>
+<p>如果我们有 1T 的搜索日志文件，想要对其中搜索关键词出现的次数进行统计，必须要考虑到下面两个难点：文件过大无法放入一台机器内存中，只用一台机器处理这么多的数据效率肯定很低。</p>
+<p>为了解决上述两个难点，提供如下思路：先利用哈希算法对数据分片，然后采用多机器处理，提高效率。假设要用 n 台机器处理，依次读取文件中的搜索关键。关键词哈希求值，然后将哈希值与 n 求模得 x，x 就是 n 台机器中某个机器的编号，将该搜索关键词交由编号为 x 的机器统计次数。</p>
+<p>这样下来，相同的搜索关键词哈希值相同，所以会被放在同一台机器上做统计。最终，将多台机器的统计结果汇总，就得出问题最终结果。</p>
+<p>举例二：快速判断图片是否在图库中</p>
+<p>上篇总结中，快速查找图片是基于图片的二进制串哈希求值，然后放入哈希表中，实现快速查找。如果图片数量过大，比如说 1 亿张图片，构建单机哈希表是不可能实现的，内存是不够的。</p>
+<p>这里我们还是用到数据分片的思路。准备 n 台服务器构建图片的哈希表，将图片的哈希值与 n 求模，得到的数字对应服务器的编号，该服务器就构建此图片的散列表。当获取图片的时候，同样的将图片的哈希值与 n 求模，根据得到的数字到对应服务器的哈希表中获取图片的信息。</p>
+<p>关于 1 亿张图片构建散列表所需机器的估算。</p>
+<p>散列表中一个数据单元包含散列值和图片文件路径。假设用 MD5 哈希求值，长度是 128 Bit，16字节。图片路径上限是 256 字节，平均长度按 128 字节计算，如果送链表法解决散列冲突，还需要一个指针，指针占用 8 字节。则，一个散列表中每个单元格詹内存约为 152 字节。</p>
+<p>假设一台机器内存 2GB，散列表装载因子 0.75，一台机器大约存储 1000(2GB * 0.75 / 152) 万张图片。那么存储 1 亿张图片，大约需要十几台这样服务器。在资源投入之初，这样的估算对于项目的可行性分析很有必要。</p>
+<p>针对海量数据的处理，都可以采用数据分片的方式解决。借助这种方式，可以突破单机内存和 CPU 等资源的限制。</p>
+<h6 id="哈希算法应用之分布式存储"><a href="#哈希算法应用之分布式存储" class="headerlink" title="哈希算法应用之分布式存储"></a>哈希算法应用之分布式存储</h6><p>互联网面对的是海量的数据海量的存储，为了提高访问效率，我们都会提供分布式缓存。</p>
+<p>对于构建分布式缓存，可以采用数据分片的思想，构建多机缓存。但是，如果缓存数据不断增加，现有的多机器构建的缓存需要扩充，必须添加更多的机器构建分布式缓存的时候，我们要警惕雪崩效应。</p>
+<p>如果是单纯的增加 n 台机器，那么原有的哈希算法求模的数值就需要增加 n 的值。如此，原始缓存数据的哈希值必将发生该表，大量的缓存数据将会失效，稻城缓存穿透。这个时候，一致性哈希算法就排上用处了。</p>
+<p>现在有 n 台机器构建分布式缓存，我们对要缓存的数据哈希求值，在与 Max 求模，Max 远大于 n 。哈希值与 Max 求模的值会落在 [0 到 Max] 区间，然后我们对 0 至 Max 划分区间，然后将划分后的区间与 n 台机器创建映射关系。那么，访问缓存数据的时候，得到哈希值与 Max 的求模值，查找出该值所在的 0 至 Max 的区间，然后在根据区间和机器的映射关系得出对应的机器，然后访问该机器的缓存。</p>
+<p>如果现有的分布式缓存需要扩容，增加新的机器的时候，只需将 0 至 Max 划分出的部分区间分配给新的机器，就完成了扩容。在这个过程当中，只会影响到少部分的数据缓存穿透，大量数据的缓存依旧可用。</p>
 <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>本文创作灵感来源于 极客时间 王争老师的《数据结构与算法之美》课程，通过课后反思以及借鉴各位学友的发言总结，现整理出自己的知识架构，以便日后温故知新，查漏补缺。</p>
 <p>初入算法学习，必是步履蹒跚，一路磕磕绊绊跌跌撞撞。看不懂别慌，也别忙着总结，先读五遍文章先，无他，唯手熟尔~<br>与诸君共勉</p>
 
@@ -506,8 +511,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/20/HashTable01/" rel="next" title="算法笔记-散列表">
-                <i class="fa fa-chevron-left"></i> 算法笔记-散列表
+              <a href="/2018/12/23/Hash1/" rel="next" title="算法笔记-哈希算法1">
+                <i class="fa fa-chevron-left"></i> 算法笔记-哈希算法1
               </a>
             
           </div>
@@ -515,10 +520,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/22/HashTable03/" rel="prev" title="算法笔记-散列表3">
-                算法笔记-散列表3 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -671,7 +672,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#如何打造一个工业级别的散列表"><span class="nav-number">1.</span> <span class="nav-text">如何打造一个工业级别的散列表</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#散列函数"><span class="nav-number">1.0.0.0.0.1.</span> <span class="nav-text">散列函数</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#散列表的扩容"><span class="nav-number">1.0.0.0.0.2.</span> <span class="nav-text">散列表的扩容</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#散列冲突的解决"><span class="nav-number">1.0.0.0.0.3.</span> <span class="nav-text">散列冲突的解决</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#工业散列表的分析"><span class="nav-number">1.0.0.0.0.4.</span> <span class="nav-text">工业散列表的分析</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#如何打造一个工业级别的散列表-1"><span class="nav-number">1.0.0.0.0.5.</span> <span class="nav-text">如何打造一个工业级别的散列表</span></a></li></ol></li></ol><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">总结</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#哈希算法在分布式系统中有哪些应用"><span class="nav-number">1.</span> <span class="nav-text">哈希算法在分布式系统中有哪些应用</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#哈希算法应用之负载均衡"><span class="nav-number">1.0.0.0.0.1.</span> <span class="nav-text">哈希算法应用之负载均衡</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#哈希算法应用之数据分片"><span class="nav-number">1.0.0.0.0.2.</span> <span class="nav-text">哈希算法应用之数据分片</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#哈希算法应用之分布式存储"><span class="nav-number">1.0.0.0.0.3.</span> <span class="nav-text">哈希算法应用之分布式存储</span></a></li></ol></li></ol><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">总结</span></a></li></div>
             
 
           </div>
