@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.jpg?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpg?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="二叉查找树：树中的任意一个节点，它的左子树节点的值都小于该节点的值，它的右子树节点的值都大于该节点的值。">
+<meta name="keywords" content="二叉查找树">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法笔记-二叉树2">
+<meta property="og:url" content="http://yoursite.com/2018/12/26/Tree2/index.html">
+<meta property="og:site_name" content="学习笔记">
+<meta property="og:description" content="二叉查找树：树中的任意一个节点，它的左子树节点的值都小于该节点的值，它的右子树节点的值都大于该节点的值。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181224201900472.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdn.net/20181017220519736?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:updated_time" content="2018-12-26T01:09:30.086Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="算法笔记-二叉树2">
+<meta name="twitter:description" content="二叉查找树：树中的任意一个节点，它的左子树节点的值都小于该节点的值，它的右子树节点的值都大于该节点的值。">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20181224201900472.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/26/Tree2/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>算法笔记-二叉树2 | 学习笔记</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">学习笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">以创业得心态去打工</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/26/Tree2/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">算法笔记-二叉树2
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-26 09:08:13 / 修改时间：09:09:30" itemprop="dateCreated datePublished" datetime="2018-12-26T09:08:13+08:00">2018-12-26</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">二叉查找树：树中的任意一个节点，它的左子树节点的值都小于该节点的值，它的右子树节点的值都大于该节点的值。</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>二叉查找树：树中的任意一个节点，它的左子树节点的值都小于该节点的值，它的右子树节点的值都大于该节点的值。<br>图例如下：<br><img src="https://img-blog.csdnimg.cn/20181224201900472.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h5 id="二叉查找树-查找"><a href="#二叉查找树-查找" class="headerlink" title="二叉查找树-查找"></a>二叉查找树-查找</h5><p>获取根节点，如果根节点为空，如果根节点的值等于该值，则返回根节点。如果该值小于根节点，则在根节点的左子树中递归查找。如果该值大于根节点，则在根节点的右子树中递归查找。</p>
+<p>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//树节点</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> data;</span><br><span class="line">	TreeNode leftNode;</span><br><span class="line">	TreeNode rightNode;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">TreeNode</span><span class="params">(<span class="keyword">int</span> data)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.data = data;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//二叉查找树查询</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> TreeNode <span class="title">selectTreeNode</span><span class="params">(TreeNode tree, <span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">		TreeNode node = tree;</span><br><span class="line">		<span class="keyword">if</span>(node.data == val)&#123;</span><br><span class="line">			<span class="keyword">return</span> node;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">while</span>(node != <span class="keyword">null</span> &amp;&amp; node.data != val)&#123;</span><br><span class="line">			<span class="keyword">if</span>(val &gt; node.data)&#123;</span><br><span class="line">				node = node.rightNode;</span><br><span class="line">			&#125;<span class="keyword">else</span> <span class="keyword">if</span>(val &lt; node.data)&#123;</span><br><span class="line">				node = node.leftNode;</span><br><span class="line">			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				<span class="keyword">return</span> node;</span><br><span class="line">			&#125;			</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="二叉查找树-插入"><a href="#二叉查找树-插入" class="headerlink" title="二叉查找树-插入"></a>二叉查找树-插入</h5><p>插入的逻辑类似于查找。首先，与根节点的值对比，如果大于根节点，则对比根节点的右子节点，然后依次继续上述的对比逻辑，直到某一节点没有可以对比的子节点的时候，创建一个新节点，赋值，作为上一节点的子节点。如果大小于根节点，则对比根节点的左子节点，然后依次继续上述的对比逻辑，直到某一节点没有可以对比的子节点的时候，创建一个新节点，赋值，作为上一节点的子节点。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//树节点</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> data;</span><br><span class="line">	TreeNode leftNode;</span><br><span class="line">	TreeNode rightNode;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">TreeNode</span><span class="params">(<span class="keyword">int</span> data)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.data = data;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//二叉查找树插入节点</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> TreeNode <span class="title">insertTreeNode</span><span class="params">(TreeNode tree, <span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">		TreeNode node = tree;</span><br><span class="line">		<span class="keyword">while</span>(node != <span class="keyword">null</span>)&#123;</span><br><span class="line">			<span class="keyword">if</span>(val &gt; node.data)&#123;</span><br><span class="line">				<span class="keyword">if</span>(node.rightNode == <span class="keyword">null</span>)&#123;</span><br><span class="line">					node.rightNode = <span class="keyword">new</span> TreeNode(val);</span><br><span class="line">				&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">					node = node.rightNode;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(val &lt; node.data)&#123;</span><br><span class="line">				<span class="keyword">if</span>(node.leftNode == <span class="keyword">null</span>)&#123;</span><br><span class="line">					node.leftNode = <span class="keyword">new</span> TreeNode(val);</span><br><span class="line">				&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">					node = node.leftNode;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
+<p>补充：删除插入节点的方法只针对于插入无重复值的节点。</p>
+<h5 id="二叉查找树-删除"><a href="#二叉查找树-删除" class="headerlink" title="二叉查找树-删除"></a>二叉查找树-删除</h5><p>删除节点时分以下三种情况：</p>
+<p>1：如果被删除节点分别左右子节点的时候，需要查找到该节点的右子书的最小节点，将其值付给该节点，并删除这个最小节点。</p>
+<p>2：被删除节点有一个子节点的时候，该节点的父节点直接指向子节点。</p>
+<p>3：被删除节点没有节点的时候，该节点的父节点指向 null 就可以了。</p>
+<p>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//树节点</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> data;</span><br><span class="line">	TreeNode leftNode;</span><br><span class="line">	TreeNode rightNode;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">TreeNode</span><span class="params">(<span class="keyword">int</span> data)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.data = data;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//删除节点</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> TreeNode <span class="title">deleteTreeNode</span><span class="params">(TreeNode tree,<span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">		TreeNode p = tree;<span class="comment">//要删除的节点</span></span><br><span class="line">		TreeNode pp = <span class="keyword">null</span>;<span class="comment">//p 节点的父节点</span></span><br><span class="line">		<span class="keyword">while</span>(p != <span class="keyword">null</span> &amp;&amp; p.data != val)&#123;</span><br><span class="line">			pp = p;</span><br><span class="line">			<span class="keyword">if</span>(val &gt; p.data)&#123;</span><br><span class="line">				p = p.rightNode;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(val &lt; p.data)&#123;</span><br><span class="line">				p = p.leftNode;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(p == <span class="keyword">null</span>)&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;<span class="comment">//没有找到要删除的节点</span></span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//删除有左右子节点的节点</span></span><br><span class="line">		<span class="keyword">if</span>(p.leftNode != <span class="keyword">null</span> &amp;&amp; p.rightNode != <span class="keyword">null</span>)&#123;</span><br><span class="line">			TreeNode minp = p;<span class="comment">//要删除的节点</span></span><br><span class="line">			TreeNode minpp = p;<span class="comment">//minp 节点的父节点</span></span><br><span class="line">			<span class="keyword">while</span>(minp.leftNode != <span class="keyword">null</span>)&#123;</span><br><span class="line">				minpp = minp;</span><br><span class="line">				minp = minp.leftNode;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="comment">/**</span></span><br><span class="line"><span class="comment">			 * 此处将查找到的右子树最小节点的值赋值给 p 节点的数据域。</span></span><br><span class="line"><span class="comment">			 * 然后 p 节点指向 minp 节点，pp 节点指向 minpp 节点</span></span><br><span class="line"><span class="comment">			 * 原先删除有左右子节点的节点问题，变成了删除没有子节点的节点</span></span><br><span class="line"><span class="comment">			 */</span></span><br><span class="line">			p.data = minp.data;</span><br><span class="line">			p = minp;</span><br><span class="line">			pp = minpp;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">/**</span></span><br><span class="line"><span class="comment">		 * 删除只有一个子节点和没有子节点的节点</span></span><br><span class="line"><span class="comment">		 * (删除有左右子节点的节点那部分删除逻辑也放在这里执行了)</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		TreeNode child;</span><br><span class="line">		<span class="keyword">if</span>(p.leftNode != <span class="keyword">null</span>)&#123;</span><br><span class="line">			child = p.leftNode;</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(p.rightNode != <span class="keyword">null</span>)&#123;</span><br><span class="line">			child = p.rightNode;</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			child = <span class="keyword">null</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(pp == <span class="keyword">null</span>)&#123;<span class="comment">//删除的是根节点</span></span><br><span class="line">			tree = child;</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(pp.leftNode == p)&#123;</span><br><span class="line">			pp.leftNode = child;</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			pp.rightNode = child;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> p;</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="二叉查找树的其他操作"><a href="#二叉查找树的其他操作" class="headerlink" title="二叉查找树的其他操作"></a>二叉查找树的其他操作</h5><p>查找最大值的节点：从根节点开始递归查找右子节点，直到找到叶子节点，该节点就是值最大的节点。</p>
+<p>查找最小值的节点：从根节点开始递归查找左子节点，直到找到叶子节点，该节点就是值最小的节点。</p>
+<p>中序遍历输出二叉查找树的节点，正好是按照值从小到大的顺序输出。</p>
+<h5 id="支持重复数据的二叉查找树"><a href="#支持重复数据的二叉查找树" class="headerlink" title="支持重复数据的二叉查找树"></a>支持重复数据的二叉查找树</h5><p>方法一：二叉查找树的节点维护的是一个数组，该数组支持动态扩容，我们把键值相同的数据放在该节点的数组中。或者，二叉查找树的节点维护的是一个链表，我们把键值相同的数据插入到该链表的尾部。</p>
+<p>方法二：插入值相同的节点的时候，将该值放入该节点的右子树中，也就是说相同的值， 我们当做大于该值来处理。</p>
+<p>针对方法二，查找节点的时候，遇到相同值的节点的时候，继续在该节点的右子树查找，直到查找到叶子节点位置。删除节点的时候，查找到所有要删除的节点，然后利用删除删除节点的方法依次删除。还有一种简便的删除方法，对要删除的节点做删除标记，这样不改变树的结构，就完成了删除，只是比较浪费空间。</p>
+<p>在实际应用中，二叉查找树的节点并非只是存储一个值，而是存储一个对象。利用对象的某个属性值，作为键值构建二叉查找树，其他数字段叫做卫星数据。</p>
+<h5 id="二叉查找树的时间复杂度分析"><a href="#二叉查找树的时间复杂度分析" class="headerlink" title="二叉查找树的时间复杂度分析"></a>二叉查找树的时间复杂度分析</h5><p>极端情况下，除根节点以外的其他节点都是父节点的左子节点或者是右子节点，则二叉查找树就退化为链表了，查找的时间复杂度为 O(n)。</p>
+<p>理想情况下，二叉查找树是一个完全二叉树(满二叉树)，那么查找到某个节点的最坏时间复杂度就是该二叉查找树的高度了，所以时间复杂度就是 O(high)。</p>
+<p>推理过程省略了，我不会推理，直接总结结论：一个有着 n 个节点的完全二叉查找树，它的高度小于等于 log2|n，所以时间复杂度为 O(logn)。</p>
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><p>二叉查找树和散列表的对比：</p>
+<p>1：散列表是无序的，如果想要有序输出，必须对数据排序。而二叉查找树只要中序遍历输出，就是一个有序的输出。</p>
+<p>2：散列表扩容耗时多，散列冲突严重的时候，性能不稳定。二叉查找树的性能不稳定，但是平衡二叉查找树性能稳定。</p>
+<p>3：散列表查找数据的时间复杂度是常量级别的，但是因为有散列冲突，所以常量级别的时间复杂度不一定比 logn 的值小。同时，哈希函数的运算也需要耗时，未必就比二叉查找树的查找效率高。</p>
+<p>4：散列表的构造比较复杂，既要考虑散列函数的高效，又要考虑散列冲突的解决方法，对于扩容缩容也需要合适的设计。而平衡二叉查找树就没有这么些限制，只需要考虑性能问题就行。</p>
+<p>本文创作灵感来源于 极客时间 王争老师的《数据结构与算法之美》课程，通过课后反思以及借鉴各位学友的发言总结，现整理出自己的知识架构，以便日后温故知新，查漏补缺。</p>
+<p>初入算法学习，必是步履蹒跚，一路磕磕绊绊跌跌撞撞。看不懂别慌，也别忙着总结，先读五遍文章先，无他，唯手熟尔~<br>与诸君共勉</p>
+<h4 id="关注本人公众号，第一时间获取最新文章发布，每日更新一篇技术文章。"><a href="#关注本人公众号，第一时间获取最新文章发布，每日更新一篇技术文章。" class="headerlink" title="关注本人公众号，第一时间获取最新文章发布，每日更新一篇技术文章。"></a>关注本人公众号，第一时间获取最新文章发布，每日更新一篇技术文章。</h4><p><img src="https://img-blog.csdn.net/20181017220519736?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="在这里插入图片描述"></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+          
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/二叉查找树/" rel="tag"><i class="fa fa-tag"></i> 二叉查找树</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/25/Study01/" rel="next" title="【转载】解密中国互联网">
+                <i class="fa fa-chevron-left"></i> 【转载】解密中国互联网
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Author">
+            
+              <p class="site-author-name" itemprop="name">黑子</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#二叉查找树-查找"><span class="nav-number">1.</span> <span class="nav-text">二叉查找树-查找</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#二叉查找树-插入"><span class="nav-number">2.</span> <span class="nav-text">二叉查找树-插入</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#二叉查找树-删除"><span class="nav-number">3.</span> <span class="nav-text">二叉查找树-删除</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#二叉查找树的其他操作"><span class="nav-number">4.</span> <span class="nav-text">二叉查找树的其他操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#支持重复数据的二叉查找树"><span class="nav-number">5.</span> <span class="nav-text">支持重复数据的二叉查找树</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#二叉查找树的时间复杂度分析"><span class="nav-number">6.</span> <span class="nav-text">二叉查找树的时间复杂度分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol><li class="nav-item nav-level-4"><a class="nav-link" href="#关注本人公众号，第一时间获取最新文章发布，每日更新一篇技术文章。"><span class="nav-number"></span> <span class="nav-text">关注本人公众号，第一时间获取最新文章发布，每日更新一篇技术文章。</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">黑子</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.5.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
