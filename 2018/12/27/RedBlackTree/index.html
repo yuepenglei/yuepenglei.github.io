@@ -110,21 +110,29 @@
 
 
 
-  <meta property="og:type" content="article">
-<meta property="og:title" content="my blog">
-<meta property="og:url" content="http://yoursite.com/2018/11/02/my-blog/index.html">
+  <meta name="description" content="红黑树是一种不严格的平衡二叉查找树，在树分为红色节点和黑色节点">
+<meta name="keywords" content="红黑树">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法笔记-红黑树">
+<meta property="og:url" content="http://yoursite.com/2018/12/27/RedBlackTree/index.html">
 <meta property="og:site_name" content="学习笔记">
+<meta property="og:description" content="红黑树是一种不严格的平衡二叉查找树，在树分为红色节点和黑色节点">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-04T01:12:00.066Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181225205927408.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181225211843475.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181225212503911.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2018-12-27T00:49:23.383Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="my blog">
+<meta name="twitter:title" content="算法笔记-红黑树">
+<meta name="twitter:description" content="红黑树是一种不严格的平衡二叉查找树，在树分为红色节点和黑色节点">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20181225205927408.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/11/02/my-blog/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/27/RedBlackTree/">
 
 
 
@@ -134,7 +142,7 @@
   };
 </script>
 
-  <title>my blog | 学习笔记</title>
+  <title>算法笔记-红黑树 | 学习笔记</title>
   
 
 
@@ -340,7 +348,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/02/my-blog/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/27/RedBlackTree/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Author">
@@ -357,7 +365,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">my blog
+          <h1 class="post-title" itemprop="name headline">算法笔记-红黑树
               
             
           </h1>
@@ -382,29 +390,35 @@
                 
               
 
-              <time title="创建时间：2018-11-02 17:39:35" itemprop="dateCreated datePublished" datetime="2018-11-02T17:39:35+08:00">2018-11-02</time>
+              <time title="创建时间：2018-12-27 08:47:17 / 修改时间：08:49:23" itemprop="dateCreated datePublished" datetime="2018-12-27T08:47:17+08:00">2018-12-27</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-12-04 09:12:00" itemprop="dateModified" datetime="2018-12-04T09:12:00+08:00">2018-12-04</time>
               
             
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -417,6 +431,8 @@
 
           
 
+          
+              <div class="post-description">红黑树是一种不严格的平衡二叉查找树，在树分为红色节点和黑色节点</div>
           
 
         </div>
@@ -432,7 +448,23 @@
       
 
       
-        
+        <p>上一篇总结中二叉查找树支持快速查找，删除以及插入操作，时间复杂度与树的高度成正比，理想情况下是 O(logn)。</p>
+<p>但是在频繁插入删除的情况下，树的高度可能就大于 log2|n。极端情况下，树可以退化成链表这种结构，那么相应的操作效率也就下降了。</p>
+<p>针对这种情况，为了保持二叉查找树的执行效率高效，出现了平衡二叉查找树，其中最广为人知的就是红黑树。</p>
+<h5 id="什么是平衡二叉查找树"><a href="#什么是平衡二叉查找树" class="headerlink" title="什么是平衡二叉查找树"></a>什么是平衡二叉查找树</h5><p>二叉树中任意节点的左右子树的高度相差不超过 1。完全二叉树，满二叉树都是平衡二叉树。<br>举例如下：<br><img src="https://img-blog.csdnimg.cn/20181225205927408.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>平衡二叉查找树不仅满足平衡二叉树的特点，也满足二叉查找树的特点。最先被发明的平衡二叉查找树就是 AVL树。</p>
+<p>但是，很多平衡二叉查找树并没有严格的遵守平衡二叉树的定义。比如红黑树，从根节点到叶子节点的最长路径可能是最短路径的二倍。</p>
+<p>对于平衡二叉查找树的理解，王争老师给出了下面的解释：平衡二叉查找树的出现，就是为了解决二叉查找树频繁删除插入操作，出现时间复杂度退化的问题，所以，平衡二叉查找树只要保证树看起来相对平衡，相对对称，数的高度不大于 log2|n 就可以称之为平衡二叉查找树。如此，查找删除以及插入操作是效率就会高一些。</p>
+<h5 id="定义一个平衡二叉查找树"><a href="#定义一个平衡二叉查找树" class="headerlink" title="定义一个平衡二叉查找树"></a>定义一个平衡二叉查找树</h5><p>Splay Tree(伸展树)，Treap(树堆) 都是平衡二叉查找树，接下来总结一个常见的平衡二叉查找树：红黑树。</p>
+<p>红黑树是一种不严格的平衡二叉查找树，在树分为红色节点和黑色节点。红黑树还需要满足以下几点：<br>1：根节点是黑色的。<br>2：每个叶子节点都是黑色的空节点，叶子节点不存值。<br>3：任何相邻的节点都不能是红色节点，红色节点被黑色节点隔开。<br>4：每个节点，从该节点到可达节点经过的黑色节点个数相同。<br>图例如下：<br><img src="https://img-blog.csdnimg.cn/20181225211843475.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h5 id="红黑树高度分析"><a href="#红黑树高度分析" class="headerlink" title="红黑树高度分析"></a>红黑树高度分析</h5><p>首先，将红黑树中的红色节点去除，那么它们的子节点就没有父节点了，我们将这些子节点指向它们的父节点。之前的二叉树就变成了四叉树，图例如下：<br><img src="https://img-blog.csdnimg.cn/20181225212503911.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>从四叉树中取出两个节点，放在叶子节点位置，这棵树就变成了完全二叉树，它的高度就是近似 log2|n。四叉树要比这个完全二叉树低，所以四叉树的高度肯定不会高于 log2|n。</p>
+<p>现在，将红色节点加到四叉树中。由于红色节点必须被黑色节点隔开，所以一个红色节点最少对应一个黑色节点。那么单纯只有黑色节点的二叉树高度不会高于 log2|n，那么加入红色节点后，树的高度不会高于 2log2|n。所以，红黑树的高度近似 2log2|n。</p>
+<p>对比高度平衡的 AVL树的高度，红黑树的高度顶多是它的二倍，性能上下降的不多。实际中，红黑树的效率要高于 AVL树。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>红黑树是一种最难掌握的数据结构，更难的是它的实现。但是王争老师一直给我们普及一种观念：我们学习数据结构和算法，主要是学习它的特性，由来以及实适用的场景和它能解决的问题。对于红黑树，只要掌握了这些就足够了。</p>
+<p>本文创作灵感来源于 极客时间 王争老师的《数据结构与算法之美》课程，通过课后反思以及借鉴各位学友的发言总结，现整理出自己的知识架构，以便日后温故知新，查漏补缺。</p>
+<p>初入算法学习，必是步履蹒跚，一路磕磕绊绊跌跌撞撞。看不懂别慌，也别忙着总结，先读五遍文章先，无他，唯手熟尔~<br>与诸君共勉</p>
+
       
     </div>
 
@@ -463,6 +495,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/红黑树/" rel="tag"><i class="fa fa-tag"></i> 红黑树</a>
+          
+        </div>
+      
 
       
       
@@ -472,15 +510,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/12/26/Tree2/" rel="next" title="算法笔记-二叉树2">
+                <i class="fa fa-chevron-left"></i> 算法笔记-二叉树2
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/26/my-first-blog/" rel="prev" title="博客文章测试">
-                博客文章测试 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -525,8 +563,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -624,6 +671,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#什么是平衡二叉查找树"><span class="nav-number">1.</span> <span class="nav-text">什么是平衡二叉查找树</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#定义一个平衡二叉查找树"><span class="nav-number">2.</span> <span class="nav-text">定义一个平衡二叉查找树</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#红黑树高度分析"><span class="nav-number">3.</span> <span class="nav-text">红黑树高度分析</span></a></li></ol><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number"></span> <span class="nav-text">总结</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
