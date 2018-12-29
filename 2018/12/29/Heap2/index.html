@@ -110,25 +110,25 @@
 
 
 
-  <meta name="description" content="将任意长度的二进制值串映射为固定长度的二进制值串，这个映射规则就是哈希算法，映射得到的值就叫哈希值。">
-<meta name="keywords" content="算法">
+  <meta name="description" content="堆应用：优先级队列，求出 Top k，求中位数。">
+<meta name="keywords" content="堆排序">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法笔记-哈希算法1">
-<meta property="og:url" content="http://yoursite.com/2018/12/23/Hash1/index.html">
+<meta property="og:title" content="算法笔记-堆的应用">
+<meta property="og:url" content="http://yoursite.com/2018/12/29/Heap2/index.html">
 <meta property="og:site_name" content="学习笔记">
-<meta property="og:description" content="将任意长度的二进制值串映射为固定长度的二进制值串，这个映射规则就是哈希算法，映射得到的值就叫哈希值。">
+<meta property="og:description" content="堆应用：优先级队列，求出 Top k，求中位数。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-23T15:09:20.926Z">
+<meta property="og:updated_time" content="2018-12-29T00:37:35.177Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="算法笔记-哈希算法1">
-<meta name="twitter:description" content="将任意长度的二进制值串映射为固定长度的二进制值串，这个映射规则就是哈希算法，映射得到的值就叫哈希值。">
+<meta name="twitter:title" content="算法笔记-堆的应用">
+<meta name="twitter:description" content="堆应用：优先级队列，求出 Top k，求中位数。">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/23/Hash1/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/29/Heap2/">
 
 
 
@@ -138,7 +138,7 @@
   };
 </script>
 
-  <title>算法笔记-哈希算法1 | 学习笔记</title>
+  <title>算法笔记-堆的应用 | 学习笔记</title>
   
 
 
@@ -344,7 +344,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/23/Hash1/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/29/Heap2/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Author">
@@ -361,7 +361,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">算法笔记-哈希算法1
+          <h1 class="post-title" itemprop="name headline">算法笔记-堆的应用
               
             
           </h1>
@@ -386,7 +386,7 @@
                 
               
 
-              <time title="创建时间：2018-12-23 23:06:59 / 修改时间：23:09:20" itemprop="dateCreated datePublished" datetime="2018-12-23T23:06:59+08:00">2018-12-23</time>
+              <time title="创建时间：2018-12-29 08:36:40 / 修改时间：08:37:35" itemprop="dateCreated datePublished" datetime="2018-12-29T08:36:40+08:00">2018-12-29</time>
             
 
             
@@ -428,7 +428,7 @@
           
 
           
-              <div class="post-description">将任意长度的二进制值串映射为固定长度的二进制值串，这个映射规则就是哈希算法，映射得到的值就叫哈希值。</div>
+              <div class="post-description">堆应用：优先级队列，求出 Top k，求中位数。</div>
           
 
         </div>
@@ -444,26 +444,27 @@
       
 
       
-        <h1 id="什么是哈希算法"><a href="#什么是哈希算法" class="headerlink" title="什么是哈希算法"></a>什么是哈希算法</h1><p>将任意长度的二进制值串映射为固定长度的二进制值串，这个映射规则就是哈希算法，映射得到的值就叫哈希值。</p>
-<p>设计一个优秀的哈希算法，需要注意以下几点：</p>
-<p>1：从哈希值不能反向推导出原始数据，所以哈希算法也叫单项哈希算法。<br>2：对输入数据非常敏感，哪怕原始数据修改了 1 个 Bit，最后得到得哈希值也不一样。<br>3：散列冲突的概率要小，对于不同的原始数据，得到的哈希值相同的概率要小。<br>4：哈希算法的执行效率要高，即便是原始数据很长，也能高效的计算出哈希值。</p>
-<h6 id="哈希算法应用之安全加密"><a href="#哈希算法应用之安全加密" class="headerlink" title="哈希算法应用之安全加密"></a>哈希算法应用之安全加密</h6><p>哈希算法常见的应用就是加密，比如说：MD5 也叫信息摘要算法；SHA 也叫安全散列算法。</p>
-<p>对于加密的哈希算法来说，有两点至关重要：很难通过哈希值反向推出原始数据，散列冲突的概率要很小。</p>
-<p>为什么散列冲突无法避免？组合数学中有一个鸽巢原理，也叫抽屉原理。也就是说，是一个鸽子放进是个抽屉里面，必然会有两只鸽子待在一个抽屉里面，这是不可避免的结果。对于 MD5 加密算法来说，得到的哈希值是固定的 128 位二进制串，也就是说最多能标识 2^128 个数据。如果现在有 2^128 + 1 个数据，那么最终得到的哈希值至少会有一个重复。</p>
-<p>越是复杂的哈希加密算法，最终得到结果越是难以被破解，但是计算哈希值的复杂度也就相应的提高了。所以，哈希函数的设计，要综合考虑破解难易程度和算法执行效率的平衡点。</p>
-<h6 id="哈希算法应用之唯一标识"><a href="#哈希算法应用之唯一标识" class="headerlink" title="哈希算法应用之唯一标识"></a>哈希算法应用之唯一标识</h6><p>如果要在海量图库中判断一张图片是否存在，仅仅根据图片名字判断是不合理的，重名图片一定很多。</p>
-<p>在计算机中，任何文件都可以转化为二进制码串，所以可以拿图片的码串进行对比。但是，文件大小不一，过大的文件，二进制码串必定很长，对比起来肯定耗时费力。</p>
-<p>我们可以利用哈希算法为图片生成一个信息摘要作为图片的唯一标示，查找图片的时候可以用信息摘要做对比。信息摘要的生成，可以在图片的前中后三部分分别取出 100 个字节，生成最终的唯一标示。</p>
-<p>在上述基础上，我们可以把图片的信息摘要当做 key 值，图片的其他信息作为 value 值，将其存储在散列表中，这就进一步提高了图片查找的效率。</p>
-<h6 id="哈希算法应用之数据校验"><a href="#哈希算法应用之数据校验" class="headerlink" title="哈希算法应用之数据校验"></a>哈希算法应用之数据校验</h6><p>当我们通过种子文件从互联网上下载视频文件的时候，原始文件(假如说大小为 1G)会被分割成多个文件快(假设分割成 10 块，每块大小约 100M)。当我们将 10 块文件下载到本地的时候，再拼接成一个完整的文件，就可以观看视频了。</p>
-<p>如果在下载过程中，文件被拦截篡改，那下载到本地拼接后就不能观看，所以需要我们对数据进行校验。</p>
-<p>首先，我们可以对分割的 10 块文件分别哈希取值，然后将哈希值保存在种子文件中。当用户下载完成文件后，哈希取值，再和种子文件中的哈希值做对比，就可以校验出下载的文件是否经过篡改。</p>
-<h6 id="哈希算法应用之散列函数"><a href="#哈希算法应用之散列函数" class="headerlink" title="哈希算法应用之散列函数"></a>哈希算法应用之散列函数</h6><p>散列函数主要应用在散列表中，它直接决定了散列冲突的概率和散列表的性能。相对于其他哈希算法的应用，散列函数对散列冲突的容忍性就高的多了。即便出现了散列冲突，可以通过开放寻址法以及链表法解决散列冲突。</p>
-<p>散列函数同样也不关心是否可以通过哈希值反向推出原始数据。在散列表中，更关心散列函数得到的散列值是否随机均匀分布。当然，散列函数执行的效率也关系着散列表的性能。</p>
-<h6 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h6><p>在开发过程中，我们会把用户的明文密码哈希求值后存储起来，保障用户的隐私。但是即便如初，一旦数据库数据泄露，密码一样不够安全。</p>
-<p>字典攻击：黑客将常用的密码哈希求值后保存在字典数据库中，当黑客得到得到用户信息，即便是加密过的密码，用字典库中的哈希值做对比，从而匹配到用户的密码。</p>
-<p>针对字典攻击，我们可以采用加盐(salt)的方式进行加密。在给用户的密码加密的时候，额外对密码追加一个字符串，然后在进行哈希求值，追加的字符串就是盐 (salt)。该盐可以放在密码的首中尾任意位置。</p>
-<p>王争老师总结了一句很经典的话：安全和攻击是一种博弈关系，没有绝对的安全。所有的安全措施，只不过是增加了攻击的成本而已。</p>
+        <h4 id="堆应用：优先级队列"><a href="#堆应用：优先级队列" class="headerlink" title="堆应用：优先级队列"></a>堆应用：优先级队列</h4><p>优先级队列，首先是一个队列，但是并非遵守先进先出的原则，而是根据队列总元素的优先级高低出列。</p>
+<p>优先级队列应用的场景非常多，后续总结的数据结构和算法都要依赖于它。比如：赫夫曼编码，图的最短路径，最小生成树等等。</p>
+<p>举例一：合并有序小文件。<br>假如有 100 个文件，每个文件 100M，文件中存储的都是有序字符串，现在要将这些文件合并成一个有序的大文件。</p>
+<p>第一种方法，从 100 个文件中各取一个，放在一个数组中，然后比较出最小的元素，放入大文件中。如果该元素是从 18 号文件中取出的，那么再次从该文件中取出一个元素，放入数组中进行对比，得到最小元素依旧放入大文件中。如此往复，最终完成合并。</p>
+<p>第二种方法：从 100 个文件中各取一个元素，将这些元素构建小顶堆。堆顶元素就是最小的元素，然后取出堆顶元素放入大文件中。如果该元素是从 18 号文件中取出的，那么再次从该文件中取出一个元素，插入堆中。如此往复，最终实现合并。</p>
+<p>第一种方法查找最小元素时间复杂度是 O(n)，而第二种方法删除堆顶元素以及插入元素，时间复杂度都是 O(logn)。</p>
+<p>举例一：高性能定时器。<br>假如一个定时器维护了很多定时任务，为了保证这些任务执行的准确性，我们可能要间隔很短的时间就检测一遍任务列表，看看当下是否有任务需要执行。这种方法，每次都要遍历一次任务列表，非常浪费性能。</p>
+<p>我们根据定时任务距离下一次执行的时间长短，构建一个小顶堆，堆顶元素就是即将执行的任务。首先定时器获取对顶元素，判断下一次定时任务执行的具体时间，然后定时任务设定在任务执行前一秒再来获取任务进行执行。栈顶元素出队，然后下一个距离执行时间最短的元素就是堆顶元素，优先执行。这样，定时器就不用频繁地扫描任务列表，只需在需要的时候扫描任务列表就行。</p>
+<h4 id="堆应用：求出-Top-k。"><a href="#堆应用：求出-Top-k。" class="headerlink" title="堆应用：求出 Top k。"></a>堆应用：求出 Top k。</h4><p>求出 Top k 分两种情况，一种是针对静态数据的统计，一种是针对动态数据。</p>
+<p>针对静态数据，在一个有 n 个元素的数组中求 Top k。维护一个大小为 k 的小顶堆，从数组中取出一个元素与堆顶元素对比。若是大于堆顶元素，则删除堆顶元素然后插入堆中，若是小于堆顶元素，则丢弃。遍历堆中元素，时间复杂对为 O(n)。堆中插入元素时间复杂度为 O(logk)，最坏情况下 n 个元素每个都插入一次，时间复杂度为 O(nlogk)。</p>
+<p>针对动态数据，往集合中插入元素的时候，都需要与前 k 个元素对比，然后确定这个元素是否进入前 k 个元素的集合。这样的话查找最小元素的时间复杂度为 O(logk)，插入 n 个数据，时间复杂度就是 O(nlogk)。如果我们始终维护一个小顶堆，那么每次往数组插入数据的时候，只需跟堆顶元素对比就可以了，不需要个所有元素对比，节省时间。</p>
+<h4 id="堆应用：求中位数。"><a href="#堆应用：求中位数。" class="headerlink" title="堆应用：求中位数。"></a>堆应用：求中位数。</h4><p>对于一组静态数据，直接排序。如果数据个数是个奇数，则第 n/2 + 1 个元素是中位数。如果数据个数是个偶数，那中间位置 n/2，n/2 + 1 都是中间位置上的元素，我们取靠前的元素，第  n/2 个元素为中位数。</p>
+<p>对于动态数据，我们首先维护两个堆。一个是大顶堆，一个小顶堆。对于数据个数是偶数的，大顶堆存储数据的前 n/2 个元素，小顶堆存储数据的后 n/2 个元素。对于数据个数是奇数的，大顶堆存储数据的前 n/2 + 1 个元素，小顶堆存储数据的后 n/2 个元素。那么大顶堆的堆顶元素就是中位数。</p>
+<p>如果需要插入数据，该数据小于等于大顶堆的元素的时候，将其放入大顶堆。反之，放入小顶堆。在这个过程当中，我们要始终保证两个堆中的元素个数满足前面的约定：偶数个元素，大顶堆元素个数是 n/2，小顶堆元素个数也是 n/2；奇数个元素，大顶堆元素个数是 n/2 + 1，小顶堆元素个数也是 n/2。如果那个堆不满足上述的约定，就将堆顶元素移动到另外一个堆中就可以了。</p>
+<h4 id="综合题"><a href="#综合题" class="headerlink" title="综合题"></a>综合题</h4><p>针对 10亿个关键词搜索日志，如何快速找到 Top 10 的关键词。硬性条件：单机，内存 1GB。 </p>
+<p>因为关键词有重复，所以可以利用散列表，平衡二叉查找树等支持快速查找快速插入的数据结构来统计关键词出现的次数。</p>
+<p>针对统计过次数的数据，可以利用堆求 Top k 的方法求出排名前十的关键词。</p>
+<p>但是，如果最终不重复的关键词有 1亿个，平均长度为 50 字节，那么就需要 5 GB 的内存存储。而我们的内存只有 1GB，肯定不够用了。</p>
+<p>可以这样做：创建十个空文件，利用哈希算法对 10亿个关键词求值，最后与 10 求模，确定该关键词需要放入的文件。</p>
+<p>10亿数据分片后，可能每个文件只有 1亿个数据，去除重复可能只有 1000万个数据，平均长度为 50字节，占用内存只有 500M。</p>
+<p>针对分片后的数据，利用散列表和堆，求出 Top 10 的关键词，然后将这 100 个关键词再次求 Top 10，就得出最终结果了。</p>
 <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>本文创作灵感来源于 极客时间 王争老师的《数据结构与算法之美》课程，通过课后反思以及借鉴各位学友的发言总结，现整理出自己的知识架构，以便日后温故知新，查漏补缺。</p>
 <p>初入算法学习，必是步履蹒跚，一路磕磕绊绊跌跌撞撞。看不懂别慌，也别忙着总结，先读五遍文章先，无他，唯手熟尔~<br>与诸君共勉</p>
 
@@ -499,7 +500,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/算法/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
+            <a href="/tags/堆排序/" rel="tag"><i class="fa fa-tag"></i> 堆排序</a>
           
         </div>
       
@@ -512,8 +513,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/22/HashTable03/" rel="next" title="算法笔记-散列表3">
-                <i class="fa fa-chevron-left"></i> 算法笔记-散列表3
+              <a href="/2018/12/27/Heap/" rel="next" title="算法笔记-堆排序">
+                <i class="fa fa-chevron-left"></i> 算法笔记-堆排序
               </a>
             
           </div>
@@ -521,10 +522,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/24/Hash2/" rel="prev" title="算法笔记-哈希算法2">
-                算法笔记-哈希算法2 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -689,7 +686,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是哈希算法"><span class="nav-number">1.</span> <span class="nav-text">什么是哈希算法</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#哈希算法应用之安全加密"><span class="nav-number">1.0.0.0.0.1.</span> <span class="nav-text">哈希算法应用之安全加密</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#哈希算法应用之唯一标识"><span class="nav-number">1.0.0.0.0.2.</span> <span class="nav-text">哈希算法应用之唯一标识</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#哈希算法应用之数据校验"><span class="nav-number">1.0.0.0.0.3.</span> <span class="nav-text">哈希算法应用之数据校验</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#哈希算法应用之散列函数"><span class="nav-number">1.0.0.0.0.4.</span> <span class="nav-text">哈希算法应用之散列函数</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#补充"><span class="nav-number">1.0.0.0.0.5.</span> <span class="nav-text">补充</span></a></li></ol></li></ol><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">总结</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#堆应用：优先级队列"><span class="nav-number">1.</span> <span class="nav-text">堆应用：优先级队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#堆应用：求出-Top-k。"><span class="nav-number">2.</span> <span class="nav-text">堆应用：求出 Top k。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#堆应用：求中位数。"><span class="nav-number">3.</span> <span class="nav-text">堆应用：求中位数。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#综合题"><span class="nav-number">4.</span> <span class="nav-text">综合题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
