@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.jpg?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpg?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="回溯算法本身除了指导沃算法设计以外，在实际软件开发场景中应用也十分广泛。例如正则表达式的匹配，编译原理中的语法分析等等。">
+<meta name="keywords" content="回溯算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法笔记-回溯算法">
+<meta property="og:url" content="http://yoursite.com/2019/01/14/Backtracking-algorithm/index.html">
+<meta property="og:site_name" content="学习笔记">
+<meta property="og:description" content="回溯算法本身除了指导沃算法设计以外，在实际软件开发场景中应用也十分广泛。例如正则表达式的匹配，编译原理中的语法分析等等。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-14T10:44:19.448Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="算法笔记-回溯算法">
+<meta name="twitter:description" content="回溯算法本身除了指导沃算法设计以外，在实际软件开发场景中应用也十分广泛。例如正则表达式的匹配，编译原理中的语法分析等等。">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/14/Backtracking-algorithm/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>算法笔记-回溯算法 | 学习笔记</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">学习笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">以创业得心态去打工</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/14/Backtracking-algorithm/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">算法笔记-回溯算法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-14 18:32:03 / 修改时间：18:44:19" itemprop="dateCreated datePublished" datetime="2019-01-14T18:32:03+08:00">2019-01-14</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">回溯算法本身除了指导沃算法设计以外，在实际软件开发场景中应用也十分广泛。例如正则表达式的匹配，编译原理中的语法分析等等。</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在深度优先算法的总结中，就用到了回溯算法求解。回溯算法本身除了指导沃算法设计以外，在实际软件开发场景中应用也十分广泛。例如正则表达式的匹配，编译原理中的语法分析等等。</p>
+<h4 id="如何理解回溯算法"><a href="#如何理解回溯算法" class="headerlink" title="如何理解回溯算法"></a>如何理解回溯算法</h4><p>如同走迷宫一样，我们会不断地遇到分叉路口，此时可以随机选择一条路走下去。如果，后续发现这条路走不通，那么我们就返回到分叉路口的选择处，重新选择一条新的路继续走下去，直到走出迷宫。</p>
+<p>回溯的处理思想，类似于枚举搜索。我们枚举出所有的解，然后选择其中最优的解。为了有规律的枚举出所有可能的解，避免遗漏和重复，我们把问题的求解分解成多个阶段，每个阶段随机选择一种解法，如果不能求解，就返回到上个阶段选择之初，重现选择另外一种解法。</p>
+<h4 id="回溯应用举例"><a href="#回溯应用举例" class="headerlink" title="回溯应用举例"></a>回溯应用举例</h4><p>0-1 背包问题</p>
+<p>0-1背包问题中，0 与 1 代表的就是选择与否。</p>
+<p>假如我们有一个背包，背包的承载重量为 Wkg。现在有 n 个物品，每个物品质量不等，并且物品不可分割。我们期望选出部分物品，使得这些物品质量之和不超过背包的承载重量，并且总质量最大。</p>
+<p>在这个过程中，每个物品都面临两种选择：选中与不选中。所以，我们把 n 个物品分成 n 个阶段的选择，每个阶段可以选择放入该物品或者不放入该物品。我们用递归的方法处理每一个阶段。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 存储背包中物品总重量的最大值</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> maxW = Integer.MIN_VALUE; </span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> i  表示任务进行的阶段，考察到哪个物品了</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> cw 表示当前已经装进去的物品的重量和</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> items 数组存放每个物品的质量</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> n   物品的数量</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> w   背包的承载重量</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> cw, <span class="keyword">int</span>[] items, <span class="keyword">int</span> n, <span class="keyword">int</span> w)</span> </span>&#123;</span><br><span class="line">	<span class="comment">// cw==w 表示装满了 ;i==n 表示已经考察完所有的物品</span></span><br><span class="line">	<span class="keyword">if</span> (cw == w || i == n) &#123; </span><br><span class="line">		<span class="keyword">if</span> (cw &gt; maxW)&#123;</span><br><span class="line">			maxW = cw;			</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//该物品不放入背包</span></span><br><span class="line">	f(i + <span class="number">1</span>, cw, items, n, w);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//该物品放入背包，物品放入背包的时候，</span></span><br><span class="line">	<span class="comment">//需要判断当前物品总质量是否小于等于背包的承载重量</span></span><br><span class="line">	<span class="keyword">if</span> (cw + items[i] &lt;= w) &#123;</span><br><span class="line">		<span class="comment">//放入该物品，进行下一个阶段</span></span><br><span class="line">		f(i + <span class="number">1</span>, cw + items[i], items, n, w);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述代码有详细的注释，足以理解整个过程。需要注意的是，f 方法中抛开递归终止的条件判断以外，后续的逻辑分别执行了物品不放入背包和放入背包的两种情况。</p>
+<p>也就是说，算法的是想依然是回溯思想，但是执行的逻辑确是一步到底，分情况执行了所有的选择。所以，我们看到的是代码直接走到最后，没有看到有返回重新选择的步骤。</p>
+<p>正则表达式</p>
+<p>为了理解方便，该例子中的正则表达式只有两种通配符： * 代表匹配任意多个（大于等于 0 个）任意字符， ? 匹配零个或者一个任意字符。</p>
+<p>匹配过程中，如果遇到通配符，意味着我们到了分叉路口，有了多种选择。此时我们先任意选择一种匹配方案，然后继续匹配后续的字符。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Pattern</span> </span>&#123;</span><br><span class="line">	<span class="comment">//匹配与否标识符</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">boolean</span> matched = <span class="keyword">false</span>;</span><br><span class="line">	<span class="comment">// 正则表达式</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">char</span>[] pattern; </span><br><span class="line">	<span class="comment">// 正则表达式长度</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> plen; </span><br><span class="line"></span><br><span class="line">	<span class="comment">//初始化正则表达式</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Pattern</span><span class="params">(<span class="keyword">char</span>[] pattern, <span class="keyword">int</span> plen)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.pattern = pattern;</span><br><span class="line">		<span class="keyword">this</span>.plen = plen;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//匹配文本的方法</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">match</span><span class="params">(<span class="keyword">char</span>[] text, <span class="keyword">int</span> tlen)</span> </span>&#123; <span class="comment">// 文本串及长度</span></span><br><span class="line">		matched = <span class="keyword">false</span>;</span><br><span class="line">		rmatch(<span class="number">0</span>, <span class="number">0</span>, text, tlen);</span><br><span class="line">		<span class="keyword">return</span> matched;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//匹配过程</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">rmatch</span><span class="params">(<span class="keyword">int</span> ti, <span class="keyword">int</span> pj, <span class="keyword">char</span>[] text, <span class="keyword">int</span> tlen)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 如果已经匹配了，就不要继续递归了</span></span><br><span class="line">		<span class="keyword">if</span> (matched)&#123;</span><br><span class="line">			<span class="keyword">return</span>; </span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 正则表达式到结尾了</span></span><br><span class="line">		<span class="keyword">if</span> (pj == plen) &#123; </span><br><span class="line">			<span class="comment">// 文本串也到结尾了，证明匹配成功</span></span><br><span class="line">			<span class="keyword">if</span> (ti == tlen)&#123;</span><br><span class="line">				matched = <span class="keyword">true</span>; </span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		 <span class="comment">// * 匹配任意个字符</span></span><br><span class="line">		<span class="keyword">if</span> (pattern[pj] == <span class="string">'*'</span>) &#123;</span><br><span class="line">			<span class="comment">//由于 * 匹配任意长度的字符，所以从该字符开始到文本结束，</span></span><br><span class="line">			<span class="comment">//这中间的任意字符串都是分叉路口的不同道路</span></span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt;= tlen - ti; ++k) &#123;</span><br><span class="line">				<span class="comment">// ti + k，选择先匹配 k 个字符</span></span><br><span class="line">				rmatch(ti + k, pj + <span class="number">1</span>, text, tlen);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (pattern[pj] == <span class="string">'?'</span>) &#123; <span class="comment">// 遇到 ? 通配符，新的分叉路口</span></span><br><span class="line">			<span class="comment">//匹配 0 个 （选择其中一条路）</span></span><br><span class="line">			rmatch(ti, pj + <span class="number">1</span>, text, tlen);</span><br><span class="line">			<span class="comment">//匹配 1 个 （选择另外一条路）</span></span><br><span class="line">			rmatch(ti + <span class="number">1</span>, pj + <span class="number">1</span>, text, tlen);</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (ti &lt; tlen &amp;&amp; pattern[pj] == text[ti]) &#123; <span class="comment">// 纯字符匹配才行</span></span><br><span class="line">			rmatch(ti + <span class="number">1</span>, pj + <span class="number">1</span>, text, tlen);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述代码有详细的注释，足以理解整个过程。需要特别注意的是，当遇到通配符 * 的时候，代表后续可以匹配任意个字符。也就是说，从该字符到文本结束，任意一段的字符串都可以匹配上，也代表了该分叉路口有许多的路可供选择。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>本文创作灵感来源于 极客时间 王争老师的《数据结构与算法之美》课程，通过课后反思以及借鉴各位学友的发言总结，现整理出自己的知识架构，以便日后温故知新，查漏补缺。</p>
+<p>初入算法学习，必是步履蹒跚，一路磕磕绊绊跌跌撞撞。看不懂别慌，也别忙着总结，先读五遍文章先，无他，唯手熟尔~<br>与诸君共勉</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+          
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/回溯算法/" rel="tag"><i class="fa fa-tag"></i> 回溯算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/14/Divide-and-conquer-algorithm/" rel="next" title="算法笔记-分支算法">
+                <i class="fa fa-chevron-left"></i> 算法笔记-分支算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/14/dynamic-programming01/" rel="prev" title="算法笔记-动态规划01">
+                算法笔记-动态规划01 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Author">
+            
+              <p class="site-author-name" itemprop="name">黑子</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">43</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何理解回溯算法"><span class="nav-number">1.</span> <span class="nav-text">如何理解回溯算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#回溯应用举例"><span class="nav-number">2.</span> <span class="nav-text">回溯应用举例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">黑子</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.5.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

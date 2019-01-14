@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.jpg?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpg?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="贪心算法其实更准确的表述应该是一种算法思想。">
+<meta name="keywords" content="贪心算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法笔记-贪心算法">
+<meta property="og:url" content="http://yoursite.com/2019/01/14/Greedy-Algorithm/index.html">
+<meta property="og:site_name" content="学习笔记">
+<meta property="og:description" content="贪心算法其实更准确的表述应该是一种算法思想。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190104223713327.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-01-14T10:44:51.713Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="算法笔记-贪心算法">
+<meta name="twitter:description" content="贪心算法其实更准确的表述应该是一种算法思想。">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190104223713327.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/14/Greedy-Algorithm/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>算法笔记-贪心算法 | 学习笔记</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">学习笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">以创业得心态去打工</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/14/Greedy-Algorithm/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">算法笔记-贪心算法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-14 18:27:22 / 修改时间：18:44:51" itemprop="dateCreated datePublished" datetime="2019-01-14T18:27:22+08:00">2019-01-14</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">贪心算法其实更准确的表述应该是一种算法思想。</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>贪心算法其实更准确的表述应该是一种算法思想。它的应用非常广泛，比如：霍夫曼编码，Prim，Kruskal 最小生成树以及 Dijkstra 单源最短路径算法。如果证明贪心算法的可行性需要复杂的数学推导，但是通过简单的举例演示更容易让我们理解这种算法思想，有助于我们在实际中运用。</p>
+<h4 id="理解“贪心算法”"><a href="#理解“贪心算法”" class="headerlink" title="理解“贪心算法”"></a>理解“贪心算法”</h4><p>如果有一个 100 kg的袋子，只允许装 5 种豆子，如何合理的在装满袋子的前提下，让袋子的总价值最大。</p>
+<p>豆子的质量以及价格如下表：<br>| 物品      |    质量(kg) | 价格(元)  |<br>| :——–: | :——–:| :–: |<br>| 黄豆| 100  |  100   |<br>| 绿豆|  30 |  90  |<br>| 红豆|    60 | 120|<br>| 黑豆|   20 |  80|<br>| 青豆|   50 | 75|</p>
+<p>首先我们会按照豆子的单价由高到低排序：黑豆，绿豆，红豆，青豆，黄豆。之后，我们肯定会先装完价值最大的，然后装价值次之，直到袋子装满。那么，共装黑豆 20kg，绿豆 30kg，红豆 50kg。</p>
+<p>这个问题的解决，就是运用了贪心算法。借助该问题，分析贪心算法的分析过程：</p>
+<p>第一步：看到类似的问题，优先考虑贪心算法。那么这种问题的特征就是：拥有限制值和期望值。比如上面的问题，限制值就是质量不能大于 100kg，期望值就是希望袋子所装物品最后的价值最大。</p>
+<p>第二步：尝试运用贪心算法是否能解决这个问题。在每次选择的时候，选取相同限制值对贡献值最大的数据。例如：相同质量下的豆子，我们当然选择单价更高的豆子。</p>
+<p>第三步：举几个例子验证贪心算法的解是否是最优的。如果严格的证明贪心算法是是最优解，则需要复杂严格的推理过程。但是在大部分情况下，贪心算法的解都是显而易见的最优解。完全可以选择其他方法与贪心算法对比，优劣的比较是十分明显的。</p>
+<p><img src="https://img-blog.csdnimg.cn/20190104223713327.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>如上图，王老师举了一个例子。在加权图中，我们想找到一条从 S 到 T 的权重最小的路径。按照贪心算法，我们从 S 点出发每一步都会选择权重最小的边，最终的路径就是 S-A-E-T，权重之和为：9。但是，实际上 A-B-D-T 这条路径的权重之和为：6。</p>
+<p>为什么贪心算法到了这里失效了呢？原因很简单，该过程算法后续执行的每一步受到前一步的影响很大。也就是说，该算法执行的过程中，每个过程并不是独立不受影响的，这就导致了贪心算法的失效。贪心算法工作的前提就是，前一步的选择不会影响到后一步的决定。</p>
+<h4 id="贪心算法的举例"><a href="#贪心算法的举例" class="headerlink" title="贪心算法的举例"></a>贪心算法的举例</h4><p>1：分糖果</p>
+<p>有 m 个糖果，大小不一，从小到大排列是： s1，s2，s3 - - - sm。把这 m 个糖果分给 n 个小孩，这 n 个小孩对糖果大小的渴求度从小到大是：q1，q2，q3 - - - qn。并且：n 大于 m，及小孩人数大于糖果数量。</p>
+<p>如何将糖果分配给这些小孩，并且尽量满足更多的人数。</p>
+<p>限制值就是糖果的数量 m ，期望值就是满足小孩的人数。在这个过程中，我们优先选择最小的糖，然后用来满足渴望度最小的小孩。也就是每次都从剩下的小孩中选出对糖渴望度最小的小孩，从剩下的糖块中选择满足他渴望的最小糖块。这个过程就保证了尽可能满足更多的小孩。</p>
+<p>2：钱币找零</p>
+<p>我们有 1，2，5，10，20，50，100 面值的纸币，现在要找零 k 元，希望用最少张纸币满足。</p>
+<p>限制值就是找零的 k 元，期望值就是希望用最少的纸张。为了用最少的纸张，我们肯定会先紧着最大值面额的纸币凑够 k 元。如果不够，就用更小一点面额的纸币凑数。</p>
+<p>3：区间覆盖</p>
+<p>假设有 n 个区间，区间分别是 [l1，r1]，[l2，r2]，[l3，r3] - - - [ln，rn]。然后，从这部分区间中选择部分区间，区间的首位没有交叉重合，最多选取多少区间。</p>
+<p>限制值区间首位不能交叉重合，期望值就是选取最多的区间。这类问题经常运用到任务调度，教师排课等等问题上。</p>
+<p>首先这些区间中选出最左端的点 lmin，最右端的点 rmax，然后构建区间[lmin，rmax]。然后我们从这些区间中选出不想交的区间将[lmin，rmax]区间覆盖上，最后就完成了最多区间选取的问题的求解。</p>
+<p>在选择区间的时候，左端的点不选与前一个区间重合的点，右端的点选距离左端最近的点。这样就可以让剩下的未覆盖区间尽量大，尽量容纳更多的区间。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>贪心算法最难的就是如何将问题抽象成贪心算法模型。只要这一步完成了，后续的实现就是水到渠成的事情了。所以，要想深刻理解贪心算法，还需要不断的实践和总结，这样才能熟练运用。</p>
+<p>本文创作灵感来源于 极客时间 王争老师的《数据结构与算法之美》课程，通过课后反思以及借鉴各位学友的发言总结，现整理出自己的知识架构，以便日后温故知新，查漏补缺。</p>
+<p>初入算法学习，必是步履蹒跚，一路磕磕绊绊跌跌撞撞。看不懂别慌，也别忙着总结，先读五遍文章先，无他，唯手熟尔~<br>与诸君共勉</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+          
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/贪心算法/" rel="tag"><i class="fa fa-tag"></i> 贪心算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/14/StringMatch/" rel="next" title="算法笔记-字符串匹配">
+                <i class="fa fa-chevron-left"></i> 算法笔记-字符串匹配
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/14/Divide-and-conquer-algorithm/" rel="prev" title="算法笔记-分支算法">
+                算法笔记-分支算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Author">
+            
+              <p class="site-author-name" itemprop="name">黑子</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">43</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#理解“贪心算法”"><span class="nav-number">1.</span> <span class="nav-text">理解“贪心算法”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#贪心算法的举例"><span class="nav-number">2.</span> <span class="nav-text">贪心算法的举例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">黑子</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.5.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
