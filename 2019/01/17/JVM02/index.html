@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.jpg?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpg?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Java 包括了八种基本类型。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="02 Java 的基本类型">
+<meta property="og:url" content="http://yoursite.com/2019/01/17/JVM02/index.html">
+<meta property="og:site_name" content="学习笔记">
+<meta property="og:description" content="Java 包括了八种基本类型。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190113211412707.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-01-17T00:30:59.210Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="02 Java 的基本类型">
+<meta name="twitter:description" content="Java 包括了八种基本类型。">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190113211412707.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/17/JVM02/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>02 Java 的基本类型 | 学习笔记</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">学习笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">以创业得心态去打工</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/17/JVM02/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">02 Java 的基本类型
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-17 08:29:46 / 修改时间：08:30:59" itemprop="dateCreated datePublished" datetime="2019-01-17T08:29:46+08:00">2019-01-17</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/JVM/" itemprop="url" rel="index"><span itemprop="name">JVM</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">Java 包括了八种基本类型。</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="Java-的基本类型"><a href="#Java-的基本类型" class="headerlink" title="Java 的基本类型"></a>Java 的基本类型</h4><p>Java 包括了八种基本类型，明细如下：<br><img src="https://img-blog.csdnimg.cn/20190113211412707.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>Java 的基本类型都有对应的值域和默认值。byte，short，int，long，float以及double的值域依次扩大，前面的值域都被后面的值域包括在内。所以，从前面的基本类型转换成后面的基本类型，无需强制转换。补充：尽管它们的默认值表示不一样，但是在内存中都是 0.</p>
+<p>boolean 和 char 是唯二的无符号类型。boolean 的取值范围是 0 或者 1，char 类型的取值范围是 [0，65535]。通常可以认定 char 类型的值为非负数，这种特性十分有用，比如说作为数组的索引等。</p>
+<p>局部变量也可以存储超出它们取值范围的数值，但是这些超出取值范围的数字会带来一些麻烦。例如： char 类型的局部变量实际上有可能是负数。但是在正常使用 Java 编译器的情况下，生成的字节码会遵守 Java 虚拟机规范对编译器的约束，因此无需过分短信局部变量会超出他们的取值范围。</p>
+<p>浮点类型中的 float，通常有两个 0，+0.0F 和 -0.0F。这两个 0 的表示，在内存中的数值是不同的，但是在 Java 中 +0.0F == -0.0F 会返回真。有了这两者，我们就可以定义浮点数中的正无穷和负无穷。</p>
+<p>任意正浮点数 (不包括 +0.0F) 除以 +0.0F 得到的值就是正无穷，内存中的值为 0x7F800000<br>任意负浮点数 (不包括 -0.0F) 除以 -0.0F 得到的值就是负无穷，内存中的值为 0xFF800000</p>
+<p>[0x7F800001，0x7FFFFFFF] 和 [0xFF800001，0xFFFFFFFF]  对应的数值都是 NaN。一般我们计算得出的 NaN，比如说通过 +0.0F/-0.0F 得出的内存值为 0x7FC00000，这个数值我们称之为标准的 NaN，其他的统称为不标准的 NaN。</p>
+<p>NaN 有一个特性：除了 “!=” 始终返回 true 以为，所有其他的比较结果都会返回 false。例如： “NaN &lt; 1.0F” ，”NaN &gt; 1.0F” 返回 false。对于任意浮点数 f ，无论它是 0 还是 NaN，”f != NaN” 始终返回 true。</p>
+<h4 id="Java-基本类型的大小"><a href="#Java-基本类型的大小" class="headerlink" title="Java 基本类型的大小"></a>Java 基本类型的大小</h4><p>Java 虚拟机每调用一个 Java 方法的时候，都会创建一个栈帧。为了方便理解，只讨论供解释器使用的解释栈帧。</p>
+<p>这种栈帧包含两个部分：局部变量区和字节码的操作数栈。这里的局部变量指的是广义的，包含普通意义下的局部变量，还包含实例方法中的 “this指针” 以及方法接受到的参数。</p>
+<ul>
+<li>下面总结基本类型的存储。</li>
+</ul>
+<p>在 Java 虚拟机规范中，局部变量区等价于一个数组，并且可以用正整数来索引。除了 long 和 double 的值需要两个数组单元来存储之外，其他的基本类型以及引用类型的值均占用一个数组单元。也就是说，boolean，byte，chart，short 这四种类型在栈上占用的空间和 int 是一样的，和引用类型也是一样的。因此，在 32 位的 HotSpot 中，这些类型在栈上将占用 4 个字节，而在 64 位的 HotSpot 中，他们将占 8 个字节。</p>
+<p>上述情况进存在于局部变量，并不会出现在存储于堆中的字段或者数组元素上。对于 byte，chart，short 这三种类型的字段或者数组单元，它们在堆上占用的空间分别是 1 字节，2 字节，2 字节，跟它们的值域是相吻合的。</p>
+<p>将一个 int 类型的值存储到这些类型的字段或者数组时，相当于做了一次隐式的掩码操作。举例： int 类型的值存入声明为 char 类型的字段里时，由于该字段仅占两字节，所以高位字节便会被截取。</p>
+<p>boolean 字段和 boolean 数组比较特殊。在 HotSpot 中，boolean 字段占用一字节，而 boolean 数组则直接用 byte 数组来实现。为了保证堆中 boolean<br> 值的合法性， HotSpot 在存储时显示地进行掩码操作，也就说说只取低位 (最后一位) 的值存入 boolean 字段或数组中。</p>
+<ul>
+<li>下面总结基本类型的加载。</li>
+</ul>
+<p>Java 虚拟机的算数运算几乎全部依赖于操作数栈。也就是说需要将堆中的 boolean，byte，char 以及 short 加载到操作数栈上，而后将栈上的值当做 int 类型来运算。</p>
+<p>对于 boolean 和 char 这两个无符号类型，加载伴随着零扩展。举例：char 大小为两个字节，加载时 char 的值会复制到 int 类型的低二字节，而高二字节则会用 0 来填充。</p>
+<p>对于 byte 和 short 这两个类型来说，加载伴随着符号的扩展。举例：short 的大小为两个字节，加载时同样会将值复制到 int 类型的低二字节。如果 short 的值为非负数，即最高位为 0，那么 int 类型的值的高二字节会用 0 来填充，否则用 1 来填充。</p>
+<h4 id="扩展思考"><a href="#扩展思考" class="headerlink" title="扩展思考"></a>扩展思考</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">boolean</span> boolValue;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		boolValue = <span class="keyword">true</span>; <span class="comment">// 将这个 true 替换为 2 或者 3，再看看打印结果</span></span><br><span class="line">		<span class="keyword">if</span> (boolValue)</span><br><span class="line">			System.out.println(<span class="string">"Hello, Java!"</span>);</span><br><span class="line">		<span class="keyword">if</span> (boolValue == <span class="keyword">true</span>)</span><br><span class="line">			System.out.println(<span class="string">"Hello, JVM!"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>分析上述代码第一打印结果，以及将 true 替换成 2 或者 3 的时候，打印结果又是什么。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">第一次打印：（条件：boolValue = <span class="keyword">true</span>）</span><br><span class="line">Hello, Java!</span><br><span class="line">Hello, JVM!</span><br><span class="line"></span><br><span class="line">第二次打印：（条件：boolValue = <span class="number">2</span>）</span><br><span class="line"></span><br><span class="line">第三次打印：（条件：boolValue = <span class="number">3</span>）</span><br><span class="line">Hello, Java!</span><br><span class="line">Hello, JVM!</span><br></pre></td></tr></table></figure>
+<p>原因是：boolean 保存在静态域中，制定了它的类型。为了保证堆中 boolean<br> 值的合法性， HotSpot 在存储时显示地进行掩码操作，也就说说只取低位 (最后一位) 的值存入 boolean 字段或数组中。即：当 boolValue = 2 的时候，取最后一位值为 0 代表 false，当 boolValue = 3 的时候，取最后一位值为 1 代表 true。</p>
+<h4 id="问答"><a href="#问答" class="headerlink" title="问答"></a>问答</h4><h6 id="Q：为什么-boolean，byte，char-以及-short-在栈中存储的时候占用四个字节"><a href="#Q：为什么-boolean，byte，char-以及-short-在栈中存储的时候占用四个字节" class="headerlink" title="Q：为什么 boolean，byte，char 以及 short 在栈中存储的时候占用四个字节"></a>Q：为什么 boolean，byte，char 以及 short 在栈中存储的时候占用四个字节</h6><p>变长数组不好控制，所以牺牲空间换取效率。</p>
+<h6 id="Q：基本类型在内存中默认值都是0，那么是如何区别是哪种类型数据的呢？"><a href="#Q：基本类型在内存中默认值都是0，那么是如何区别是哪种类型数据的呢？" class="headerlink" title="Q：基本类型在内存中默认值都是0，那么是如何区别是哪种类型数据的呢？"></a>Q：基本类型在内存中默认值都是0，那么是如何区别是哪种类型数据的呢？</h6><p>内存中不做区分，Java 程序想把它解读成什么类型，它就是什么类型。</p>
+<h6 id="Q：double-和-long-占用两个数组单位，64位的机器上，数组单位是8个字节，也就是说在解释栈上面它们占用了16个字节？"><a href="#Q：double-和-long-占用两个数组单位，64位的机器上，数组单位是8个字节，也就是说在解释栈上面它们占用了16个字节？" class="headerlink" title="Q：double 和 long 占用两个数组单位，64位的机器上，数组单位是8个字节，也就是说在解释栈上面它们占用了16个字节？"></a>Q：double 和 long 占用两个数组单位，64位的机器上，数组单位是8个字节，也就是说在解释栈上面它们占用了16个字节？</h6><p>是的。占用但并没有用高八字节的空间。这个属于HotSpot的实现细节，偏向了快速访问而牺牲了耗费空间。</p>
+<h6 id="Q：使用基本类型能够在执行效率以及内存使用两方面提升软件性能？具体是什么原理呢？"><a href="#Q：使用基本类型能够在执行效率以及内存使用两方面提升软件性能？具体是什么原理呢？" class="headerlink" title="Q：使用基本类型能够在执行效率以及内存使用两方面提升软件性能？具体是什么原理呢？"></a>Q：使用基本类型能够在执行效率以及内存使用两方面提升软件性能？具体是什么原理呢？</h6><p>占的空间更小，不需要类型转换。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>本文创作灵感来源于 极客时间 郑雨迪老师的《深入拆解 Java 虚拟机》课程，通过课后反思以及借鉴各位学友的发言总结，现整理出自己的知识架构，以便日后温故知新，查漏补缺。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+          
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/17/JVM01/" rel="next" title="01 Java 代码是怎么运行的">
+                <i class="fa fa-chevron-left"></i> 01 Java 代码是怎么运行的
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/17/JVM03/" rel="prev" title="03 Java 虚拟机是如何加载 Java 类的">
+                03 Java 虚拟机是如何加载 Java 类的 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Author">
+            
+              <p class="site-author-name" itemprop="name">黑子</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">46</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Java-的基本类型"><span class="nav-number">1.</span> <span class="nav-text">Java 的基本类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Java-基本类型的大小"><span class="nav-number">2.</span> <span class="nav-text">Java 基本类型的大小</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#扩展思考"><span class="nav-number">3.</span> <span class="nav-text">扩展思考</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问答"><span class="nav-number">4.</span> <span class="nav-text">问答</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Q：为什么-boolean，byte，char-以及-short-在栈中存储的时候占用四个字节"><span class="nav-number">4.0.1.</span> <span class="nav-text">Q：为什么 boolean，byte，char 以及 short 在栈中存储的时候占用四个字节</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Q：基本类型在内存中默认值都是0，那么是如何区别是哪种类型数据的呢？"><span class="nav-number">4.0.2.</span> <span class="nav-text">Q：基本类型在内存中默认值都是0，那么是如何区别是哪种类型数据的呢？</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Q：double-和-long-占用两个数组单位，64位的机器上，数组单位是8个字节，也就是说在解释栈上面它们占用了16个字节？"><span class="nav-number">4.0.3.</span> <span class="nav-text">Q：double 和 long 占用两个数组单位，64位的机器上，数组单位是8个字节，也就是说在解释栈上面它们占用了16个字节？</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Q：使用基本类型能够在执行效率以及内存使用两方面提升软件性能？具体是什么原理呢？"><span class="nav-number">4.0.4.</span> <span class="nav-text">Q：使用基本类型能够在执行效率以及内存使用两方面提升软件性能？具体是什么原理呢？</span></a></li></ol></li></ol><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">黑子</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.5.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

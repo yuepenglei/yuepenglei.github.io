@@ -110,25 +110,27 @@
 
 
 
-  <meta name="description" content="跳表是一种各方面性能都比较优秀的动态数据结构。它支持快速的查找，插入以及删除操作，实现起来也不复杂，甚至可以替代红黑树。">
-<meta name="keywords" content="算法">
+  <meta name="description" content="Java 是一门高级程序语言，语法复杂，抽象程度高，因此直接在硬件上运行并不现实。所以，在 Java 程序运行之前，需要对其进行转换。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法笔记-跳表">
-<meta property="og:url" content="http://yoursite.com/2018/12/19/skipList/index.html">
+<meta property="og:title" content="01 Java 代码是怎么运行的">
+<meta property="og:url" content="http://yoursite.com/2019/01/17/JVM01/index.html">
 <meta property="og:site_name" content="学习笔记">
-<meta property="og:description" content="跳表是一种各方面性能都比较优秀的动态数据结构。它支持快速的查找，插入以及删除操作，实现起来也不复杂，甚至可以替代红黑树。">
+<meta property="og:description" content="Java 是一门高级程序语言，语法复杂，抽象程度高，因此直接在硬件上运行并不现实。所以，在 Java 程序运行之前，需要对其进行转换。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-19T00:48:13.359Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190113145532809.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190113150508886.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-01-17T00:29:34.263Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="算法笔记-跳表">
-<meta name="twitter:description" content="跳表是一种各方面性能都比较优秀的动态数据结构。它支持快速的查找，插入以及删除操作，实现起来也不复杂，甚至可以替代红黑树。">
+<meta name="twitter:title" content="01 Java 代码是怎么运行的">
+<meta name="twitter:description" content="Java 是一门高级程序语言，语法复杂，抽象程度高，因此直接在硬件上运行并不现实。所以，在 Java 程序运行之前，需要对其进行转换。">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190113145532809.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/19/skipList/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/17/JVM01/">
 
 
 
@@ -138,7 +140,7 @@
   };
 </script>
 
-  <title>算法笔记-跳表 | 学习笔记</title>
+  <title>01 Java 代码是怎么运行的 | 学习笔记</title>
   
 
 
@@ -344,7 +346,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/19/skipList/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/17/JVM01/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Author">
@@ -361,7 +363,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">算法笔记-跳表
+          <h1 class="post-title" itemprop="name headline">01 Java 代码是怎么运行的
               
             
           </h1>
@@ -386,7 +388,7 @@
                 
               
 
-              <time title="创建时间：2018-12-19 08:46:46 / 修改时间：08:48:13" itemprop="dateCreated datePublished" datetime="2018-12-19T08:46:46+08:00">2018-12-19</time>
+              <time title="创建时间：2019-01-17 08:28:04 / 修改时间：08:29:34" itemprop="dateCreated datePublished" datetime="2019-01-17T08:28:04+08:00">2019-01-17</time>
             
 
             
@@ -408,7 +410,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/JVM/" itemprop="url" rel="index"><span itemprop="name">JVM</span></a></span>
 
                 
                 
@@ -428,7 +430,7 @@
           
 
           
-              <div class="post-description">跳表是一种各方面性能都比较优秀的动态数据结构。它支持快速的查找，插入以及删除操作，实现起来也不复杂，甚至可以替代红黑树。</div>
+              <div class="post-description">Java 是一门高级程序语言，语法复杂，抽象程度高，因此直接在硬件上运行并不现实。所以，在 Java 程序运行之前，需要对其进行转换。</div>
           
 
         </div>
@@ -444,25 +446,33 @@
       
 
       
-        <h1 id="为什么-Redis-要用跳表来实现"><a href="#为什么-Redis-要用跳表来实现" class="headerlink" title="为什么 Redis 要用跳表来实现"></a>为什么 Redis 要用跳表来实现</h1><h6 id="什么是跳表"><a href="#什么是跳表" class="headerlink" title="什么是跳表"></a>什么是跳表</h6><p>二分查找中，底层数据结构是数组。如果底层数据结构换成链表，使其支持二分查找，那么就城这种数据结构为跳表。</p>
-<p>跳表是一种各方面性能都比较优秀的动态数据结构。它支持快速的查找，插入以及删除操作，实现起来也不复杂，甚至可以替代红黑树。</p>
-<h6 id="理解跳表"><a href="#理解跳表" class="headerlink" title="理解跳表"></a>理解跳表</h6><p>原始链表｛1，3，4，5，7，8，9，10，13，16，17，18｝<br>一级索引｛1，4，7，9，13，17｝<br>二级索引｛1，7，13｝</p>
-<p>为了快速查找，对链表建立索引。首先对当前层级，每两个元素抽出一个，作为上级数据(索引层)。例如，对原始数据集合建立索引的索引就是一级索引。</p>
-<p>在一级索引上查找元素 16，遍历一级索引到元素 13 的位置，发现元素 16 在区间 13 到 17 之间。然后跳转到原始链表，从元素 13 这个节点开始往后找，最终找到元素 16 的节点。在这个过程中，一共遍历节点 6 个。如果没有索引，那么在原始链表中找到元素 16 需要遍历10 个节点。</p>
-<p>如果在一级索引上再次创建索引，每两个元素提取一个，组成下一级索引层就是二级索引。在二级索引上查找元素 16，遍历一级索引到元素 13 的位置，然后跳转到一级索引，发现元素 16 在区间 13 到 17 之间。然后跳转到原始链表，从元素 13 这个节点开始往后找，最终找到元素 16 的节点。在这个过程中，一共遍历节点 4 个。如果没有索引，那么在原始链表中找到元素 16 需要遍历10 个节点。</p>
-<p>上述例子中，数据量比较小，但是也足以让我们看出来构建过索引之后，再查找某个元素，效率已经提升了。这种链表加多级索引的结构，就是跳表。</p>
-<h6 id="跳表查询时间复杂度分析"><a href="#跳表查询时间复杂度分析" class="headerlink" title="跳表查询时间复杂度分析"></a>跳表查询时间复杂度分析</h6><p>根据刚才的距离，可以发现没增加一级索引，该索引层的节点个数就是上一层及的二分之一。所以可以得出每层索引元素的个数：n/2，n/4，n/8…2/(n^k)，其中 n 为初始数据元素个数，k 为索引层级。</p>
-<p>假设索引层级为 h ，最高索引有两个节点，那么 n/(2^h) = 2，h = log2|n - 1。在跳表查询某个数据时，每一层要遍历 m 个节点，那么查询到某个数据，时间复杂度就是 O(m*logn)。</p>
-<p>那么 m 值等于多少呢？根据刚才构建索引的数据结构来看，当指针节点从上一层索引转移到下一层索引的时候，上层索引区间对应的下层索引数据，只有三个元素，所以 m = 3。例如上面跳表，查找值为 8 的元素。在二级索引中，指针在 7 的位置需要跳转到一级索引查找，但是我们已经明确要查找的元素就在 7~13 的区间，指针跳转到一级索引的时候，7~13 这个区间只有三个元素，当指针跳转到初始数据的时候，7~9 这个区间也只有三个元素。所以，类推出结论：按照每两个元素提取一个构建的索引，每一次最多遍历三个元素，所以 m = 3，最终的时间复杂度就是 O(*logn)。</p>
-<h6 id="跳表的内存占用"><a href="#跳表的内存占用" class="headerlink" title="跳表的内存占用"></a>跳表的内存占用</h6><p>上述描述中，我们已经推导出每一层索引节点的个数，那么索引层总共创建的节点个数是：2/n + 4/n + … + 4 + 2 = n - 2。所以，跳表的空间复杂度为 O(n)。虽然时间复杂度为 O(n)，但是实际开发工程中，我们构建索引的时候，并不会把整个对象拿出来构建索引，而是利用对象的个别属性的值创建索引。所以，跟整个对象占用的内存来比，依据属性值创建的索引，占据的空间就很小了。</p>
-<h6 id="跳表的查找删除操作时间复杂度"><a href="#跳表的查找删除操作时间复杂度" class="headerlink" title="跳表的查找删除操作时间复杂度"></a>跳表的查找删除操作时间复杂度</h6><p>首先，我们要找到要插入或者要删除的节点的位置，时间复杂度已经是 O(logn)。对于双向链表来说，插入删除操作时间复杂度是 O(1)，所以双向链表实现的跳表数据结构，插入删除操作的时间复杂度也是O(logn)。</p>
-<h6 id="跳表索引的动态更新"><a href="#跳表索引的动态更新" class="headerlink" title="跳表索引的动态更新"></a>跳表索引的动态更新</h6><p>关于这一点，我理解的还是不太透彻。王争老师阐述的是利用一个随机函数，要插入一个节点 6，如果随机函数生成值 k ，那么就在一级到 k 级索引中全部插入节点 6 的索引。从概率上讲，最终生成的索引也将是均匀分布的。</p>
-<h6 id="为什么-Redis-要用跳表来实现-1"><a href="#为什么-Redis-要用跳表来实现-1" class="headerlink" title="为什么 Redis 要用跳表来实现"></a>为什么 Redis 要用跳表来实现</h6><p>Redis 的有序集合是通过跳表来实现的，严格的讲，还用到了散列表。这就如同开发语言中的排序方法，针对不同的数据规模，会有不同的排序实现。</p>
-<p>Redis 有序集合的核心操作：插入，删除，查找，按区间查找，迭代输出有序序列。按照区间查找，红黑树实现的效率要低于跳表。</p>
-<p>跳表相对于红黑树代码更容易实现，容易让人理解。跳表更加灵活，可以通过改变索引构建策略，有效平衡执行效率和内存消耗。</p>
-<p>多数编程语言的 Map 就是基于红黑树实现的，使用起来更加方便。而跳表没有现成的实现，需要自己开发。</p>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>本文创作灵感来源于 极客时间 王争老师的《数据结构与算法之美》课程，通过课后反思以及借鉴各位学友的发言总结，现整理出自己的知识架构，以便日后温故知新，查漏补缺。</p>
-<p>初入算法学习，必是步履蹒跚，一路磕磕绊绊跌跌撞撞。看不懂别慌，也别忙着总结，先读五遍文章先，无他，唯手熟尔~<br>与诸君共勉</p>
+        <h4 id="Java代码运行的方式"><a href="#Java代码运行的方式" class="headerlink" title="Java代码运行的方式"></a>Java代码运行的方式</h4><p>1：在开发工具中运行<br>2：双击 jar 文件运行<br>3：在命令行中运行<br>4：在网页中运行</p>
+<p>上述运行方式都离不开 JRE，也就是 Java 运行时环境。实际上 JRE 仅包含运行 Java 程序的必须组件，包括 Java 虚拟机以及 Java 核心类库等。Java 程序员经常接触到的 JDK 同样包含了 JRE，并且还附带了一系列开发和诊断工具。</p>
+<h4 id="为什么-Java-要在虚拟机里运行"><a href="#为什么-Java-要在虚拟机里运行" class="headerlink" title="为什么 Java 要在虚拟机里运行"></a>为什么 Java 要在虚拟机里运行</h4><p>Java 是一门高级程序语言，语法复杂，抽象程度高，因此直接在硬件上运行并不现实。所以，在 Java 程序运行之前，需要对其进行转换。</p>
+<p>设计一个面向 Java 语言的特性的虚拟机，并通过编译器将 Java 程序转换成该虚拟机所能识别的指令程序，也叫 Java 字节码。之所以叫做字节码，是因为 Java 字节码指令的操作码被固定为一个字节。</p>
+<h4 id="使用虚拟机的好处"><a href="#使用虚拟机的好处" class="headerlink" title="使用虚拟机的好处"></a>使用虚拟机的好处</h4><p>Java 虚拟机也可以由硬件直接实现，但是更为常见的是基于软件实现。</p>
+<p>如果一个 Java 程序被转换成 Java 字节码，那么他便可以在不同平台上的 Java 虚拟机实现里运行。这就是通常所说的：一次编译，到处运行。</p>
+<p>虚拟机的另一个好处就是它提供了一个托管环境。这个托管环境代替我们处理一些代码中冗长而且容易出错的代码。最明显的使用就是自动内存管理和垃圾回收。托管环境还提供了诸如数组越界，动态类型，安全权限等等动态监测。</p>
+<h4 id="Java-虚拟机如何运行-Java-字节码"><a href="#Java-虚拟机如何运行-Java-字节码" class="headerlink" title="Java 虚拟机如何运行 Java 字节码"></a>Java 虚拟机如何运行 Java 字节码</h4><p>下面以标准 JDK 中的 HotSpot 虚拟机为例，从虚拟机以及底层硬件两个角度进行分析。</p>
+<p>从虚拟机的视角来看，首先将 Java 代码编译成 class 文件加载到 Java 虚拟机中。加载后的 Java 类会被存放于方法区，实际运行时，虚拟机会执行方法区的代码。</p>
+<p>Java 虚拟机在内存中划分出堆和栈来存储运行时的数据。对于栈， Java 虚拟机会把其细分为面向 Java 方法的 Java 方法栈，面向本地方法(用 C++ 写的 native 方法)的本地方法栈，以及存放各个线程执行位置的 PC 寄存器。</p>
+<p><img src="https://img-blog.csdnimg.cn/20190113145532809.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>在虚拟机运行过程中，每当调用进入一个 Java 方法， Java 虚拟机会在当前线程的 Java 方法栈中生成一个栈帧，用以存放局部变量以及字节码的操作数。</p>
+<p>当退出当前执行的方法时，不管是正常返回还是异常返回，Java 虚拟机均会弹出当前线程的当前栈帧，将之舍弃。</p>
+<p>从硬件的视角来看，Java 字节码无法直接执行，因此 Java 虚拟机需要将字节码翻译成机器码。</p>
+<p>翻译的形式有两种，一种是解释执行，即逐条将字节码翻译成机器码执行；一种是即时编译，即将一个方法中包含的所有字节码编译成机器码后再执行。</p>
+<p><img src="https://img-blog.csdnimg.cn/20190113150508886.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BlbmdsZWkxMjM0NTY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>解释执行的优势在于无需等待编译，及时编译的优势在于实际运行速度会更快。HotSpot 默认采用混合模式，综合了解释执行和即时编译两者的优点。它会先解释执行字节码，而后将其中反复执行的热点代码，以方法为单位进行即时编译。</p>
+<h4 id="Java-虚拟机的运行效率"><a href="#Java-虚拟机的运行效率" class="headerlink" title="Java 虚拟机的运行效率"></a>Java 虚拟机的运行效率</h4><p>HotSpot 采用了多种技术来提升启动性能以及峰值性能，即时编译就是其中最重要的技术之一。</p>
+<p>为了满足不同用户场景的需要，HotSpot 内置了多个即时编译器：C1，C2 和 Graal。Graal 是 Java 10 正式引入的实验性即时编译器，后续再总结。引入多个即时编译器，是为了在编译时间和生成代码的执行效率之间进行取舍。</p>
+<p>C1 又叫做 Client 编译器，面向的是对启动性能有要求的客户端 GUI 程序，采用的优化手段相对简单，因此编译时间较短。</p>
+<p>C2 又叫做 Server 编译器，面向的是对峰值性能有要求的服务器端程序，采用的优化手段相对复杂，因此编译时间较长，但生成代码的执行效率较高。</p>
+<p>从 Java 7 开始，HotSpot 默认次用分层编译的方式：热点方法首先会被 C1 编译，而后热点方法中的热点会进一步被 C2 编译。</p>
+<p>为了不干扰应用正常的运行，HotSpot 的即时编译是放在额外的编译线程中进行的。HotSpot 会根据 CPU 的数量设置编译线程的数目，并且按 1:2 的比例分配给 C1 和 C2 编译器。</p>
+<h4 id="问答"><a href="#问答" class="headerlink" title="问答"></a>问答</h4><h6 id="Q：对于发布一次就长时间运行的程序，为什么不选择直接将-Java-字节码编译成机器码"><a href="#Q：对于发布一次就长时间运行的程序，为什么不选择直接将-Java-字节码编译成机器码" class="headerlink" title="Q：对于发布一次就长时间运行的程序，为什么不选择直接将 Java 字节码编译成机器码"></a>Q：对于发布一次就长时间运行的程序，为什么不选择直接将 Java 字节码编译成机器码</h6><p>事实上 JVM 却是有考虑做 AOT 的这种事情。AOT 能够在线下将 Java 字节码编译成机器码，主要用来解决启动性能不好的问题。其实线下编译和即时编译都一样，至多一两个小时后该编译的都已经编译完成了。另外，即时编译器因为有程序运行时信息，优化效果更好，也就是说峰值性能更好。</p>
+<h6 id="Q：如何区分热点代码和非热点代码"><a href="#Q：如何区分热点代码和非热点代码" class="headerlink" title="Q：如何区分热点代码和非热点代码"></a>Q：如何区分热点代码和非热点代码</h6><p>关于热点代码的统计有两种算法：一种是基于采样的热点探测，一种是基于计数器的热点探测。基于计数器的热点探测又有两个计数器：一种是方法调用计数器，一种是回边计数器，他们在 C1 和 C2 中有不同的阈值。默认的分层编译应该是达到两千调用 C1，达到一万五调用 C2。一般采用的都是基于计数器的热点探测。</p>
+<h6 id="Q：对于-JVM-的及时编译，当方法体中有很多-if，else-if-这样的判断，如何编译"><a href="#Q：对于-JVM-的及时编译，当方法体中有很多-if，else-if-这样的判断，如何编译" class="headerlink" title="Q：对于 JVM 的及时编译，当方法体中有很多 if，else if 这样的判断，如何编译"></a>Q：对于 JVM 的及时编译，当方法体中有很多 if，else if 这样的判断，如何编译</h6><p>JVM 有两种编译方式，一种是对整个方法进行编译，一种是对热循环进行编译。无论哪种，都要比 if else 的粒度大。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>本文创作灵感来源于 极客时间 郑雨迪老师的《深入拆解 Java 虚拟机》课程，通过课后反思以及借鉴各位学友的发言总结，现整理出自己的知识架构，以便日后温故知新，查漏补缺。</p>
 
       
     </div>
@@ -494,12 +504,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/算法/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
-          
-        </div>
-      
 
       
       
@@ -509,8 +513,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/19/table-tfood/" rel="next" title="element table 自定义表尾">
-                <i class="fa fa-chevron-left"></i> element table 自定义表尾
+              <a href="/2019/01/14/dynamic-programming02/" rel="next" title="算法笔记-动态规划02">
+                <i class="fa fa-chevron-left"></i> 算法笔记-动态规划02
               </a>
             
           </div>
@@ -519,8 +523,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/20/HashTable01/" rel="prev" title="算法笔记-散列表">
-                算法笔记-散列表 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/17/JVM02/" rel="prev" title="02 Java 的基本类型">
+                02 Java 的基本类型 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -718,7 +722,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么-Redis-要用跳表来实现"><span class="nav-number">1.</span> <span class="nav-text">为什么 Redis 要用跳表来实现</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#什么是跳表"><span class="nav-number">1.0.0.0.0.1.</span> <span class="nav-text">什么是跳表</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#理解跳表"><span class="nav-number">1.0.0.0.0.2.</span> <span class="nav-text">理解跳表</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#跳表查询时间复杂度分析"><span class="nav-number">1.0.0.0.0.3.</span> <span class="nav-text">跳表查询时间复杂度分析</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#跳表的内存占用"><span class="nav-number">1.0.0.0.0.4.</span> <span class="nav-text">跳表的内存占用</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#跳表的查找删除操作时间复杂度"><span class="nav-number">1.0.0.0.0.5.</span> <span class="nav-text">跳表的查找删除操作时间复杂度</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#跳表索引的动态更新"><span class="nav-number">1.0.0.0.0.6.</span> <span class="nav-text">跳表索引的动态更新</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#为什么-Redis-要用跳表来实现-1"><span class="nav-number">1.0.0.0.0.7.</span> <span class="nav-text">为什么 Redis 要用跳表来实现</span></a></li></ol></li></ol><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">总结</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Java代码运行的方式"><span class="nav-number">1.</span> <span class="nav-text">Java代码运行的方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么-Java-要在虚拟机里运行"><span class="nav-number">2.</span> <span class="nav-text">为什么 Java 要在虚拟机里运行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用虚拟机的好处"><span class="nav-number">3.</span> <span class="nav-text">使用虚拟机的好处</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Java-虚拟机如何运行-Java-字节码"><span class="nav-number">4.</span> <span class="nav-text">Java 虚拟机如何运行 Java 字节码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Java-虚拟机的运行效率"><span class="nav-number">5.</span> <span class="nav-text">Java 虚拟机的运行效率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问答"><span class="nav-number">6.</span> <span class="nav-text">问答</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Q：对于发布一次就长时间运行的程序，为什么不选择直接将-Java-字节码编译成机器码"><span class="nav-number">6.0.1.</span> <span class="nav-text">Q：对于发布一次就长时间运行的程序，为什么不选择直接将 Java 字节码编译成机器码</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Q：如何区分热点代码和非热点代码"><span class="nav-number">6.0.2.</span> <span class="nav-text">Q：如何区分热点代码和非热点代码</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Q：对于-JVM-的及时编译，当方法体中有很多-if，else-if-这样的判断，如何编译"><span class="nav-number">6.0.3.</span> <span class="nav-text">Q：对于 JVM 的及时编译，当方法体中有很多 if，else if 这样的判断，如何编译</span></a></li></ol></li></ol><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></div>
             
 
           </div>
